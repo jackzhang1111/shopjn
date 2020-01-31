@@ -1,33 +1,33 @@
 <template>
 <!-- 输入验证码点击确定 => 修改密码页 -->
     <div class="revise-password">
-        <navar title="忘记密码"></navar>
+        <navar title="Forgot Password"></navar>
         <div class="content">
-            <p class="padding-l-30">请设定新密码</p>
+            <p class="padding-l-30">Reset A New Password</p>
             <div class="line"></div>
             <div class="pass-word"> 
-                <span class="margin-l-30">密码</span>
+                <span class="margin-l-30">New password</span>
                 <div class="input-con">
-                    <input :type="inputType" class="name-input bgc-moren" placeholder="请输入6-20个字符的密码" v-model="reviseData.userPwd">
+                    <input :type="inputType" class="name-input bgc-moren" placeholder="Enter a password(6-20 characters)" v-model="reviseData.userPwd">
                     <van-icon :name="eyeName" class="eye" @click="eyeStatus = !eyeStatus" size="18px"/>
                 </div>
                 <div class="line"></div>
             </div>
             <div class="re-enter"> 
-                <span class="margin-l-30">确认密码</span>
+                <span class="margin-l-30">Re-enter</span>
                 <div class="input-con">
-                    <input type="password" class="name-input bgc-moren" placeholder="请再次输入新密码" v-model="reviseData.userPwd2">
+                    <input type="password" class="name-input bgc-moren" placeholder="Enter the password again" v-model="reviseData.userPwd2">
                 </div>
                  <div class="line"></div>
             </div>
             <div class="upload" :style="{backgroundColor:(disabledSubmit?'#FA5300':'#999')}">
-                <div class="load-btn" @click="confirm" >确定</div>
+                <div class="load-btn" @click="confirm">Confirm</div>
             </div>
             <div class="tips">
-                <span>安全密码提示:</span>
-                <div class="spot">&nbsp;&nbsp;至少包含6个字符，最好是数字和字母的组合；</div>
-                <div class="spot">&nbsp;&nbsp;不要使用您之前已经在本网站上使用过的密码；</div>
-                <div class="spot">&nbsp;&nbsp;不要使用字典词汇、您的姓名、邮箱地址、手机号码或其他可以轻易获取的个人信息。</div>
+                <span>Secure Password Tips:</span>
+                <div class="spot">&nbsp;&nbsp;Use at least 6 characters, a combination of numbers and letters is best.</div>
+                <div class="spot">&nbsp;&nbsp;Do not use the same password you have used with us previously.</div>
+                <div class="spot">&nbsp;&nbsp;Do not use dictionary words, your name, e-mail address, mobile phone number or other personal information that can be easily obtained.</div>
             </div>
         </div>
     </div>
@@ -178,7 +178,7 @@ export default {
         }
         .name-input{
             position: absolute;
-            width: 350px;
+            width: 380px;
             border: 0;
             left:110px;
             font-size: 30px;

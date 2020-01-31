@@ -1,29 +1,27 @@
 <template>
 <!-- 忘记密码点击下一步 =>输入验证码页 -->
   <div class="forget-password">
-        <navar title="忘记密码"></navar>
+        <navar title="Forgot Password"></navar>
         <div class="password-con">
-            <h1>正在验证您的身份</h1>
+            <h1>Authentication Required</h1>
             <div class="line"></div>
             <div>
                 <p class="tips">
-                    <span>为了您的安全，我们需要验证您的身份。我们已向手机号码</span>
-                    <span class="o-c">+86 {{yzmData.msgphone}}</span>
+                    <span>For your security, we need to authenticate your request. We have sent a One Time Password (OTP) to your phone</span>
+                    <span class="o-c">{{yzmData.msgphone}}</span>
                 </p>
             </div>
             <div class="otp">
-                <div class="otp-txt">校验码:</div>
+                <div class="otp-txt">OTP:</div>
                 <div class="input-con">
-                    <input type="number" class="name-input" placeholder="请输入您的校验码" v-model="verCode">
+                    <input type="number" class="name-input" placeholder="Please enter the OTP" v-model="verCode">
                 </div>
                 <div class="count-down">
                     <div  class="count-down-btn" @click="getCode" v-show="countTrue">{{countdown}}</div>
                     <div  class="count-down-btn" v-show="!countTrue">{{count}}S</div>
                 </div>
             </div>
-            <div class="confirm-btn" @click='toRevise' :style="{backgroundColor:(disabledSubmit?'#FA5300':'#999')}">
-                确定
-            </div>
+            <div class="confirm-btn" @click='toRevise' :style="{backgroundColor:(disabledSubmit?'#FA5300':'#999')}">Confirm</div>
         </div>
 
   </div>
@@ -37,7 +35,7 @@ export default {
     data () {
         return {
             timer: null,
-            countdown:'发送验证码',
+            countdown:'Get It',
             count: '',
             countTrue:true,
             verCode:'',
