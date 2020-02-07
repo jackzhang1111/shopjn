@@ -1,33 +1,29 @@
 <template>
 <!-- 账户余额 -->
     <div class="account-balance">
-        <balance-header title="账户余额" title2="查看明细" @jumpRouter="jumpRouter" jumpName="账户明细"></balance-header>
+        <balance-header title="My Balance" title2="Details" @jumpRouter="jumpRouter" jumpName="账户明细"></balance-header>
         <div class="balance-top">
-            <div class="top-p1">
-                账户充值
-            </div>
+            <div class="top-p1">Top Up</div>
             <div class="top-p2">
                 <van-rate v-model="value" color="#FA5300" class="rate"/>
-                <span @click="jumpRouter('评论详情')">2,206条评论</span>
+                <span @click="jumpRouter('评论详情')" v-if="false">2,206Reviews</span>
             </div>
             <div class="top-p3">
-                <span>当前余额: {{jn}}{{walletMoney}}</span>
+                <span>Balance:{{jn}}{{walletMoney ? walletMoney:0}}</span>
             </div>
         </div>
         <div class="balance-bottom">
-            <p class="bottom-p1">选择金额（您可以选择充值面额或者自定义充值金额）</p>
+            <p class="bottom-p1">Select an amount(you can choose an amount below or enter an amount)</p>
             <div class="money-list" v-for="(money,index) in moneyList" :key="index">
                 <div v-for="num in money.numList" :key="num">{{num}}</div>
             </div>
             <div class="cell">
-                <input type="number" class="input-xt" placeholder="请输入金额">
+                <input type="number" class="input-xt" placeholder="Enter an amount">
             </div>
-            <div class="btn-next" @click="showyinhang" :style="{backgroundColor:(disabledSubmit?'#FA5300':'#999')}">
-                下一步
-            </div>
+            <div class="btn-next" @click="showyinhang" :style="{backgroundColor:(disabledSubmit?'#FA5300':'#999')}">Next</div>
             <div class="footer-tips">
-                <p class="tip1">充值说明：</p>
-                <p class="tip2">“账户充值”指通过TOPINO支持的支付方式进行付款并充值到购买人的TOSPINO账户的行为。</p>
+                <p class="tip1">What is Top Up:</p>
+                <p class="tip2">Top Up refers to the recharging available to Tospino's account.</p>
             </div>
         </div>
 

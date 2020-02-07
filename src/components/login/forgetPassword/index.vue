@@ -3,7 +3,7 @@
   <div class="forget-password">
         <navar title="Forgot Password"></navar>
         <div class="footer">
-            <p>输入与您的TOSPINO账户相关联的电子邮箱地址或者手机号码</p>
+            <p>Enter your email or phone number</p>
             <div class="otp">
                 <div class="input-con">
                     <input type="number" class="name-input" placeholder="Enter your phone number" v-model="formData.msgphone">
@@ -13,8 +13,8 @@
             <div class="confirm-btn">
                 <div class="load-btn" @click="next" :style="{backgroundColor:(disabledSubmit?'#FA5300':'#999')}">next</div>
             </div>
-            <p class="fs-26">您是否修改过邮箱地址或者手机号码?</p>
-            <p class="fs-20">如果您不再使用与您的TOSPINO账户相关联的电子邮箱地址或者手机号码,可以联系客户服务帮助您恢复账号的访问.</p>
+            <p class="fs-26">Have you changed your email or phone number?</p>
+            <p class="fs-20">If Yes, please contact the service personnel to get an access to Tospino.</p>
         </div>
   </div>
 </template>
@@ -30,7 +30,7 @@ export default {
             rules:{
                 msgphone:{
                     required: true,
-                    messages: "请输入手机号码"
+                    messages: "Enter phone number"
                 }
             }
         }

@@ -95,11 +95,11 @@ export default {
             rules:{
                 username:{
                     required: true,
-                    messages: "姓名格式不正确"
+                    messages: "Enter login username"
                 },
                 password:{
                     required: true,
-                    messages: "姓名格式不正确"
+                    messages: "Enter login password"
                 }
                
             },

@@ -1,7 +1,7 @@
 <template>
 <!-- 日历组件 -->
     <div>
-        <Calendar v-on:choseDay="clickDay" v-on:changeMonth="changeDate" :markDate="checkArr" class="calen-dar"></Calendar>
+        <Calendar v-on:choseDay="clickDay" v-on:changeMonth="changeDate" :markDate="checkArr" class="calen-dar" ref="aaa" dateTop="123123"></Calendar>
     <!-- 
         <Calendar
       v-on:choseDay="clickDay"
@@ -54,7 +54,7 @@ export default {
 
     },
     mounted() {
-
+        
     },
     watch: {
 

@@ -6,7 +6,7 @@
             <span class="icon">
                 <img src="@/assets/img/tabbar/home/commodityDetails/disabled@2x.png">
             </span>
-            <span class="nknxh-p1">你可能还喜欢</span>
+            <span class="nknxh-p1">You May Also Like</span>
             <span class="line-right"></span>
         </div>
         <div class="exhibition-con clearfix">
@@ -16,7 +16,7 @@
                     <span class="icon">
                         <img :src="$webUrl+good.locationUrl">
                     </span>
-                    <span class="produced-font">{{good.locationName}}</span>
+                    <span class="produced-font">{{good.locationNameEng}}</span>
                 </div>
                 <div class="produced-title">
                     <span>{{good.supplyTitle}}</span>

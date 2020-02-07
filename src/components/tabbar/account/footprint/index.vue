@@ -1,13 +1,11 @@
 <template>
-<!-- 我的足迹 未完成-->
     <div>
         <div class="footprint">
             <div class="footprint-header">
                 <van-icon name="arrow-left" class="arrow-left" @click="$router.go(-1)"/>
-                <span class="header-t1" >我的足迹</span>
+                <span class="header-t1">My Browsing</span>
                 <span class="header-t2" @click="editBj">{{editBjName}}</span>
                 <van-icon name="chat-o" class="xiaoxi" info=""  @click="$router.push({name:'消息'})"/>
-                
             </div>
             <div class="place"></div>
              <scroll class="bscroll-wrapper" ref="wrapper" :data="recordGroup" :pullup="pullup" @pullup="_pullup">
@@ -25,12 +23,12 @@
                             </div>
                             <div class="good-desc">
                                 <span class="p1 clamp-2">{{product.supplyTitle}}</span>
-                                <span class="p2">已售{{product.skuSalesNum}}件</span>
+                                <span class="p2">Sales:{{product.skuSalesNum}}Pcs</span>
                                 <div class="good-price">
                                     <span class="p1">{{jn}}{{product.discountPrice == null ? product.salePrice:product.discountPrice}}</span>
                                     <div class="fl-right" @click="shoucangProdu(product)">
                                         <van-icon :name="product.isfavorites == 0 ?'star-o':'star' " :class="product.isfavorites == 0?'c-666':''"/>
-                                        <span class="c-333">收藏</span>
+                                        <span class="c-333">Collection</span>
                                     </div>
                                 </div>
                             </div>
@@ -44,8 +42,8 @@
             <div class="settlement" v-if="showFooter">
                 <span class="settlement-text">
                     <van-checkbox v-model="allchecked" icon-size="24px" class="checkbox" checked-color="#F83600" @change="allCheckBox(allchecked)"></van-checkbox>
-                    <span class="btn1" @click="delfootprint">删除足迹</span>
-                    <span class="p1">全选</span>
+                    <span class="btn1" @click="delfootprint">Delete</span>
+                    <span class="p1">All</span>
                 </span>
             </div>
         </div>
@@ -68,7 +66,7 @@ export default {
             totalCount:0,
 
             allchecked:false,
-            editBjName:'编辑',
+            editBjName:'Edit',
             showFooter:false,
             dataList:[],
             formData:{
@@ -92,7 +90,7 @@ export default {
     watch: {
         showFooter:{
             handler:function(newVal, oldVal){
-                this.editBjName = newVal? '完成':'编辑'
+                this.editBjName = newVal? 'OK':'Edit'
             },
         },
         dataList:{
@@ -120,7 +118,7 @@ export default {
                 if(res.code == 0){
                     if(flag){
                         if(res.Data.list == 0){
-                            Toast('当天没有浏览记录')
+                            Toast('No Record')
                         }else{
                             this.dataList = res.Data.list
                         }
@@ -177,7 +175,7 @@ export default {
             var now = new Date(); 
             var days = now.getTime() - sdate.getTime(); 
             var day = parseInt(days / (1000 * 60 * 60 * 24)); 
-            return day == 0 ? '今天': day == 1 ? '昨天' :''
+            return day == 0 ? 'Today': day == 1 ? 'Yesterday' :''
         },
         //浏览足迹日期
         selectuserbrowhistorydate(){

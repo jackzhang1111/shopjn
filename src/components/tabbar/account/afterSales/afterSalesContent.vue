@@ -1,11 +1,11 @@
 <template>
     <div>
-        <scroll class="bscroll-wrapper" ref="wrapper" :data="recordGroup" :pulldown="pulldown" :pullup="pullup" @pulldown="_pulldown" @pullup="_pullup" v-if="dataList.length>0">
-            <div class="bscroll-con">
+        <scroll class="bscroll-wrapper" ref="wrapper" :data="recordGroup" :pulldown="pulldown" :pullup="pullup" @pulldown="_pulldown" @pullup="_pullup" >
+            <div class="bscroll-con" v-if="dataList.length>0">
                 <div class="good-detail" v-for="(product,index) in dataList" :key="index">
                     <div class="good-detail-header">
-                        <span>订单编号：{{product.orderSn}}</span>
-                        <span class="fl-right c-orange">{{orderStatus(product.orderStatusApp,'statusList')}}</span>
+                        <span>Order No:{{product.orderSn}}</span>
+                        <span class="fl-right c-orange ft-24">{{orderStatus(product.orderStatusApp,'statusList')}}</span>
                     </div>
                     <div class="good-detail-content" v-for="(detail,index) in product.detailList2" :key="index">
                         <div class="good-detail-img">
@@ -13,7 +13,7 @@
                         </div>
                         <div class="good-detail-title">
                             <span class="name">{{detail.skuName}}</span>
-                            <div class="guige">{{detail.skuValuesTitle}}</div>
+                            <div class="guige">{{detail.skuValuesTitleEng}}</div>
                         </div>
                         <div class="price">
                             <div class="p4 fl-right">x{{detail.detailNum}}</div>
@@ -21,7 +21,7 @@
                     </div>
                     <div class="good-detail-dfh-footer">
                         <div class="dfh-footer-top" v-if="product.detailList.length > 2" @click="shousuo(product)">
-                            <span>查看其他{{product.lengcha}}个商品</span>
+                            <span>View other {{product.lengcha}} products</span>
                             <van-icon name="arrow-down" v-if="product.arrowDown"/>
                             <van-icon name="arrow-up" v-else/>
                         </div>
@@ -30,10 +30,13 @@
                                 <img src="@/assets/img/confirmOrder/refund@2x.png">
                             </div>
                             <span>{{orderStatus(product.backType,'backTypeList')}}</span>
-                            <div class="btn-detail c-orange" @click="toDetail(product.orderId)">查看详情</div>
+                            <div class="btn-detail c-orange" @click="toDetail(product.orderId)">Details</div>
                         </div>
                     </div>
                 </div>
+            </div>
+            <div v-else>
+                <noSearch></noSearch>
             </div>
         </scroll>
     </div>
@@ -41,6 +44,7 @@
 
 <script>
 import {backorderlistApi} from '@/api/afterSales/index'
+import noSearch from './itemComponents/noSearch'
 export default {
     props: {
 
@@ -60,16 +64,16 @@ export default {
             totalCount:0,
             noSearchStatus:true,
             statusList:[
-                {type:0,name:'待审核'},
-                {type:1,name:'待寄回'},
-                {type:2,name:'待退款'},
-                {type:3,name:'退款成功'},
-                {type:4,name:'已拒绝'},
-                {type:5,name:'已取消'},
+                {type:0,name:'Unapproved'},
+                {type:1,name:'Pending Pickup'},
+                {type:2,name:'Pending Refund'},
+                {type:3,name:'Refunded'},
+                {type:4,name:'Refused'},
+                {type:5,name:'Canceled'},
             ],
             backTypeList:[
-                {type:1,name:'仅退款'},
-                {type:2,name:'退货退款'},
+                {type:1,name:'Refund Only'},
+                {type:2,name:'Return & Refund'},
             ]
         };
     },
@@ -172,7 +176,7 @@ export default {
         },
     },
     components: {
-
+        noSearch
     },
 };
 </script>
@@ -184,13 +188,12 @@ export default {
 .good-detail{
     margin-bottom: 20px;
     .good-detail-header{
-        height: 79px;
-        line-height: 79px;
         font-size:26px;
         color: #333;
         background-color: #fff;
-        padding:0 30px;
+        padding:30px 30px;
         border-bottom: 1px solid #F2F3F5;
+        overflow: hidden;
     }
     .good-detail-content{
         background-color: #fff;
@@ -362,6 +365,9 @@ export default {
             }
         }
         
+    }
+    .ft-24{
+        font-size: 20px;
     }
 }
 </style>

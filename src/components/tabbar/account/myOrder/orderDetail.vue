@@ -1,7 +1,7 @@
 <template>
 <!-- 订单详情 -->
     <div class="order-detail">
-        <balance-header title="订单详情"></balance-header>
+        <balance-header title="Order Details"></balance-header>
         <div class="address-p1">
             <div class="p1-top">{{orderStatus(detailObj.orderStatusApp,'status')}}</div>
         </div>
@@ -23,7 +23,7 @@
                 </div>
                 <div class="bottom-right">
                     <span class="name"> {{detailObj.consignee}}</span>
-                    <span class="phone"> 86-{{detailObj.mobile}}</span>
+                    <span class="phone"> 233-{{detailObj.mobile}}</span>
                     <div class="addre">
                         {{detailObj.country}}{{detailObj.province}}{{detailObj.city}}{{detailObj.district}}{{detailObj.address}}
                     </div>
@@ -31,7 +31,7 @@
             </div>
         </div>
         <div class="address-p3">
-            <div class="p3-header">商品信息</div>
+            <div class="p3-header">Product Info</div>
             <div class="good-detail">
                 <div class="good-detail-content" v-for="data in dataList" :key="data.detailId">
                     <div class="good-detail-img" @click="jumpRouter('商品详情')">
@@ -40,7 +40,7 @@
                     <div class="good-detail-title" @click="jumpRouter('商品详情')">
                         <span class="name">{{data.skuName}}</span>
                         <div class="guige">
-                            {{data.skuValuesTitle}}
+                            {{data.skuValuesTitleEng}}
                         </div>
                     </div>
                     <div class="price">
@@ -62,43 +62,41 @@
                     <!-- <div class="fl-right c-jinse">退款成功</div> -->
                 </div>
                 <div class="mingxi m-t-29">
-                    <span >商品总价：</span>
+                    <span >Subtotal:</span>
                     <span class="fl-right">{{detailObj.currencySignWebsite}}{{detailObj.orderProductAmountWebsite}}</span>
                 </div>
                 <div class="mingxi">
-                    <span>运费：</span>
+                    <span>Freight:</span>
                     <span class="fl-right">{{detailObj.currencySignWebsite}}{{detailObj.orderProductAmountWebsite}}</span>
                 </div>
                 <div class="mingxi">
-                    <span>订单总价：</span>
+                    <span>Sum:</span>
                     <span class="fl-right c-orange font-24">{{detailObj.currencySignWebsite}}{{detailObj.orderAmountWebsite}}</span>
                 </div>
             </div>
         </div>
         <div class="address-p4">
-            <div class="p4-top">
-                订单信息
-            </div>
+            <div class="p4-top">Order Info</div>
             <div class="p4-middle">
                 <div class="middle-p1">
-                    <span>订单备注:</span>
+                    <span>Note:</span>
                     <span>{{detailObj.orderRemark}}</span>
                 </div>
                 <div class="middle-p2">
-                    <span>订单编号:</span>
+                    <span>Order No:</span>
                     <span id="orderSn">{{detailObj.orderSn}}</span>
-                    <span class="fl-right c-orange" ref="copy" data-clipboard-action="copy" data-clipboard-target="#orderSn" @click="copyLink">复制</span>
+                    <span class="fl-right c-orange" ref="copy" data-clipboard-action="copy" data-clipboard-target="#orderSn" @click="copyLink">Copy</span>
                 </div>
                 <div class="middle-p1">
-                    <span>下单时间:</span>
+                    <span>Starts from:</span>
                     <span>{{detailObj.orderAddtime}}</span>
                 </div>
                 <div class="middle-p1">
-                    <span>支付时间:</span>
+                    <span> Time of Payment:</span>
                     <span>{{detailObj.orderPaytime}}</span>
                 </div>
                 <div class="middle-p1">
-                    <span>支付方式:</span>
+                    <span>Pay (by):</span>
                     <span>{{orderStatus(detailObj.payType,'payTypes')}}</span>
                 </div>
             </div>
@@ -107,24 +105,23 @@
             <div class="phone-icon">
                 <img src="@/assets/img/confirmOrder/phone@2x.png">
             </div>
-            <span @click="show3 = true">拨打电话</span>
+            <span @click="show3 = true">Dialing</span>
         </div>
         <div style="height:100px"></div>
         <div class="good-detail-footer">
             <!-- 待付款按钮栏 -->
-            <div class="lan">
-                <div class="btn-qzf fl-right c-orange" @click="showPay" v-if="detailObj.orderStatusApp == 0">付款</div>
-                <div class="btn-xgdz fl-right" @click="toEditAddress" v-if="detailObj.orderStatusApp == 0">修改地址</div>
-                <div class="btn-xgdz fl-right" v-if="detailObj.orderStatusApp == 2 || detailObj.orderStatusApp == 3" @click="toLogistics(detailObj.orderId)">查看物流</div>
-                <div class="btn-qzf fl-right c-orange" v-if="detailObj.orderStatusApp == 3">评价</div>
-                <div class="btn-qzf fl-right c-orange" v-if="detailObj.orderStatusApp == 4">删除订单</div>
+            <div class="btn-qzf fl-right c-orange" @click="showPay" v-if="detailObj.orderStatusApp == 0">Pay Now</div>
+            <div class="btn-xgdz fl-right" @click="toEditAddress" v-if="detailObj.orderStatusApp == 0">Change Address</div>
+            <div class="btn-xgdz fl-right" v-if="detailObj.orderStatusApp == 2 || detailObj.orderStatusApp == 3" @click="toLogistics(detailObj.orderId)">Check Logistics</div>
+            <div class="btn-qzf fl-right c-orange" v-if="detailObj.orderStatusApp == 3">Review</div>
+            <div class="btn-qzf fl-right c-orange" v-if="detailObj.orderStatusApp == 4">Delete</div>
 
-                <div class="btn-qxdd fl-right" @click="closeOverlay(true,detailObj.orderId)" v-if="detailObj.canRevoke == 1">取消订单</div>
-                <div class="btn-qzf fl-right c-orange" @click="toRefund" v-if="detailObj.canRefund == 1">退款</div>
-                <div class="btn-qzf fl-right c-orange" @click="showPay" v-if="detailObj.canComplete == 1">确认收货</div>
-                <div class="btn-xgdz fl-right" @click="toReturnRefund" v-if="dataList.length == 1 && detailObj.canReturn == 1">退货退款</div>
-                <div class="btn-xgdz fl-right" @click="toBatchRefund" v-if="dataList.length > 1 && detailObj.canReturn == 1">退货退款</div>
-            </div>
+            <div class="btn-qxdd fl-right" @click="closeOverlay(true,detailObj.orderId)" v-if="detailObj.canRevoke == 1">Cancel Order</div>
+
+            <div class="btn-qzf fl-right c-orange" @click="toRefund" v-if="detailObj.canRefund == 1">Refund</div>
+            <div class="btn-qzf fl-right c-orange" @click="showPay" v-if="detailObj.canComplete == 1">Confirm Receipt</div>
+            <div class="btn-xgdz fl-right" @click="toReturnRefund" v-if="dataList.length == 1 && detailObj.canReturn == 1">Return & Refund</div>
+            <div class="btn-xgdz fl-right" @click="toBatchRefund" v-if="dataList.length > 1 && detailObj.canReturn == 1">Return & Refund</div>
         </div>
 
         <van-overlay :show="show3" @click="show3 = false" class="overlay">
@@ -167,24 +164,24 @@ export default {
             dataList:[],
             detailObj:{},
             status:[
-                {type:0,name:'等待买家付款'},
-                {type:1,name:'买家已付款'},
-                {type:2,name:'卖家已发货'},
-                {type:3,name:'交易成功'},
-                {type:4,name:'交易关闭'},
+                {type:0,name:'Pending Payment'},
+                {type:1,name:'Paid by Buyer'},
+                {type:2,name:'Sent by Seller'},
+                {type:3,name:'Finish'},
+                {type:4,name:'Closed'},
             ],
             deliverTypes:[
-                {type:1,name:'Tospino物流'},
-                {type:2,name:'上门自取'},
-                {type:3,name:'第三方物流'},
+                {type:1,name:'Fulfillment by Tospino'},
+                {type:2,name:'Pickup'},
+                {type:3,name:'Third-party Logistics'},
             ],
             payTypes:[
-                {type:1,name:'货到付款'},
-                {type:2,name:'在线支付'},
-                {type:3,name:'余额支付'},
+                {type:1,name:'Cash'},
+                {type:2,name:'Online'},
+                {type:3,name:'Balance'},
             ],
             orderId:0,
-
+            userinfoShop:{},
             copyBtn: null, //存储初始化复制按钮事件
         };
     },
@@ -196,7 +193,7 @@ export default {
     },
     mounted() {
         this.orderinfo()
-
+        this.userinfoShop = JSON.parse(localStorage.userinfoShop)
         this.copyBtn = new this.clipboard(this.$refs.copy)
     },
     watch: {
@@ -239,6 +236,10 @@ export default {
         },
         //弹出付款弹窗
         showPay(){
+            if(!this.userinfoShop.payPwd){
+                this.$router.push({name:'设置支付密码'})
+                return
+            }
             this.$refs.actionSheetPassword.showAction = true
         },
         //修改地址
@@ -293,10 +294,10 @@ export default {
             let _this = this;
             let clipboard = _this.copyBtn;
             clipboard.on('success', function() {
-                Toast('复制成功！')
+                Toast('Successful copy!')
             });
             clipboard.on('error', function() {
-                Toast('复制失败，请手动选择复制！')
+                Toast('Failed! Please choose manual copy!')
             });
         }
     },
@@ -465,7 +466,6 @@ export default {
             }
         }
         .sqsh{
-            width:128px;
             height:48px;
             border:1px solid rgba(153,153,153,1);
             border-radius:24px;
@@ -473,6 +473,7 @@ export default {
             text-align: center;
             margin-top:30px;
             float: right;
+            padding: 0 20px;
         }
         .c-jinse{
             color: #DB9000;
@@ -480,14 +481,12 @@ export default {
     }
 }
 .good-detail-footer{
-    height: 100px;
     border-top: 1px solid #F2F3F5;
     font-size: 30px;
     color: #666;
     background-color: #fff;
-    .lan{
-        height: 100%;
-    }
+    padding: 30px 0;
+    overflow: hidden;
     .btn-qzf{
         padding: 0 25px;
         height:60px;
@@ -495,22 +494,16 @@ export default {
         border-radius:30px;
         line-height: 60px;
         text-align: center;
-        position: relative;
-        top:50%;
-        transform: translateY(-50%);
         margin-right:20px;
     }
     .btn-qxdd,.btn-xgdz{
-        width:180px;
         height:60px;
         border:2px solid rgba(153,153,153,1);
         border-radius:30px;
         line-height: 60px;
         text-align: center;
-        position: relative;
-        top:50%;
-        transform: translateY(-50%);
         margin-right:20px;
+        padding: 0 20px
     }
 }
 .font-24{

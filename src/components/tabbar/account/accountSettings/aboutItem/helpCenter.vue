@@ -1,131 +1,113 @@
 <template>
 <!-- 帮助中心 -->
     <div class="help-center">
-        <div class="title">APP用户帮助中心内容</div>
+        <div class="title">Tospino’s Help Center</div>
         <p>
-            1、订单管理<br>
-            ①修改/取消订单<br>
-            商品未发货之前，用户可以选择取消订单，在Tospino APP“我的”-“我的订单”-“待发货”中取消订单即可。<br>
-            用户如果需要修改订单，需要先取消订单，然后再重新下单。<br>
+            <br><span class='jiacu'>1.My Order</span>
+            <br><span class='jiacu'>①Change/Cancel the Order</span>
+            <br>Users can cancel the order on Tospino before the delivery. 
+            <br>Operations: Click “Account”, “My order”, “Undelivered” and “Cancel the Order” progressively.
+            <br>Users have to cancel the original order first if they want to change it, and then re-order the relevant product.
+            <br><span class='jiacu'>Attention:</span> Users cannot cancel the order if it is being delivered. To avoid the complex Return/Refund procedures, you can reject the package directly after its arrival.
+            <br><span class='jiacu'>Note:</span> In rare case, due to the system design, users may fail to cancel the order even if they have clicked the button-”Cancel the Order”. You can reject the product after its arrival. The platform will refund your money after the warehousing of the rejection.
+            <br><span class='jiacu'>②Check the Order</span>
+            <br>You can check the order on Tospino after the delivery to know the delivery process by clicking into “Account” and “My order” progressively. 
+            <br><span class='jiacu'>③Methods of Payment</span>
+            <br>Cash
+            <br>Balance
+            <br><span class='jiacu'>Attention:</span> If buyers choose Cash, they should pay for the products on the scene after its arrival. Our transportation specialist will not give you the product if you fail to pay the product in full.
             <br>
-            注意：如果您的订单已经发货，处于配送状态，那么订单将无法取消，为避免退换货手续，建议您可以直接拒收。<br>
+            <br><span class='jiacu'>2.Delivery and Dispatching</span>
+            <br><span class='jiacu'>①Methods of Dispatching and Date of Delivery</span>
+            <br>All orders on Tospino are dispatched by our official teams. Tospino warehouse will send out packages within 72 hours after the ordering.
+            <br><span class='jiacu'>②Delivery Range</span>
+            <br>Currently, free delivery service covers areas within 500 kilometers away from the locations of warehouses, including:
+            <br>West Region, Volta Region, Upper West Region, Northern Region, Greater Accra Region, Eastern Region, Central Region, Brong-Ahafo Region, Ashanti Region and their surrounding regions.
+            <br><span class='jiacu'>③Time for Dispatching</span>
+            <br>The time for dispatching is within 0.5 or 15 hours according to the shipping address. There may be a delay when the weather is bad. Wait and ensure your phone is available
             <br>
-            由于系统响应原因，极少数情况下尽管您点击了【取消订单】按钮，仍有可能无法成功取消该商品。您可以在商品送达时选择拒收处理。待拒收商品入库后，会为您安排退款。<br>
+            <br><span class='jiacu'>3.Return/Refund</span>
+            <br><span class='jiacu'>①Return Items</span>
+            <br>Door-to-door return service on Tospino: 
+            <br>After the receiving of product, buyers can contact customer service personnel and apply for return within 7 days if they find any quality problems and ask for return.  
+            <br><span class='jiacu'>Rules of Return</span>
+            <br>Tospino guarantees that the product is access to Return within 7 days after the agreement is signed or the order is Done. Return is impossible after this 7-day period.We propose that buyers contact customer service personnel or send the product to maintenance center if there are any warranty. 
+            <br><span class='jiacu'>Standards of Product Integrity</span>
+            <br>Customers must ensure the integrity of product and its related data, including label,brochure, warranty card and network card. The product quality should be the same as its original one. There is no damage to its functions and anti-fake markings or no wrong operation of activating the network card.(That means there is no trace of using products or no action of misusing it under the authorization.)
+            <br>The outer packing is part of product. Therefore, it should be returned integrally without any serious damages or stains. External Packing is the original design created by manufacturer（it is the smallest sales unit). The secondary packing by logistics providers is not included.
+            <br>The loss or damage of gifts or invoices will affect the Return. Tospino will take 10 percent of the product price from buyer’s account if gifts are lost or damaged, and will not return them the taxation of product if the invoice is lost.
+            <br>The external packing of these products, including cosmetics, personal care products, books, baby dippers and digital products, should be the hermetic package and should not be opened. Hermetic Package is the integral plastic outside sealing created by manufacturer. 
+            <br>You should shoot or video the damaged product with your phone and provide them to customer service personnel as evidences when you apply for return. Transportation specialist will carry out door-to-door pickup service within 4 days if the conditions of return are met. Ensure your phone is available and the product is integral.
+            <br><span class='jiacu'>Note:</span> Please return gifts and invoices when you return the goods.
+            <br><span class='jiacu'>Attention:</span> The product should be returned to warehouse in around 7 days after the processing of return application according to the dates and methods of payment, such as Cash or Balance. Thereafter, Tospino will refund you the balance/cash, if any, after the approval.
+            <br><span class='jiacu'>After-sale Service Operations: </span>
+            <br>-Click “ Account”, “My order” and “Done” progressively; 
+            <br>-Click the ” Order No.” and “Return/Refund”; 
+            <br>-Choose the type of after-sale service, fill in the reason and upload the picture.
+            <br><span class='jiacu'>Should buyers return all of products?</span>
+            <br>Buyers don’t need to return all of products of the order, but those goods have problems and need to return.
+            <br><span class='jiacu'>Should buyers return the free gift when they ask for return?</span>
+            <br>Absolutely. Buyers should return the gift of the order; otherwise, we will deduct some amount of money.
+            <br><span class='jiacu'>Should buyers pay the freight of return?</span>
+            <br>It depends. Tospino will pay shipping charge if the return is caused by product quality. But buyers have to pay for shipping if the return is resulted from personal factors.
+            <br><span class='jiacu'>Attention:</span>
+            <br>Tospino will not accept the return of products as follows.
+            <br>-Bought from other platforms instead of Tospino. (The Order No. is wrong.)
+            <br>-Run out of expired date. (The warranty is expired.)
+            <br>-Unauthorized maintenance of wrong operations and damages of labels or specifications, such as crash, liquid soaking, modification, accidents, etc..  
+            <br>-Warranty card is not consistent with the products, or is changed.
+            <br>-Such products as underwear, adult products and the like.
+            <br>Tospino will not accept the return in the case of such conditions:
+            <br>The product size is not suitable; or customers do not like the product for its color, material and style. 
+            <br>We advice buyers to seriously read the specification of product integrity and ensure the merchandise is what you truly want before you order. 
+            <br><span class='jiacu'>②Exchange Items</span>
+            <br>Buyers can contact customer service personnel to exchange items due to the quality of product or the damage caused during the transmission.
+            <br><span class='jiacu'>Ways of Exchanging Items:</span>
+            <br>Buyers should send the product to the nearest warehouse. After the inspection, personnel will exchange the product directly if the exchange requirement is met.
+            <br>Buyers choose door-to-door exchange service by providing product size and number to customer service personnel. The transportation specialist will exchange the product by door-to-door pickup service within 5 days.
+            <br><span class='jiacu'>After-sale Service Operations: </span>
+            <br>-Click “ Account”, “My order” and “Done” progressively; 
+            <br>-Click the ” Order No.” and “Return/Refund”; 
+            <br>-Choose the type of after-sale service, fill in the reason and upload the picture.
+            <br><span class='jiacu'>③Refund</span>
+            <br>Tospino will carry out the refund procedure after warehousing of the product.
+            <br>We will refund you the money according to methods of payment, status and date of delivery. Please read the types of applying refund below. 
+            <br><span class='jiacu'>Return/Refund application for the undelivered order paid with balance. </span>
+            <br>Operations: Click “ Account”, “My order”, “Undelivered” and “Cancel” progressively. Customer service personnel will check and deal with the application on the background and directly refund buyers the money to their accounts.
+            <br><span class='jiacu'>Return/Refund application for the delivered order paid with balance.</span>
+            <br>Operations: Click “My order” and “Done” progressively; click the “Order No.” and “Return/Refund” to apply for After-sale Service; and fill in the order information, including the type of after-sale service, reason, refund amount and details. Tospino’s service personnel will contact buyers according to the reasons for Return/Refund. Personnel will confirm the Return/Refund application and provide free door-to-door pickup service to customers if the application is caused by product quality. The payment will be refund to buyer’s account after the arrival of exchange products. Personnel will inform buyers that the charge of delivery should be paid by buyers themselves if the Return/Refund application is caused by non-quality factors. The payment will be refund to buyer’s account after the arrival of exchange products. 
+            <br><span class='jiacu'>Return/Refund application for the delivered order paid with balance.</span>
+            <br>Operations: Click “My order” and “Done” respectively; click the “Order No.” and “Return/Refund ” to apply for After-sale Service; and fill in the order information, including the type of after-sale service, reason, refund amount and details. Tospino’s service personnel will contact buyers according to the reasons for Return/Refund. Personnel will confirm the Return/Refund application and provide free door-to-door pickup service to customers if the application is caused by product quality. The payment will be refund to buyer in the form of cash after the door-to-door pickup service. Personnel will inform buyers that the charge of delivery should be paid by buyers themselves if the Return/Refund application is caused by non-quality factors. The payment will be refund to buyer in the form of cash after the door-to-door pickup service.                                                                       
             <br>
-            ②如何查看订单状态<br>
-            订单发货后，您可以在Tospino APP“我的”查看订单包裹状态。点击“我的订单”即可跟踪您的订单信息。<br>
-            <br>
-            ③支付方式<br>
-            ·货到付款<br>
-            ·余额支付<br>
-            <br>
-            注意：买家如果选择货到付款，商品配送到指定地点后，买家需要现场支付商品的所有金额，如果无法支付全部货款，那么我们的配送员将无法将货物交到您的手中。<br>
-            <br>
-            2、发货及配送<br>
-            ①配送方式及发货时间<br>
-            Tospino目前的所有订单都由官方配送团队配送，用户下单后，Tospino仓库将会在72小时内处理订单，进行发货。<br>
-            <br>
-            ②订单配送范围<br>
-            目前加纳地区的支持以仓库地点为中心的500公里内免费配送，具体地区为：<br>
-            西部省、沃尔特省、上西部省、北部省、大阿克拉省、东部省、中部省、布朗-啊哈福省、阿散蒂省及周围地区。<br>
-            ③订单配送时长<br>
-            订单发货后，根据地址不同，配送时间在0.5h-15h内，如遇特殊天气情况，可能会出现延误，请保持电话畅通并耐心等待。<br>
-            3、退换货及退款<br>
-            ①如何退货<br>
-            Tospino APP支持上门办理退货服务，如果用户在验收商品后，如果发现商品有质量问题需要退货，可在7天时间内联系客服申请退货。<br>
-            <br>
-            1.退货条件是什么？<br>
-            从客户签署产品的第二天（订单状态为“完成”）起，可以在保证产品完好后7天内退货；在此期间之后，我们将不接受退货。如果产品有保修，我们建议您与客服联系或发送到您附近的服务中心。<br>
-            产品完整性标准：<br>
-            客户应确保退回的产品和相关附件（例如标签，手册，保修卡，网络卡等）是完整的，并保持原始质量，功能，无损坏，误操作，防伪和激活（在授权等情况下，没有使用原始外观的迹象，也没有不合理使用个人数据的迹象。<br>
-            产品的外包装是产品的组成部分，应在返回时完整包装，没有严重损坏或污染。<br>
-            “外包装”是指：制造商的原始包装（最小销售单位），不包括物流服务提供商所包装的二次包装。<br>
-            礼品的丢失或损坏以及发票的丢失会影响产品的退货。如果礼物损坏或丢失，将处理折扣（产品购买价格的10％），并且由于发票遗失不会将税款转给客户。<br>
-            化妆品，个人护理产品，书籍，婴儿尿布，视听产品和其他外包装应一次性密封，不得开封。<br>
-            “密封”是指产品的外包装由制造商（密封）或整体塑料（密封）包装密封。<br>
-            <br>
-            <br>
-            申请退货时，您需要用手机以照片或者视频的形式向客服提供商品损坏的证据。<br>
-            如果符合退货条件，配送员将会在4天左右上门取货，请您保持电话畅通，并保持商品完好（退还商品时需要同时退回您收到赠品以及发票等）。<br>
-            <br>
-            注意：退货根据付款方式和时间决定，货到付款、余额支付退货申请被受理后7天左右，商品会退回仓库。Tospino核实商品可退后，会处理您的余额/现金退款（如适用）。<br>
-            <br>
-            售后入口：点击“我的”-“订单”-“完成”-选择需要申请售后的订单-点击“订单编号”-“申请售后”-选择售后类型，填写原因，上传图片。<br>
-            <br>
-            我是否必须退回订单中的所有产品？<br>
-            您不需要退回订单中的所有产品，您只需要退回订单中需要退回的所有商品。<br>
-            <br>
-            退货时我是否必须退还免费礼物？<br>
-            是的，您必须退还购买产品时赠送的礼物，否则会影响最终退款金额。<br>
-            <br>
-            退货时需要支付运费吗？<br>
-            退回产品的运费根据退款原因定，由于平台产品质量问题发起退款，平台承担退货取件运费，若非商品质量原因办理退货，您将需要承担退货费用，该将会从您的商品退款中直接扣除。<br>
-            <br>
-            请注意：<br>
-            我们不接受以下物品的退货：<br>
-            1.不是从Tospino购买的产品（订购序列号不匹配）；<br>
-            2.超过有效期（超过保修期）的产品；<br>
-            3.因安装不当或机器序列号标签或防伪标记撕裂，改动而导致的未经授权的维修，误用，碰撞，疏忽，误入液体，事故，改动，产品质量问题；<br>
-            4.保修卡与产品不符，已被更改。<br>
-            5.内衣，成人用品或任何类似产品<br>
-            <br>
-            在以下情况下不接受退货：<br>
-            如果尺寸不合适，或者客户不喜欢产品（颜色，材料，款式），我们将不接受退货。我们建议您仔细检查商品的完整说明，并在下订单之前确认它符合您的所有期望。<br>
-            <br>
-            <br>
-            ②如何换货<br>
-            ②Exchange Items <br>
-            如果商品本身质量问题或者在运输过程当中出现了损坏，用户可以联系客服进行换货。<br>
-            <br>
-            换货方式：<br>
-            ·买家将需要更换的商品送到最近的仓库，工作人员进行检验之后，如果符合换货条件直接更换。<br>
-            ·将产品的型号及数量提交给客服，选择上门换货服务，配送人员在5天左右上门进行换货。<br>
-            <br>
-            售后入口：点击“我的”-“订单”-“完成”-选择需要申请售后的订单-点击“订单编号”-“申请售后”-选择售后类型，填写原因，上传图片。<br>
-            <br>
-            ③如何退款<br>
-            当您退货的商品成功返回到库房后，会开始为您安排退款事宜。<br>
-            关于退款，将根据不同的支付方式、发货状态、发货时间为您安排。请根据下表耐心等待您的退款。<br>
-            1.余额支付未发货订单申请退货退款，在我的——未配送订单——取消，平台客服后台查看退款原因处理退货退款，退款直接退至用户账户余额；<br>
-            2.余额支付已发货且完成订单申请退款，用户需在我的订单——已完成订单，点击订单详情——售后服务发起退货退款申请，选择售后类型，退款原因，退款金额，具体详情，平台客服根据退货退款原因会主动联系用户，若属于平台产品问题，客服会告知用户同意退货退款申请，并安排取件，货到仓库后会将货款退至用户账户余额，平台承担取件运费；<br>
-            若非商品质量原因办理退款，客服会告知用户，需要用户承担退货运费，货到仓库会将货款退至用户账户余额。<br>
-            3.货到付款已发货且完成订单申请退款，用户需在我的订单——已完成订单，点击订单详情——售后服务发起退货退款申请，选择售后类型，退款原因，退款金额，具体详情，平台客服根据退货退款原因会主动联系用户，若属于平台产品问题，客服会告知用户同意退货退款申请，并安排取件，取件后会将货款以现金方式退还用户，平台承担取件运费；<br>
-            若非商品质量原因办理退款，客服会告知用户，需要用户承担取件运费，取件后将扣除运费的货款现金退还用户。<br>
-            <br>
-            <br>
-            <br>                                                            
-            4、账户信息管理<br>
-            ·如何注销账户？<br>
-            Cancel the Account<br>
-            目前Tospino的账户不能直接注销，如果您想更换账户继续使用，请点击切换/退出账户（放超链接 到如何切换/退出账户），了解如何进项账户切换。<br>
-            ·更改账信息<br>
-            用户头像/名称/电话号码/邮箱等基本个人信息如需进行修改，请点击“我的”，点击头像进入信息修改页面。<br>
-            ·如何修改密码？<br>
-            修改登录密码<br>
-            点击“我的”-“设置”-“密码设置”，进入修改登录密码页面，输入旧密码和新密码，点击“保存”后即可完成。<br>
-            <br>
-            修改支付密码<br>
-            点击“我的”-“设置”-“支付密码设置”，跳出支付密码设置窗口，填写新密码，点击“获取验证码”验证码将发送到您的账户当前绑定的手机号当中，填入验证码，点击“确认”即可完成修改。<br>
-            ·如何切换/退出账户<br>
-            1.点击“我的”下拉设置选择“设置”<br>
-            2.点击“退出登录”<br>
-            3.输入您的账号信息完成重新登录<br>
-            ·添加/修改收货地址<br>
-            1.点击“我的”选择上方个人头像框<br>
-            2.点击“收货地址”<br>
-            3.点击“添加新的收货地址”将信息填写完毕后点击“保存”即可。<br>
-            <br>
-            在“收货地址”页面中可以勾选默认地址，每次订单提交时，系统将自动选择您的默认收货地址。<br>
-            <br>
-            线上消费充值流程：<br>
-            第一步：登陆APP，将公告中的银行信息保存到手机上，使用手机或银行转账到平台指定账户；<br>
-            银行户名：WISDOM INT.BANK BOOK (FIRST ALANTIC BANK)<br>
-            账号：0538031101015<br>
-            第二步：将转账记录拍照留底；<br>
-            第三步：登陆Tospino APP，点击“我的”功能栏-找到“设置”-“建议和帮助”-“建议”中依次填写用户名、充值金额、充值时间、上传转账照片；<br>
-            第四步：客服查明到账金额与上传的凭证相符时会后台进行充值；<br>
-            第五步：用户在我的余额中可查询充值金额到账情况，即可用我的余额在线购买平台产品。<br>
-            第六步：如果发现自己账户余额2天后未到账，可以主动联系平台客服告知充值情况；
+            <br><span class='jiacu'>4.Account</span>
+            <br><span class='jiacu'>①Cancel the Account</span>
+            <br>At present, Tospino’s account cannot be canceled directly. If you want to change the account and continue to use the APP, please click：
+            <br><a href="http://www.tospinoapp.com/static/upfile/android/20191203075919_13391.apk">http://www.tospinoapp.com/static/upfile/android/20191203075919_13391.apk</a>
+            <br><span class='jiacu'>②Change the Account Information</span>
+            <br>If you want to change personal information, like User Avatar, Name, Phone Number and Email Address, click “Account” and your avatar to change relevant data.
+            <br><span class='jiacu'>③Change Password</span>
+            <br>Change the Sign-in Password
+            <br>By clicking “Account”, “ Settings” and “Password Setting” respectively, you can enter the original and new passwords on the interface of“Password Setting”. After operations above, the password can be changed successfully by a click of “Save”.
+            <br>Change the Payment Password
+            <br>Click “Account”, “ Settings” and “Set payment password” progressively. The window of Set Payment Password will pop up. Enter and confirm your new password on the interface, and then click GET THE CODE. Enter the verification code after it was sent to your phone or email bounded to the account. After operations above, the password can be changed successfully by a click of Save.
+            <br><span class='jiacu'>④Exchange/Sign-out the Account</span>
+            <br>-Click “Account” and “Settings”
+            <br>-Click SIGN-OUT
+            <br>-Sign-in again by entering your account information
+            <br><span class='jiacu'>⑤Add/Change the Shipping Address </span>
+            <br>-Click “Account” and the Avatar 
+            <br>-Click “Shipping Address”
+            <br>-Click “Add a New Shipping Address”, fill in the form and click SAVE.
+            <br>Choose a default shipping address on the interface of “Shipping Address”. The system will automatically choose the default address for you.
+            <br><span class='jiacu'>⑥Recharge Procedure for Online Consumer:</span>
+            <br>First, sign-in; read bank account information on Notification and save it to your phone; and transfer money to designated account through phone or in a bank.
+            <br><span class='jiacu'>The Designated Bank Account:WISDOM INT.BANK BOOK (FIRST ALANTIC BANK)</span>
+            <br><span class='jiacu'>Account No: 0538031101015</span>
+            <br>Second,take a picture of transfer record.
+            <br>Third, sign-in again; click “My order”, “Settings”and“Feedback & Help”；fill in necessary information, including user’s name and the amount and date of recharge; and upload the picture of transfer record.
+            <br>Fourth, customer service personnel will recharge the related account on the background after checking the transfer amount and the picture uploaded.
+            <br>Fifth, users can check the amount of recharge in Balance and purchase good on Tospino with Balance.
+            <br>Sixth, please contact customer service personnel actively and inform them your recharge if the money does not arrive at your Balance after 2 days.
         </p>
     </div>
 </template>
@@ -162,6 +144,9 @@ export default {
 </script>
 
 <style scoped lang="less">
+.help-center{
+    width: 100vw;
+}
 .title{
     margin:72px 0 41px;
     font-weight:bold;
@@ -173,5 +158,10 @@ p{
     font-size:26px;
     line-height:39px;
     color: #333;
+    word-wrap:break-word
+}
+.jiacu{
+    font-size:30px;
+    font-weight: bold;
 }
 </style>

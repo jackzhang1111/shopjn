@@ -5,21 +5,21 @@
             <div class="footprint-goods-content">
                 <div class="fl-left">
                     <div class="good-img">
-                        <van-checkbox v-model="checked" icon-size="24px" class="img-checkbox" v-if="showCheck"></van-checkbox>
+                        <van-checkbox v-model="product.checked" icon-size="24px" class="img-checkbox" v-if="showCheck"></van-checkbox>
                         <img :src="$webUrl+product.locationUrl">
-                        <div class="shixiao" v-if="false">已失效</div>
+                        <div class="shixiao" v-if="false">Invalid</div>
                     </div>
                 </div>
                 <div class="fl-right clearfix">
                     <div class="good-desc">
                         <span class="p1 clamp-2">{{product.supplyTitle}}</span><br>
-                        <span class="p2" v-if="false">{{product.scTotal}}人收藏</span>
-                        <span class="p2" v-else>已售{{product.skuSalesNum}}件</span>
+                        <span class="p2" v-if="false">Collected by {{product.scTotal}} users</span>
+                        <span class="p2" v-else>Sales：{{product.skuSalesNum}}Pcs</span>
                     </div>
                     <div class="good-price">
                         <span class="p1" v-if="false">{{jn}}{{product.discountPrice ? product.discountPrice : product.salePrice}}</span>
-                        <span class="p3" v-else>货品已不能购买，如有需求请联系客服</span>
-                        <span class="p2 fl-right" @click="toResembleGood">找相似</span>
+                        <div class="p3" v-else>You can't buy the products. Please contact customer service if you want to order.</div>
+                        <span class="p2 fl-right" @click="toResembleGood">Similar Items</span>
                     </div>
                 </div>
             </div>
@@ -162,7 +162,7 @@ export default {
             color: #FA5300;
             font-size:36px;
             .p2{
-                width:100px;
+                padding: 0 16px;
                 height:38px;
                 border:1px solid rgba(102,102,102,1);
                 border-radius:19px;
@@ -172,6 +172,7 @@ export default {
                 color: #666;
             }
             .p3{
+                width: 400px;
                 font-size: 18px;
                 color: #666;
             }

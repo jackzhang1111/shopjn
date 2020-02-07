@@ -5,7 +5,7 @@
         <div class="good-information">
             <div class="good-detail" >
                 <div class="good-detail-header">
-                    <span>商品信息</span>
+                    <span>Product Info</span>
                 </div>
                 <div class="good-detail-content" v-for="(data,index) in dataList" :key="index">
                     <div class="good-detail-img">
@@ -14,7 +14,7 @@
                     <div class="good-detail-title">
                         <span class="name">{{data.skuName}}</span>
                         <div class="guige">
-                            {{data.skuValuesTitle}}
+                            {{data.skuValuesTitleEng}}
                         </div>
                     </div>
                     <div class="price">
@@ -26,39 +26,35 @@
                         </div>
                     </div>
                     <div class="tkje">
-                        <span class="t1">退款金额:</span>
+                        <span class="t1">Refund:</span>
                         <span class="fl-right t2">{{data.currencySignWebsite}}{{data.totalPriceWebsite}}</span>
                     </div>
                 </div>
             </div>
             <div class="cell" @click="showReason">
-                <span>退款原因</span>
-                <span class="text " :class="{'c-999': formData.reason == '请选择'}">{{formData.reason}}</span>
+                <span>Reason for refunding</span>
+                <span class="text " :class="{'c-999': formData.reason == 'Choose one'}">{{formData.reason}}</span>
                 <van-icon name="arrow" class="arrow c-999"/>
             </div>
             <div class="cell">
-                <span>退款金额</span>
+                <span>Refund</span>
                 <span class="text-tk c-orange f-30">
                     {{detailObj.currencySignWebsite}}{{detailObj.orderAmountWebsite}}
-                    <span class="c-999 f-22">(含运费）</span>
+                    <span class="c-999 f-22">(Freight Included)</span>
                 </span>
             </div>
         </div>
         <div class="cell">
-            <span>退款说明</span>
-            <input type="text" class="input-xt" placeholder="选填" v-model="formData.remark">
+            <span>Refund Description</span>
+            <input type="text" class="input-xt" placeholder="optional" v-model="formData.remark">
         </div>
         <div class="up-load">
-            <div class="title">
-                上传凭证
-            </div>
+            <div class="title">Upload Evidence</div>
             <div class="uploader">
                 <upload-all @getfilePathList="getfilePathList" :maxCount="6"></upload-all>
             </div>
         </div>
-        <div class="btn-submit" @click="submit">
-            提交
-        </div>
+        <div class="btn-submit" @click="submit">Submit</div>
         <!-- 退款原因 -->
         <refundReason ref="refundReason" @getReasonText="getReasonText"></refundReason>
     </div>
@@ -79,11 +75,11 @@ export default {
             fileList:[],
             show1:false,
             uploadList:[],
-            headerTitle:'申请退款',
+            headerTitle:'Refund',
             formData:{
                 logisticsOrderId:'',
                 orderSource:1,
-                reason:'请选择',
+                reason:'Choose one',
                 remark:'',
                 detailList:[],
                 imgList:[]
@@ -134,7 +130,7 @@ export default {
         },
         //订单按包裹申请仅退款
         refundorderbylogistics(data){
-            data.reason = data.reason == '请选择' ? '': data.reason
+            data.reason = data.reason == 'Choose one' ? '': data.reason
             refundorderbylogisticsApi(data).then(res => {
                 if(res.code == 0){
                     Toast('提交成功')
@@ -146,8 +142,8 @@ export default {
         },
         //提交订单
         submit(){
-            if(this.formData.reason == '请选择') {
-                Toast('请选择退款原因')
+            if(this.formData.reason == 'Choose one') {
+                Toast('Choose reason for refund')
                 return
             }
             let arr = []
@@ -206,7 +202,7 @@ export default {
             right:30px;
         }
         .input-xt{
-            width: 500px;
+            width: 350px;
             margin-left:40px;
             height: 40px;
             border: 0;

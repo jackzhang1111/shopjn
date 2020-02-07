@@ -1,7 +1,7 @@
 <template>
 <!-- 确认付款弹窗 -->
     <div>
-        <van-action-sheet v-model="showAction" title="请输入支付密码" class="action-sheet-password" :close-on-click-overlay="false" @cancel="cancel">
+        <van-action-sheet v-model="showAction" title="Enter Payment Password" class="action-sheet-password" :close-on-click-overlay="false" @cancel="cancel">
             <div class="paymen-content">
                 <van-password-input
                 :value="value"
@@ -9,7 +9,7 @@
                 @focus="showKeyboard = true"
                 :mask="false"
                 />
-                <span class="c-orange" @click='toparrwordOtp'>忘记密码?</span>
+                <span class="c-orange" @click='toparrwordOtp'>Forgot Password?</span>
                 <!-- 数字键盘 -->
                 <van-number-keyboard
                 :show="showKeyboard"

@@ -3,8 +3,8 @@
     <div class="dfk">
         <div class="good-detail" v-for="dfkData in dfkDataList" :key="dfkData.orderId">
             <div class="good-detail-header">
-                <span>订单编号：{{dfkData.orderSn}}</span>
-                <span class="dfk c-orange">{{orderStatus(dfkData.orderStatusApp)}}</span>
+                <span>Order No:{{dfkData.orderSn}}</span>
+                <span class="dfk c-orange fs-20">{{orderStatus(dfkData.orderStatusApp)}}</span>
             </div>
             <div class="good-detail-content" @click="toOrderDetail(detail.orderId)" v-for="detail in dfkData.detailList2" :key="detail.detailId">
                 <div class="good-detail-img">
@@ -13,7 +13,7 @@
                 <div class="good-detail-title">
                     <span class="name">{{detail.skuName}}</span>
                     <div class="guige">
-                        {{detail.skuValuesTitle}}
+                        {{detail.skuValuesTitleEng}}
                     </div>
                 </div>
                 <div class="price">
@@ -32,52 +32,52 @@
             </div>
             <div v-if="dfkData.orderStatusApp != 1">
                 <div class="dfh-footer-top" v-if="dfkData.detailListFlag" @click="lookTotal">
-                    <span v-if="arrowDown">查看其他{{dfkData.lengcha}}个商品</span>
-                    <span v-else>收起</span>
+                    <span v-if="arrowDown">View other {{dfkData.lengcha}} product</span>
+                    <span v-else>Shut</span>
                     <van-icon name="arrow-down" v-if="arrowDown" />
                     <van-icon name="arrow-up" v-else/>
                 </div>
                 <div class="total clearfix">
                     <div class="fl-right">
-                        <span>共{{dfkData.goodCount}}件</span>
-                        <span>合计:</span>
+                        <span>{{dfkData.goodCount}}Pcs</span>
+                        <span>Total:</span>
                         <span class="c-orange">{{dfkData.currencySignWebsite}}{{dfkData.orderProductAmountWebsite}}</span>
                     </div>
                 </div>
                 <div class="good-detail-footer">
                     <!-- 待付款按钮栏 -->
                     <div class="lan" v-if="dfkData.orderStatusApp == 0">
-                        <div class="btn-qzf fl-right c-orange" @click="payMoney(dfkData)">去支付</div>
-                        <div class="btn-qxdd fl-right" @click="cancelOrder(dfkData.orderId)">取消订单</div>
-                        <div class="btn-xgdz fl-right" @click="toEditAddress">修改地址</div>
+                        <div class="btn-qzf fl-right c-orange" @click="payMoney(dfkData)">Pay Now</div>
+                        <div class="btn-qxdd fl-right" @click="cancelOrder(dfkData.orderId)">Cancel Order</div>
+                        <div class="btn-xgdz fl-right" @click="toEditAddress">Change Address</div>
                     </div>
                     <!-- 待收货按钮栏 -->
                     <div class="lan" v-if="dfkData.orderStatusApp == 2 && dfkData.canComplete == 1" @click="receiGood(dfkData)">
-                        <div class="btn-qxdd fl-right c-orange">确认收货</div>
+                        <div class="btn-qxdd fl-right c-orange">Confirm Receipt</div>
                     </div>
                     <!-- 已完成按钮栏 -->
                     <div class="lan" v-if="dfkData.orderStatusApp == 3">
-                        <div class="btn-qzf fl-right c-orange">评价</div>
+                        <div class="btn-qzf fl-right c-orange">Review</div>
                     </div>
                     <!-- 订单关闭 -->
                     <div class="lan" v-if="dfkData.orderStatusApp == 4">
-                        <div class="btn-qxdd fl-right c-orange">删除订单</div>
+                        <div class="btn-qxdd fl-right c-orange">Delete</div>
                     </div>
                 </div>
             </div>
             <div v-else>
                 <div class="good-detail-dfh-footer">
                     <div class="dfh-footer-top" v-if="dfkData.detailListFlag" @click="lookTotal">
-                        <span v-if="arrowDown">查看其他{{dfkData.lengcha}}个商品</span>
-                        <span v-else>收起</span>
+                        <span v-if="arrowDown">View other {{dfkData.lengcha}} product</span>
+                        <span v-else>Shut</span>
                         <van-icon name="arrow-down" v-if="arrowDown" />
                         <van-icon name="arrow-up" v-else/>
                     </div>
                     <div class="dfh-footer-bottom">
-                        <span>共{{dfkData.goodCount}}件</span>
-                        <span>合计:</span>
+                        <span>{{dfkData.goodCount}}Pcs</span>
+                        <span>Total:</span>
                         <span class="c-orange font-30">{{dfkData.currencySignWebsite}}{{dfkData.orderProductAmountWebsite}}</span>
-                        <span>(含运费{{dfkData.currencySignWebsite}}{{dfkData.orderFareWebsite}}）</span>
+                        <span>(Freight{{dfkData.currencySignWebsite}}{{dfkData.orderFareWebsite}}）</span>
                     </div>
                 </div>
             </div>
@@ -108,13 +108,14 @@ export default {
             dfkDataList:[],
             arrowDown:true,
             status:[
-                {type:0,name:'待付款'},
-                {type:1,name:'待发货'},
-                {type:2,name:'待收货'},
-                {type:3,name:'已完成'},
-                {type:4,name:'交易关闭'},
+                {type:0,name:'Unpaid'},
+                {type:1,name:'Undelivered'},
+                {type:2,name:'Unreceived'},
+                {type:3,name:'Done'},
+                {type:4,name:'Closed'},
             ],
             show:false,
+            userinfoShop:{}
         };
     },
     computed: {
@@ -124,7 +125,7 @@ export default {
 
     },
     mounted() {
-
+        this.userinfoShop = JSON.parse(localStorage.userinfoShop)
     },
     watch: {
         dfkList:{
@@ -185,6 +186,10 @@ export default {
         },
         //点击去支付
         payMoney(alldata){
+            if(!this.userinfoShop.payPwd){
+                this.$router.push({name:'设置支付密码'})
+                return
+            }
             this.$emit('showPay',true,alldata)
         },
         //确认收货
@@ -203,14 +208,15 @@ export default {
     margin-bottom: 20px;
     .good-detail-header{
         width: 100%;
-        height: 79px;
-        line-height: 79px;
+        // height: 79px;
+        // line-height: 79px;
         font-size:26px;
         color: #333;
         background-color: #fff;
-        padding-left: 30px;
+        padding:30px 0 30px 30px;
         box-sizing: border-box;
         border-bottom: 1px solid #F2F3F5;
+        overflow: hidden;
         .dfk{
             float: right;
             margin-right: 30px;
@@ -335,7 +341,7 @@ export default {
             height: 100%;
         }
         .btn-qzf{
-            width:150px;
+            // width:150px;
             height:60px;
             border:1px solid rgba(250,83,0,1);
             border-radius:30px;
@@ -345,9 +351,10 @@ export default {
             top:50%;
             transform: translateY(-50%);
             margin-right:20px;
+            padding: 0 30px;
         }
         .btn-qxdd,.btn-xgdz{
-            width:180px;
+            // width:180px;
             height:60px;
             border:1px solid rgba(153,153,153,1);
             border-radius:30px;
@@ -357,6 +364,7 @@ export default {
             top:50%;
             transform: translateY(-50%);
             margin-right:20px;
+            padding: 0 30px;
         }
     }
     .dfh-footer-top{

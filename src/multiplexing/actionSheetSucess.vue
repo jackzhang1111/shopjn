@@ -7,7 +7,7 @@
                     <img src="@/assets/img/confirmOrder/icon-05@2x.png" alt="">
                 </div>
                 <div class="sucess-txt c-orange">
-                    已支付成功
+                    Success
                 </div>
             </div>
             

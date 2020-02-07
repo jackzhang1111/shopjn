@@ -3,7 +3,7 @@
         <balance-header></balance-header>
         <div class="logistics-con">
             <div class="baoguo" v-for="(parcel,index) in dataList" :key="parcel.orderId" @click="baoguoInformation(parcel)">
-                <div class="baoguo-header">包裹{{index+1}}</div>
+                <div class="baoguo-header">Package{{index+1}}</div>
                 <div class="baoguo-con">
                     <div class="good-con">
                         <div class="good-img" v-for="product in parcel.detailList" :key="product.detailId">
@@ -14,17 +14,17 @@
                         </div>
                     </div>
                     <div class="btns" v-if="parcel.canRefund == 1">
-                        <div class="tk-btn" @click="tuikuan(parcel)">退款</div>
+                        <div class="tk-btn" @click="tuikuan(parcel)">Refund</div>
                     </div>
                 </div>
             </div>
             <div class="wuliu">
                 <div class="wuliu-title">
                     <span class="t1">{{expressName}}</span>
-                    <span class="t2">客服：61465656</span>
+                    <span class="t2">Customer Service：61465656</span>
                 </div>
                 <div class="wuliu-num">
-                    <span>物流单号：</span>
+                    <span>Tracking No:</span>
                     <span id="orderSn">{{expressNo}}</span> 
                     <span class="c-orange fl-right" ref="copy" data-clipboard-action="copy" data-clipboard-target="#orderSn" @click="copyLink">复制</span>
                 </div>
@@ -33,8 +33,8 @@
             <div class="liucheng">
                 <van-steps direction="vertical" :active="logisticsList.length" active-color="#FA5300" class="steps-con">
                     <van-step class="steps-item" v-for="(logistics,index) in logisticsList" :key="index">
-                        <h3>{{logistics.orderStatusNote}}</h3>
-                        <p class="p1">{{logistics.remark}}</p>
+                        <h3>{{logistics.orderStatusNoteEng}}</h3>
+                        <p class="p1">{{logistics.remarkEng}}</p>
                         <p class="p2">{{logistics.addTime}}</p>
                     </van-step>
                 </van-steps>
@@ -123,10 +123,10 @@ export default {
             let _this = this;
             let clipboard = _this.copyBtn;
             clipboard.on('success', function() {
-                Toast('复制成功！')
+                Toast('Successful copy!')
             });
             clipboard.on('error', function() {
-                Toast('复制失败，请手动选择复制！')
+                Toast('Failed! Please choose manual copy!')
             });
         }
     },
@@ -178,7 +178,6 @@ export default {
                 .btns{
                     overflow: hidden;
                     .tk-btn{
-                        width:88px;
                         height:44px;
                         border:1px solid rgba(153,153,153,1);
                         border-radius:22px;
@@ -187,6 +186,7 @@ export default {
                         font-size: 24px;
                         margin-top:14px;
                         float: right;
+                        padding: 0 20px;
                     }
                 }
                 
@@ -238,10 +238,12 @@ export default {
                 font-size:28px;
             }
             p{
-                height: 40px;
+                // height: 40px;
             }
             .p1{
                 font-size: 24px;
+                line-height: 32px;
+                margin-bottom: 10px;
             }
             .p2{
                 font-size: 20px;

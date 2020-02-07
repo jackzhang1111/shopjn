@@ -5,19 +5,19 @@
             <!-- <span>自定义</span> -->
             <!-- <img slot="icon" slot-scope="props" :src="props.active ? icon.active : icon.inactive"> -->
             <van-tabbar-item route to="/control/home">
-                <span>主页</span>
+                <span>Home</span>
                 <img slot="icon" slot-scope="props" :src="props.active ? icon.home1 : icon.home" class="icon-style">
             </van-tabbar-item>
              <van-tabbar-item route to="/control/classify">
-                <span>分类</span>
+                <span>Category</span>
                 <img slot="icon" slot-scope="props" :src="props.active ? icon.sort1 : icon.sort" class="icon-style">
             </van-tabbar-item>
             <van-tabbar-item route to="/control/shoppingCart">
-                <span>购物车</span>
+                <span>Cart</span>
                 <img slot="icon" slot-scope="props" :src="props.active ? icon.cart1 : icon.cart" class="icon-style">
             </van-tabbar-item>
             <van-tabbar-item route to="/control/account"> 
-                <span>我的</span>
+                <span>My Tospino</span>
                 <img slot="icon" slot-scope="props" :src="props.active ? icon.mine1 : icon.mine" class="icon-style">
             </van-tabbar-item>
         </van-tabbar>

@@ -42,7 +42,7 @@ export default {
             yzmData:{
                 msgphone:'',
                 types:'2',
-                areaCode:'+86'
+                areaCode:'+233'
             },
             jiaoyan:{
                 msg_phone:'',
@@ -90,7 +90,7 @@ export default {
                 if(res.code == 0){
                     
                 }else if(res.code == 1){
-                    Toast('手机号一天不能超于20条短信发送请求')
+                    Toast('A phone number cannot send over 20 messages a day')
                 }else{
                     Toast('error')
                 }

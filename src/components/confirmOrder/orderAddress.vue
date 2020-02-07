@@ -8,8 +8,8 @@ export default {
     extends:accountAddress,
     data() {
         return {
-            title:'收货地址',
-            title2:'添加新地址',
+            title:'Shipping Address',
+            title2:'Add',
         };
     },
     computed: {

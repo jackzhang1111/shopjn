@@ -2,13 +2,14 @@
 <!-- 售后详情 -->
     <div class="after-sales-detail">
         <div class="after-sales-status">{{orderStatus(detailData.orderStatusApp,'statusList')}}</div>
-        <div class="cell" @click="jumpRouter('售后流程')">
-            <span>协商历史</span>
+        <div class="cell">
+            <!-- <div class="cell" @click="jumpRouter('售后流程')"> -->
+            <span>Process Record</span>
             <van-icon name="arrow" class="arrow c-999"/>
         </div>
         <div class="good-detail" >
             <div class="good-detail-header">
-                <span>退货商品</span>
+                <span>Products</span>
             </div>
             <div class="good-detail-content" v-for="(detail,index) in detailData.detailList" :key="index">
                 <div class="good-detail-img">
@@ -16,14 +17,14 @@
                 </div>
                 <div class="good-detail-title">
                     <span class="name">{{detail.skuName}}</span>
-                    <div class="guige">{{detail.skuValuesTitle}}</div>
+                    <div class="guige">{{detail.skuValuesTitleEng}}</div>
                 </div>
                 <div class="price">
                     <div class="p3">{{detail.currencySignWebsite}}{{detail.priceWebsite}}</div>
                     <div class="p4 fl-right">x{{detail.detailNum}}</div>
                 </div>
                 <div class="tkje">
-                    <span>退款金额</span>
+                    <span>Refund</span>
                     <span class="fl-right">{{detail.currencySignWebsite}}{{detail.totalPriceWebsite}}</span>
                 </div>
             </div>
@@ -31,24 +32,24 @@
         <div class="address-p4">
             <div class="p4-middle">
                 <div class="middle-p1">
-                    <span class="c-999">退货原因:</span>
+                    <span class="c-999">Reason for refunding:</span>
                     <span class="margin-l-40 c-333">{{detailData.reason}}</span>
                 </div>
                 <div class="middle-p2">
-                    <span class="c-999">退货编号:</span>
+                    <span class="c-999">Refund No:</span>
                     <span class="margin-l-40 c-333">{{detailData.orderSn}}</span>
                 </div>
                 <div class="middle-p1">
-                    <span class="c-999">订单编号:</span>
+                    <span class="c-999">Order No:</span>
                     <span class="margin-l-40 c-333" id="orderSn">{{detailData.saleOrderSn}}</span>
-                    <span class="fl-right c-orange" ref="copy" data-clipboard-action="copy" data-clipboard-target="#orderSn" @click="copyLink">复制</span>
+                    <span class="fl-right c-orange" ref="copy" data-clipboard-action="copy" data-clipboard-target="#orderSn" @click="copyLink">Copy</span>
                 </div>
                 <div class="middle-p1">
-                    <span class="c-999">申请时间:</span>
+                    <span class="c-999">Starts from:</span>
                     <span class="margin-l-40 c-333">{{detailData.orderAddtime}}</span>
                 </div>
                 <div class="middle-p1">
-                    <span class="c-999">退款总额:</span>
+                    <span class="c-999">Total refund:</span>
                     <span class="margin-l-40 c-orange">{{detailData.currencySignWebsite}}{{detailData.orderAmountWebsite}}</span>
                 </div>
             </div>
@@ -57,11 +58,11 @@
             <div class="phone-icon">
                 <img src="@/assets/img/confirmOrder/phone@2x.png">
             </div>
-            <span @click="show2 = true">拨打电话</span>
+            <span @click="show2 = true">Dialing</span>
         </div>
         <div class="kongbai"></div>
         <div class="footer" v-if="detailData.orderStatusApp == 0">
-            <div class="btn-cxsq" @click="cxsq">撤销申请</div>
+            <div class="btn-cxsq" @click="cxsq">Cancel</div>
         </div>
 
         <van-overlay :show="show2" @click="show2 = false" class="overlay">
@@ -86,12 +87,12 @@ export default {
             show2:false,
             detailData:{},
             statusList:[
-                {type:0,name:'待审核'},
-                {type:1,name:'待寄回'},
-                {type:2,name:'待退款'},
-                {type:3,name:'退款成功'},
-                {type:4,name:'已拒绝'},
-                {type:5,name:'已取消'},
+                {type:0,name:'Unapproved'},
+                {type:1,name:'Pending Pickup'},
+                {type:2,name:'Pending Refund'},
+                {type:3,name:'Refunded'},
+                {type:4,name:'Refused'},
+                {type:5,name:'Canceled'},
             ],
             backTypeList:[
                 {type:1,name:'仅退款'},
@@ -151,10 +152,10 @@ export default {
             let _this = this;
             let clipboard = _this.copyBtn;
             clipboard.on('success', function() {
-                Toast('复制成功！')
+                Toast('Successful copy!')
             });
             clipboard.on('error', function() {
-                Toast('复制失败，请手动选择复制！')
+                Toast('Failed! Please choose manual copy!')
             });
         }
     },
@@ -241,7 +242,7 @@ export default {
         bottom: 0;
         box-sizing: border-box;
         .btn-cxsq{
-            width:148px;
+            padding: 0 20px;
             height:48px;
             border:1px solid #FA5300;
             display: inline-block;

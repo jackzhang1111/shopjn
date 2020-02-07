@@ -5,7 +5,7 @@
         <div v-if="lishiShow" class="record">
             <div class="m-b-60" v-if="historyList.length>0">
                 <div class="search-title" >
-                    <span class="title-p1">历史搜索</span>
+                    <span class="title-p1">Recent Searches</span>
                     <van-icon name="delete" @click="deleteRecord"/>
                 </div>
                 <div class="search-labels">
@@ -15,7 +15,7 @@
             
             <div v-if="findList.length>0">
                 <div class="search-title">
-                    <span class="title-p1">搜索发现</span>
+                    <span class="title-p1">Search Results</span>
                     <van-icon name="eye-o" v-if='iconShow' @click="iconShow = !iconShow"/>
                     <van-icon name="closed-eye" v-else @click="iconShow = !iconShow"/>
                 </div>
@@ -39,12 +39,10 @@
         <van-overlay :show="redordshow" @click="redordshow = false" >
             <!-- 删除历史记录 -->
             <div class="overlay-wrapper" @click.stop>
-                <div class="overlay-wrapper-p1">
-                    确认删除全部历史记录？
-                </div>
+                <div class="overlay-wrapper-p1">Cancel all record?</div>
                 <div class="overlay-wrapper-btns">
-                    <span @click="redordshow = false">取消</span>
-                    <span @click="delHistory">确定</span>
+                    <span @click="redordshow = false">No</span>
+                    <span @click="delHistory">Yes</span>
                 </div>
             </div>
         </van-overlay>

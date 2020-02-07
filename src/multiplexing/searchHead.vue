@@ -7,7 +7,7 @@
             <div class="search-input">
                 <van-search
                     v-model="value"
-                    placeholder="请输入搜索关键词"
+                    placeholder="Enter key words"
                     show-action
                     shape="round"
                     @search="onSearch"
@@ -16,7 +16,7 @@
                     @focus="onocus"
                     @input="showInput"
                     >
-                    <div slot="action" @click="onSearch" class="sousuo">搜索</div>
+                    <div slot="action" @click="onSearch" class="sousuo">Search</div>
                 </van-search>
             </div>
         </div>

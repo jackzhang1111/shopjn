@@ -8,7 +8,7 @@
             <div class="cell">
                 <span class="input-name">国家和地区</span>
                 <van-icon name="arrow" class="arrow c-999"/>
-                <span class="hm c-333">中国大陆 86</span>
+                <span class="hm c-333">中国大陆 233</span>
             </div>
             <div class="cell">
                 <span class="input-name">新手机号</span>

@@ -4,12 +4,10 @@
         <div class="cancel-order" v-show="anima">
             <div class="cancel-list" >
                 <div class="cancel-title">
-                    <span>取消订单</span>
+                    <span>Cancel Order</span>
                     <van-icon name="cross" class="cross" @click="closeCancel"/>
                 </div>
-                <div class="yuanyin">
-                    请选择取消订单的原因
-                </div>
+                <div class="yuanyin">Reason for cancelling</div>
                 <div class="yuanyin-list" v-for="(reason,index) in reasonList" :key="index">
                     <span>{{reason.name}}</span>
                     <div class="yuan" v-if="reason.istrue" @click="checkyuan(reason)"></div>
@@ -18,12 +16,8 @@
                     </div>
                 </div>
                 <div class="btns">
-                    <div class="btn-zbqx" @click="closeCancel">
-                        暂不取消
-                    </div>
-                    <div class="btn-qdqx" @click="submitOrder">
-                        确定取消
-                    </div>
+                    <div class="btn-zbqx" @click="closeCancel">Cancel</div>
+                    <div class="btn-qdqx" @click="submitOrder">Confirm</div>
                 </div>
             </div>
         </div>
@@ -43,19 +37,19 @@ export default {
         return {
             reasonList:[
                 {
-                    name:'我不想买了',
+                    name:"I don't want it now.",
                     istrue:true
                 },
                 {
-                    name:'信息填写错误，重新拍',
+                    name:'I have to re-order for wrong info.',
                     istrue:true
                 },
                 {
-                    name:'卖家缺货',
+                    name:'Out of stock.',
                     istrue:true
                 },
                 {
-                    name:'其他原因',
+                    name:'Others.',
                     istrue:true
                 },
             ],
@@ -103,7 +97,7 @@ export default {
                     this.closeCancel()
                     this.$emit('refreshOrder')
                 }else{
-                    Toast('提交失败')
+                    Toast('Failed')
                 }
             })
         },

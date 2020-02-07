@@ -1,7 +1,7 @@
 <template>
     <div class="kefu">
         <div class="kefu-header">
-            <span>联系客服</span>
+            <span>Customer Service</span>
             <van-icon name="cross" class="cross"/>
         </div>
         <div class="p1">

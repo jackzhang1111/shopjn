@@ -8,7 +8,7 @@
                     我们已通过短信方式发送验证码至手机号
                 </div>
                 <div class="top-p2">
-                    +86 15646161665
+                    +233 15646161665
                 </div>
             </div>
             <div class="accept-otp-middle">
@@ -45,7 +45,7 @@ export default {
             yzmData:{
                 msgphone:'',
                 types:'',
-                areaCode:'86'
+                areaCode:233
             }
         };
     },
@@ -86,7 +86,7 @@ export default {
                 if(res.code == 0){
                     
                 }else if(res.code == 1){
-                    Toast('手机号一天不能超于20条短信发送请求')
+                    Toast('A phone number cannot send over 20 messages a day')
                 }else{
                     Toast('error')
                 }

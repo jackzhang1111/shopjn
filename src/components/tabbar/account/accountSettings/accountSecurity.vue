@@ -5,31 +5,35 @@
             <span class="header-t1">{{title}}</span>
             <van-icon name="chat-o" class="chat" size="17px" @click="jumpRouter('消息')"/>
         </div>
-        <div class="cell" @click="$router.push({name:'修改昵称'})">
-            <span class="c-333">昵称</span>
-            <span class="ziliao c-999">仓木谷子</span>
+        <div class="cell">
+            <!-- <div class="cell" @click="$router.push({name:'修改昵称'})"> -->
+            <span class="c-333">accountSecurity</span>
+            <span class="ziliao c-999">{{userinfoShop.nickName}}</span>
             <van-icon name="arrow" class="arrow c-999"/>
         </div>
-        <div class="cell" @click="$router.push({name:'修改手机号码'})">
-            <span class="c-333">修改手机号码</span>
-            <span class="ziliao c-999">131******00</span>
+        <div class="cell">
+            <!-- <div class="cell" @click="$router.push({name:'修改手机号码'})"> -->
+            <span class="c-333">Change Phone Nummber</span>
+            <span class="ziliao c-999">{{userinfoShop.mobile}}</span>
             <van-icon name="arrow" class="arrow c-999"/>
         </div>
-        <div class="cell" @click="$router.push({name:'修改邮箱'})">
-            <span class="c-333">修改电子邮件</span>
-            <span class="ziliao c-999">844***91@qq.com</span>
+        <div class="cell">
+            <!-- <div class="cell" @click="$router.push({name:'修改邮箱'})"> -->
+            <span class="c-333">Change Email</span>
+            <span class="ziliao c-999">{{userinfoShop.email}}</span>
             <van-icon name="arrow" class="arrow c-999"/>
         </div>
         <div class="cell" @click="$router.push({name:'修改登录密码'})">
-            <span class="c-333">修改登录密码</span>
+            <span class="c-333">Change Login Password</span>
             <van-icon name="arrow" class="arrow c-999"/>
         </div>
         <div class="cell" @click="$router.push({name:'修改支付密码'})">
-            <span class="c-333">修改支付密码</span>
+            <span class="c-333">Change Payment Password</span>
             <van-icon name="arrow" class="arrow c-999"/>
         </div>
-        <div class="cell" @click="$router.push({name:'公司信息'})">
-            <span class="c-333">公司信息</span>
+        <div class="cell">
+            <!-- <div class="cell" @click="$router.push({name:'公司信息'})"> -->
+            <span class="c-333">Company Info</span>
             <van-icon name="arrow" class="arrow c-999"/>
         </div>
     </div>
@@ -42,8 +46,9 @@ export default {
     },
     data() {
         return {
-            title:'账户与安全',
-            isBace:true
+            title:'Account and Security',
+            isBace:true,
+            userinfoShop:null
         };
     },
     computed: {
@@ -53,7 +58,8 @@ export default {
 
     },
     mounted() {
-
+        this.userinfoShop = JSON.parse(localStorage.userinfoShop)
+        console.log(this.userinfoShop,'this.userinfoShop');
     },
     watch: {
 

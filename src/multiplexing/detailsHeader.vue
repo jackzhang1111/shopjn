@@ -8,7 +8,7 @@
             <div class="search">
                 <van-search
                     v-model="value"
-                    placeholder="请输入搜索关键词"
+                    placeholder="Enter key words"
                     shape="round"
                     @focus="$router.push({name:'历史记录'})"
                     >

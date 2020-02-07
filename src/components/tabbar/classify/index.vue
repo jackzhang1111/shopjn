@@ -4,20 +4,20 @@
         <search-header></search-header>
         <div class="classify-con">
             <van-sidebar v-model="activeKey" @change="changeSidebar">
-                <van-sidebar-item :title="leftGoods.categoryName" v-for="leftGoods in leftList" :key="leftGoods.categoryId"/>
+                <van-sidebar-item :title="leftGoods.classNameEng" v-for="leftGoods in leftList" :key="leftGoods.categoryId"/>
             </van-sidebar>
             <div class="classify-right">
                 <div class="banner">
                     <img :src="$webUrl+leftImgSrc">
                 </div>
                 <div class="recommend" v-for="rightGoods in rightList" :key="rightGoods.categoryId">
-                    <span class="title">{{rightGoods.categoryName}}</span>
+                    <span class="title">{{rightGoods.classNameEng}}</span>
                     <div>
                         <van-row gutter="40">
                             <van-col span="7" v-for="product in rightGoods.productCategory" :key="product.categoryId">
                                 <div class="sanji" @click="toSearOne(product.categoryId)">
                                     <img :src="$webUrl+product.categoryImg">
-                                    <span class="name">{{product.categoryName}}</span>
+                                    <span class="name">{{product.classNameEng}}</span>
                                 </div>
                             </van-col>
                         </van-row>

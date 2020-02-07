@@ -11,7 +11,7 @@ export default {
     extends:payPassword,
     data() {
         return {
-            title:'确认支付密码',
+            title:'Confirm Payment Password',
             userinfoShop:{}
         };
     },
@@ -40,7 +40,7 @@ export default {
             if(this.value.length == 6){
                 if(this.payPassword != this.value){
                     this.value = ''
-                    Toast('两次密码不一致')
+                    Toast('Inconsistent passwords')
                 }else{
                     let data = {
                         userPwd:this.payPassword,
@@ -54,7 +54,7 @@ export default {
         setuserpaypassword(data){
             setuserpaypasswordApi(data).then(res => {
                 if(res.code == 0){
-                    Toast('设置成功')
+                    Toast('Successful')
                     this.userinfoShop.payPwd = true
                     localStorage.userinfoShop = JSON.stringify(this.userinfoShop) 
                     setTimeout(()=>{

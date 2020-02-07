@@ -7,9 +7,7 @@
                 <div class="head-img">
                     <img src="@/assets/img/tabbar/my/account/touxiang@2x.png">
                 </div>
-                <div class="c-orange head-text">
-                    更改头像
-                </div>
+                <div class="c-orange head-text">更改头像</div>
             </div>
         </div>
         <div>

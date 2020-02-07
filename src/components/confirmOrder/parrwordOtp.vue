@@ -3,7 +3,7 @@
     <div class="parrwordOtp">
         <balanceHeader></balanceHeader>
         <div class="parrwordOtp-text">
-            <div class="p1 czjz spjz">我们已发送验证码短信到您的手机：</div>
+            <div class="p1 czjz spjz">We have sent the verification code to your phone:</div>
             <div class="p2">{{userinfoShop.mobileCode}} {{userinfoShop.mobile}}</div>
         </div>
         <div class="paymen-content">
@@ -11,7 +11,7 @@
             :value="value"
             :focused="showKeyboard"
             :length="6"
-            info="收短信大约需要59秒"
+            info="It takes you 59s to get the code"
             @focus="showKeyboard = true"
             :mask="false"
             />
@@ -22,7 +22,7 @@
             @delete="onDelete"
             @blur="showKeyboard = false"
             delete-button-text ='X'
-            close-button-text="完成"
+            close-button-text="OK"
             :hide-on-click-outside="false"
             theme='custom'
             @close="wancheng"
@@ -96,7 +96,7 @@ export default {
                 if(res.code == 0){
 
                 }else if(res.code == 1){
-                    Toast('手机号一天不能超于20条短信发送请求')
+                    Toast('A phone number cannot send over 20 messages a day')
                 }else{
                     Toast('error')
                 }

@@ -1,19 +1,19 @@
 <template>
 <!-- 确认订单填写信息 -->
     <div class="order-content">
-        <balance-header title="确认订单"></balance-header>
+        <balance-header title="Confirm the Order"></balance-header>
         <div class="shouhuoxq m-b-20">
             <div class="shouhuoxq-top">
-                <span>收件人：{{defaultAdderss.name}}</span>
+                <span>Recipient:{{defaultAdderss.name}}</span>
                 <span>{{defaultAdderss.phoneCode}}{{defaultAdderss.phoneNumber}}</span>
             </div>
             <div class="shouhuoxq-bottom">
-                <span>收件地址：{{defaultAdderss.addreCitys}} {{defaultAdderss.userAddress}}</span>
+                <span>Shipping Address:{{defaultAdderss.addreCitys}} {{defaultAdderss.userAddress}}</span>
             </div>
             <van-icon name="arrow" class="arrow" @click="jumpRouter('确认订单收货地址')"/>
         </div>
         <div class="payment m-b-20">
-            <span>支付方式</span>
+            <span>Pay (by)</span>
             <div class="select">
                 {{orderStatus(zffs,'payStatus')}}
                 <van-icon name="ellipsis" class="ellipsis" @click="showPayment=!showPayment"/>
@@ -29,24 +29,22 @@
             <div class="good-detail-header">
                 <span>{{order.sortOrder}}</span>
             </div>
-
-            
             <div class="good-detail-content" v-for="(product,index) in order.detailList" :key="product.skuId">
                 <div>
                     <van-swipe-cell :right-width="70">
                         <template slot="right">
-                            <van-button square type="danger" text="删除" @click="delItem(product,index)"/>
+                            <van-button square type="danger" text="Delete" @click="delItem(product,index)"/>
                         </template>
                         <div class="good-detail-img" @click="jumpRouter('商品详情')">
                             <img :src="$webUrl+product.skuImg">
                             <div class="img-nochange" v-if="product.stockEnough==0 || product.canSell == 0 || product.freightCode != 0">
-                                {{product.stockEnough==0 ? '库存不足': product.canSell == 0 ? "不可售": product.freightCode == 1 ? '地址不支持配送':'超重，不支持配送' }}
+                                {{product.stockEnough==0 ? 'Out of Stock': product.canSell == 0 ? "Unsaleable": product.freightCode == 1 ? 'Out of delivery area!':'Overweight!' }}
                             </div>
                         </div>
                         <div class="good-detail-title" @click="jumpRouter('商品详情')">
                             <span class="name">{{product.skuName}}</span>
                             <div class="guige">
-                                {{product.skuValuesTitle}}
+                                {{product.skuValuesTitleEng}}
                             </div>
                             <div class="p1">
                                 {{product.currencySignWebsite}}{{product.priceWebsite}}
@@ -77,12 +75,12 @@
             </div>
 
             <div class="yunfei b-t-1">
-                <span class="p1">运费</span>
-                <span class="p2">{{order.orderFareWebsite==0 ? '免邮':order.orderFareWebsite}}</span>
+                <span class="p1">Freight</span>
+                <span class="p2">{{order.orderFareWebsite==0 ? 'Free Shipping':order.orderFareWebsite}}</span>
             </div>
             <div class="payment b-t-1">
-                <span>配送</span>
-                <div class="select" v-if="order.deliverType==1 || order.deliverType==2">{{order.deliverType==1? 'Tospino物流':'上门自取'}}</div>
+                <span>Transporation</span>
+                <div class="select" v-if="order.deliverType==1 || order.deliverType==2">{{order.deliverType==1? 'Fulfillment by Tospino':'Take Delivery'}}</div>
                 <div class="select" v-else>
                     <div class="gj-img">
                         <img :src="$webUrl+order.areaImg">
@@ -91,7 +89,7 @@
                 </div>
             </div>
             <div class="heji b-t-1">
-                <span class="p1">合计</span>
+                <span class="p1">Total</span>
                 <span class="p2 c-orange">{{order.currencySignWebsite}}{{order.orderAmountWebsite}}</span>
             </div>
             <div class="beizhu">
@@ -100,30 +98,30 @@
                         v-model="message"
                         rows="3"
                         autosize
-                        label="备注"
+                        label="Note"
                         type="textarea"
-                        placeholder="请先致电客服沟通确认"/>
+                        placeholder="Contact customer service to confirm the order"/>
                 </van-cell-group>
             </div>
         </div>
         
         <div class="total">
             <div class="total-top">
-                <span class="p1">商品总额</span>
+                <span class="p1">Subtotal</span>
                 <span class="p2">{{orderData.currencySignWebsite}}{{orderData.allOrderProductAmountWebsite}}</span>
             </div>
             <div class="total-bottom">
-                <span class="p1">总运费</span>
+                <span class="p1">Total Freight</span>
                 <span class="p2 c-orange">{{orderData.currencySignWebsite}}{{orderData.allOrderFareWebsite}}</span>
             </div>
         </div>
         <div class="niming">
-            <van-checkbox v-model="checked" checked-color="#FA5300">匿名</van-checkbox>
+            <van-checkbox v-model="checked" checked-color="#FA5300">Anonymous Buyer</van-checkbox>
         </div>
         <div class="settlement" >
-            <span class="settlement-p1">总金额：</span>
+            <span class="settlement-p1">Sum:</span>
             <span class="settlement-p2 c-orange">{{orderData.currencySignWebsite}}{{orderData.allOrderAmountWebsite}}</span>
-            <div class="settlement-btn" @click="submit">提交订单</div>
+            <div class="settlement-btn" @click="submit">Sumit</div>
         </div>
         <div class="settlement-place"></div>
         <!-- 支付成功弹窗 -->
@@ -166,11 +164,11 @@ export default {
             payStatus:[
                 {
                     type:1,
-                    name:'货到付款'
+                    name:'Cash'
                 },
                 {
                     type:2,
-                    name:'在线支付'
+                    name:'Online'
                 }
             ],
             showPayment:false,
@@ -243,11 +241,11 @@ export default {
                 })
             })
             if(!flag){
-                Toast('请移除异常商品')
+                Toast('Please remove abnormal products')
                 return
             }
             if(!flag2){
-                Toast('请移除异常商品或者更换地址')
+                Toast('Please remove abnormal products/change the address')
                 return
             }
             if(!this.userinfoShop.payPwd){
@@ -313,7 +311,7 @@ export default {
         //减数量
         reduceCount(item){
             if(item.detailNum <= item.minStartNum) {
-                Toast('不可小于起订量'+item.minStartNum)
+                Toast('Not less than MOQ'+item.minStartNum)
                 return
             }
             item.detailNum--
@@ -392,7 +390,7 @@ export default {
                     } 
                     this.getconfirmorder(obj)
                 }else{
-                    Toast('提交失败')
+                    Toast('Failed')
                 }
             })
         },

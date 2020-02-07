@@ -1,7 +1,7 @@
 <template >
   	<!-- 消息订阅 -->
 	<div class="news c-b-gray">
-		<balance-header title="消息"></balance-header>
+		<balance-header title="Messages"></balance-header>
 		<scroll class="bscroll-wrapper" ref="wrapper" :data="recordGroup" :pulldown="pulldown" :pullup="pullup" @pulldown="_pulldown" @pullup="_pullup" >
 			<div class="bscroll-con">
 				<div class="plr30 dy" v-for="(data,index) in dataList" :key="index">

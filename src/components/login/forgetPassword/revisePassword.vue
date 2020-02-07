@@ -78,7 +78,7 @@ export default {
     methods: {
         confirm(){
             if(this.reviseData.userPwd != this.reviseData.userPwd2){
-                Toast('两次密码输入不一样')
+                Toast('Inconsistent passwords')
             }else{
                 this.setretrievepassword(this.reviseData)
             }

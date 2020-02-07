@@ -5,11 +5,11 @@
         <details-header></details-header>
         <div class="commodity-tab" v-if="true">
             <van-tabs v-model="active" class="tab-list" title-active-color="#FA5300" @change="changeTab">
-                <van-tab title="宝贝" ></van-tab>
-                <van-tab title="评价"></van-tab>
-                <van-tab title="参数"></van-tab>
-                <van-tab title="详情"></van-tab>
-                <van-tab title="推荐"></van-tab>
+                <van-tab title="Shot" ></van-tab>
+                <van-tab title="Review"></van-tab>
+                <van-tab title="Param"></van-tab>
+                <van-tab title="Details"></van-tab>
+                <van-tab title="Similar"></van-tab>
             </van-tabs>
         </div>
         <div class="commodity-tab-place"></div>
@@ -34,13 +34,13 @@
                         <span class="p2 through" v-if="detailmData.salePriceFlag">{{jn}}{{detailmData.salePrice}}</span>
                     </div>
                     <div>
-                        <span class="p3">起订量{{detailmData.numIntervalStart}}件</span>
+                        <span class="p3">MOQ:{{detailmData.numIntervalStart}}Pcs</span>
                     </div>
                     <div class="miaoshu">
                         <span class="p4">{{detailmData.supplyTitle}}</span>
-                        <span >
+                        <span>
                             <img src="@/assets/img/tabbar/home/commodityDetails/share-02@2x.png" class="fenxiang">
-                            <span class="fenxiang-txt">分享</span>
+                            <span class="fenxiang-txt">Share</span>
                         </span>
                     </div>
                     <div class="supplement" v-if="false">
@@ -53,11 +53,10 @@
                     </div>
                 </div>
 
-                <van-cell-group class="border-0" @click="changeComStatus(true,false)" ref="guige">
-                    <van-field v-model="username" clearable right-icon="arrow" :placeholder="detailmData.skuValuesTitle" left-icon="arrow" disabled>
+                <van-cell-group class="border-0" @click="changeComStatus(true,false)">
+                    <van-field v-model="username" clearable right-icon="arrow" :placeholder="detailmData.skuValuesTitleEng" left-icon="arrow" disabled>
                         <div slot="left-icon" size="small" type="primary" class="text-left" >
-                            <span>规格</span>
-                            <span>选择</span>
+                            <span>Select</span>
                             <span class="erect-line1"></span>
                         </div>  
                     </van-field>
@@ -65,7 +64,7 @@
 
                 <div class="good-comment" @click="$router.push({name:'商品详情评价',query:{skuid:detailmData.skuId}})" ref="goodComment">
                     <div class="comment-top">
-                        <span class="p1">评价</span>
+                        <span class="p1">Reviews</span>
                         <span class="p2">{{detailmData.starNumber}}</span>
                         <van-rate v-model="detailmData.starNumber" void-color="#FA5300"  color="#FA5300"/>
                     </div>
@@ -81,9 +80,19 @@
                         <van-icon name="arrow" />
                     </div>
                 </div>
+                <div ref="guige">
+                    <div class="canshu" v-for="(param,index) in detailmData.productParamList" :key="index" >
+                        <div class="canshu-item fl-left">{{param.paramTitleEng}}</div>
+                        <div class="canshu-item fl-left">{{param.pvValueEng}}{{param.paramUnitEng}}</div>
+                    </div>
+                    <div class="shousuo" v-if="shousuoStatus" @click="zankai">
+                        <span>open</span>
+                        <van-icon name="arrow-down" />
+                    </div>
+                </div>
                 <div class="bbxq" ref="xiangqing">
                     <span class="line-left"></span>
-                    <span class="bbxq-p1">宝贝详情</span>
+                    <span class="bbxq-p1">Details</span>
                     <span class="line-right"></span>
                 </div>
                 <div class="banner" v-html="detailmData.supplyDetail" ></div>  
@@ -97,14 +106,14 @@
             <div class="icon-collection" @click="cliShoucang">
                 <img src="@/assets/img/tabbar/home/commodityDetails/collection-02@2x.png" v-if="Isfavorites == 1 " >
                 <img src="@/assets/img/tabbar/home/commodityDetails/collection@2x.png" v-else>
-                <span class="icon-collection-p">收藏</span>
+                <div class="icon-collection-p">Collect</div>
             </div>
             <div class="icon-service" @click="service">
                 <img src="@/assets/img/tabbar/home/commodityDetails/service@2x.png">
-                <span class="icon-collection-p">客服</span>
+                <div class="icon-collection-p">Service</div>
             </div>
-            <van-button type="default" class="add-shopping-cat" @click="changeComStatus(true,true,'确定')">加入购物车</van-button>
-            <van-button type="primary" class="spend" @click="changeComStatus(true,true,'立即购买')">立即购买</van-button>
+            <van-button type="default" class="add-shopping-cat" @click="changeComStatus(true,true,'Confirm')">Add to Cart</van-button>
+            <van-button type="primary" class="spend" @click="changeComStatus(true,true,'Buy Now')">Buy Now</van-button>
         </van-tabbar>        
         
         <transition name="updown">
@@ -150,7 +159,9 @@ export default {
             comStatus:false,
             selectionData:{},
             btnStatus:false,
-            btnName:''
+            btnName:'',
+            productParamList:[],
+            productParamList2:[]
         };
     },
     computed: {
@@ -188,6 +199,13 @@ export default {
                     this.footerData.list = res.GuessyouLike
                     this.showfooter = true //数据回调回来,显示猜你喜欢
                     this.Isfavorites = res.Data.isfavorites  //收藏状态
+
+
+                    this.productParamList = res.Data.productParamList.slice(0,5)
+                    this.productParamList2 = res.Data.productParamList
+                    if(res.Data.productParamList.length > 5){
+                        this.shousuoStatus = true
+                    }
                 }
             })
         },
@@ -241,6 +259,11 @@ export default {
                     this.Isfavorites = 1
                 }
             })
+        },
+        //展开
+        zankai(){
+            this.productParamList = this.productParamList2
+            this.shousuoStatus = false
         }
     },
     components: {
@@ -292,7 +315,7 @@ export default {
                 }
                 .van-tab{
                     line-height: 80px;
-                    flex-basis: 20% !important;
+                    // flex-basis: 20% !important;
                     font-size: 28px;
                     color: #000;
                 }
@@ -441,6 +464,29 @@ export default {
             }
         }
     }
+    .canshu{
+        overflow: hidden;
+        text-align: center;
+        border: 1px solid #999;
+        padding: 20px 0;
+        display: flex;
+        display: -webkit-flex;
+        align-items:center;
+        justify-content:center;
+        .canshu-item{
+            width: 48%;
+        }
+        
+    }
+    .shousuo{
+        text-align: center;
+        height: 40px;
+        line-height: 40px;
+        border: 1px solid #999;
+        span{
+            vertical-align: text-bottom;
+        }
+    }
     .bbxq{
         width: 100%;
         height: 85px;
@@ -475,42 +521,40 @@ export default {
     /deep/ .footer-tab.van-tabbar--fixed{
         height: 100px;
         .icon-collection{
-            position:absolute;
             display: inline-block;
-            width: 60px;
-            height: 100%;
-            left:52px;
             color: #666;
+            overflow: hidden;
+            padding: 15px 0;
+            text-align: center;
+            margin:0 30px;
             img{
                 width: 48px;
                 height: 48px;
-                position: absolute;
-                top:14px;
+                // position: absolute;
+                // top:14px;
             }
             .icon-collection-p{
-                position: absolute;
-                bottom:10px;
+                // position: absolute;
+                // bottom:10px;
                 font-size: 20px;
                 color: #666;
             }
         }
         .icon-service{
-            position:absolute;
+            overflow: hidden;
+            padding: 15px 0;
+            text-align: center;
             display: inline-block;
-            width: 60px;
-            height: 100%;
-            left:156px;
             color: #666;
-            
             img{
                 width: 48px;
                 height: 48px;
-                position: absolute;
-                top:14px;
+                // position: absolute;
+                // top:14px;
             }
             .icon-collection-p{
-                position: absolute;
-                bottom:10px;
+                // position: absolute;
+                // bottom:10px;
                 font-size: 20px;
                 color: #666;
             }

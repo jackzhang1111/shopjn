@@ -1,28 +1,25 @@
 <template>
 <!-- 平台介绍 -->
     <div class="introduce">
-        <div class="title">关于我们</div>
+        <div class="title">ABOUT TOSPINO APP</div>
         <p>
-            TOSPINO APP是一款跨境B2B线上商城，专注于通过智能高效的线上交易模式帮助零售商家完成海量商品的轻松采购。<br>
-            TOSPINO拥有数十年的进出口经验，发展了丰富的产品渠道，通过供应链升级的方式，TOSPINO汇聚了来自各地优质品牌和工厂的产品，品类全面，性价比更高。为了进一步升级采购体验，Tospino以移动互联网为媒介，让用户在手机上随时随地即可大小批量的采购活动，下单时，用户可选择充值余额/Paypal 线上支付和货到付款的结算方式。<br>
+            <br>Severing as a cross-border online shopping mall, TOSPINO APP focuses on B2B e-commercial trading and providing global wholesale and purchasing services of multiple products to retailers by intelligent, high-effective online businesses.
+            <br>With an export experience lasting for 10 years, it has developed multiple professional trading channels. It collected excellent brands and outstanding products all over China through a more comprehensive supply chain. Its categories are more integrated while prices are far better for businessmen. To perfect user experiences, TOSPINO takes mobile internet as its useful and effective trading tool. That means users can purchase any quantity of products online, anywhere and anytime. What’s more, they can choose different payments when order goods, including pay by Balance, Paypal, or Cash.
             <br>
-            关于团队<br>
-            Tospino的服务团队90%以上由本地人员组成，包括仓储人员、物流团队以及线上客服人员，所有员工都接受了专业的培训，保证用户的消费体验。<br>
+            <br><span class="h1">ABOUT OUR TEAM</span>
+            <br>Over 90 percents of TOSPINO’s staff, like warehouse personnel, couriers and online customer service staff, are local people. They all are cable enough to provide good services to our consumers for their professional skills learned from TOSPINO’s training.
             <br>
-            平台功能<br>
-            Tospino APP主要由首页、分类、购物车、资讯、我的五大功能模块组成，用户可以在APP里完成下单采购、物流跟踪、退换货等操作，体验更轻松、优惠的采购模式。<br>
+            <br><span class='h1'>ABOUT TOSPINO’s FUNCTIONS</span>
+            <br>TOSPINO SHOPPING is consisted of five function modules, namely Home, Category, Cart, News and Account. Purchasers can order or buy products, check logistics, and apply refund/return services just on the APP. It is really an easier buying method with more conveniences. 
             <br>
-            1）首页<br>
-            “首页”的展示内容包括定位、商品搜索、商品分类、限时抢购、商品列表、品牌展示。<br>
-            输入关键词可以搜索相关的商品，点击首页的商品可以跳转到商品的详情页。<br>
-            2）分类<br>
-            “分类”模块的页面内容包括商品搜索、分类列表、排序方式、筛选、商品列表。<br>
-            产品分类内容包括“数码、食品、母婴、建材、日用、服装、美妆、家电”等几大类型产品和对应的细分类。<br>
-            3）购物车<br>
-            APP用户在商品的详情页中可以将商品加入“购物车”。<br>
-            “购物车”的页面包括商品列表，功能有列表商品选中、结算、删除<br>
-            4）我的<br>
-            “我的”模块内容包括个人资料、余额、优惠券、积分、订单状态、浏览记录、收藏、积分说明、APP设置
+            <br><span class='jiacu'>1)Home</span>
+            <br>Functions of Home is overall and powerful, covering product targeting and searching, shopping by category, flash deals, product list and brand display. For example, it’s easy for buyers to search commodities they need via key words; and the intelligent function of skipping to specific product details is easily accessible for every single user. 
+            <br><span class='jiacu'>2)Category</span>
+            <br>Functions about Category are product searching, listing, ranking and selecting. All goods are classified to Digital, Food, Baby, Daily, Beauty, Electronics and other classifications.
+            <br><span class='jiacu'>3)Cart </span>
+            <br>Functions of Cart contain product adding, buying and canceling. That is to say it is very handy to add your goods to the Cart on the interface of Product Details.
+            <br><span class='jiacu'>4)Account</span>
+            <br>Account covers lots of important data, including personal information, balance, coupon, points, order delivery, browse record, collection, point description and settings.
         </p>
     </div>
 </template>
@@ -70,5 +67,15 @@ p{
     font-size:26px;
     line-height:39px;
     color: #333;
+}
+.h1{
+    display: block;
+    text-align: center;
+    font-weight:bold;
+    font-size:32px;
+}
+.jiacu{
+    font-size:30px;
+    font-weight: bold;
 }
 </style>

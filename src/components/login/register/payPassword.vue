@@ -7,7 +7,7 @@
             :value="value"
             :focused="showKeyboard"
             :length="6"
-            info="请输入6位支付密码用于手机支付"
+            info="Enter a 6-character password"
             @focus="showKeyboard = true"
             />
             <!-- 数字键盘 -->
@@ -36,7 +36,7 @@ export default {
         return {
             value: '',
             showKeyboard: true,
-            title:'设置支付密码'
+            title:'Set Payment Password'
         };
     },
     computed: {

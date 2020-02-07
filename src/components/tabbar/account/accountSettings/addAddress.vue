@@ -1,36 +1,36 @@
 <template>
     <div class="add-address" >
         <div v-show = choiceShow>
-            <settings-header :title="title" title2="保存" @rightBtn="rightBtn"></settings-header>
+            <settings-header :title="title" title2="Save" @rightBtn="rightBtn"></settings-header>
         <div class="cell">
-            <input type="search" :class="{'c-333':isBace}" class="input-xt" placeholder="收货人" v-model="form.shr">
+            <input type="search" :class="{'c-333':isBace}" class="input-xt" placeholder="Receiver" v-model="form.shr">
         </div>
         <div class="cell">
-            <input type="search" :class="{'c-333':isBace}" class="input-xt" placeholder="手机号码" v-model="form.sjhm">
-            <span class="hm c-999">+86</span>
+            <input type="search" :class="{'c-333':isBace}" class="input-xt" placeholder="Phone Number" v-model="form.sjhm">
+            <span class="hm c-999">+233</span>
             <van-icon name="arrow" class="arrow c-999"/>
         </div>
         <div class="cell" @click="toChoiceList(1,0)">
-            <input type="text" :class="{'c-333':isBace}" class="input-xt" placeholder="请选择国家" v-model="form.lev1" :disabled='true'>
+            <input type="text" :class="{'c-333':isBace}" class="input-xt" placeholder="Choose A Country" v-model="form.lev1" :disabled='true'>
             <van-icon name="arrow" class="arrow c-999"/>
         </div>
         <div class="cell" @click="toChoiceList(2,choiceForm.lev1.id)">
-            <input type="text" :class="{'c-333':isBace}" class="input-xt" placeholder="州/省/地区" v-model="form.lev2" :disabled='true'>
+            <input type="text" :class="{'c-333':isBace}" class="input-xt" placeholder="State/Province/Region" v-model="form.lev2" :disabled='true'>
             <van-icon name="arrow" class="arrow c-999"/>
         </div>
         <div class="cell " @click="toChoiceList(3,choiceForm.lev2.id)">
-            <input type="text" :class="{'c-333':isBace}" class="input-xt" placeholder="城市/县/镇" v-model="form.lev3" :disabled='true'>
+            <input type="text" :class="{'c-333':isBace}" class="input-xt" placeholder="City/County/Town" v-model="form.lev3" :disabled='true'>
             <van-icon name="arrow" class="arrow c-999"/>
         </div>
         <div class="cell" @click="toChoiceList(4,choiceForm.lev3.id)">
-            <input type="text" :class="{'c-333':isBace}" class="input-xt" placeholder="县/区/街道" v-model="form.lev4" :disabled='true'>
+            <input type="text" :class="{'c-333':isBace}" class="input-xt" placeholder="County/District/Street" v-model="form.lev4" :disabled='true'>
             <van-icon name="arrow" class="arrow c-999"/>
         </div>
         <div class="top-textarea">
-            <textarea placeholder="请输入详细地址" v-model="form.message"></textarea>
+            <textarea placeholder="Enter a full address" v-model="form.message"></textarea>
         </div>
         <div class="cell">
-            <span class="c-333">设为默认地址</span>
+            <span class="c-333">Set it as dafault address</span>
             <van-switch v-model="form.checked" class="switch" active-color="#07c160" inactive-color="#999"/>
         </div>
         </div>
@@ -50,7 +50,7 @@ export default {
     },
     data() {
         return {
-            title:'添加收货地址',
+            title:'Add Shipping Address',
             isBace:true,
             choiceShow:true,
             form:{
@@ -64,7 +64,7 @@ export default {
                 checked:true,
             },
             areaId:'',
-            areaName:'',
+            areaNameEng:'',
             areaCode:'',
             choiceForm:{
                 lev1:{
@@ -179,7 +179,7 @@ export default {
             }
             let obj = {
                 addressAreaId:addressAreaId,
-                phoneCode:'+86',
+                phoneCode:'+233',
                 isDefault:this.form.checked ? 1 : 2,
                 name:this.form.shr,
                 phoneNumber:this.form.sjhm,

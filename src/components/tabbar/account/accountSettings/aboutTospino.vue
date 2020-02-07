@@ -5,24 +5,22 @@
         <div class="tospino-body" v-if="ifAbout">
             <div class="ewm-body">
                 <div class="ewm-img"></div>
-                <div>
-                    v1.0.2.3版本
-                </div>
+                <div>V1.0.0.0</div>
             </div>
-            <div class="cell" @click="jumpRouter('隐私政策')">
-                <span>隐私政策</span>
+            <div class="cell" @click="jumpRouter('Privacy Policy')">
+                <span>Privacy Policy</span>
                 <van-icon name="arrow" class="arrow c-999"/>
             </div>
-            <div class="cell" @click="jumpRouter('用户协议')">
-                <span>用户协议</span>
+            <div class="cell" @click="jumpRouter('User Agreement')">
+                <span>User Agreement</span>
                 <van-icon name="arrow" class="arrow c-999"/>
             </div>
-            <div class="cell" @click="jumpRouter('帮助中心')">
-                <span>帮助中心</span>
+            <div class="cell" @click="jumpRouter('Help Center')">
+                <span>Help Center</span>
                 <van-icon name="arrow" class="arrow c-999"/>
             </div>
-            <div class="cell" @click="jumpRouter('平台介绍')">
-                <span>平台介绍</span>
+            <div class="cell" @click="jumpRouter('About Tospino')">
+                <span>About Tospino</span>
                 <van-icon name="arrow" class="arrow c-999"/>
             </div>
             <div class="cell">
@@ -43,7 +41,7 @@ export default {
     data() {
         return {
             ifAbout:true,
-            headTitle:'关于TOSPINO'
+            headTitle:'About TOSPINO'
         };
     },
     computed: {
@@ -53,13 +51,13 @@ export default {
 
     },
     mounted() {
-        this.ifAbout = this.$route.name == "关于TOSPINO" ? true : false
+        this.ifAbout = this.$route.name == "About TOSPINO" ? true : false
         this.headTitle = this.$route.name 
     },
     watch: {
         $route: {
             handler: function(val, oldVal){
-                this.ifAbout = val.name == "关于TOSPINO" ? true : false
+                this.ifAbout = val.name == "About TOSPINO" ? true : false
                 this.headTitle = this.$route.name 
             },
             // 深度观察监听

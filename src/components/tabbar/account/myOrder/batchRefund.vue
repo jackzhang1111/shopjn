@@ -1,7 +1,7 @@
 <template>
 <!-- 批量退货退款 -->
     <div class="batch-refund">
-        <balance-header title="批量退货退款"></balance-header>
+        <balance-header title="In-batch Return/Refund"></balance-header>
         <div class="good-information">
             <scroll :data='recordGroup' class="bscroll-wrapper" ref="wrapper">
                 <div class="good-detail">
@@ -12,7 +12,7 @@
                         </div>
                         <div class="good-detail-title">
                             <span class="name">{{data.skuName}}</span>
-                            <div class="guige">{{data.skuValuesTitle}}</div>
+                            <div class="guige">{{data.skuValuesTitleEng}}</div>
                         </div>
                         <div class="price fl-right">
                             <div class="p3">{{data.currencySignWebsite}}{{data.priceWebsite}}</div>
@@ -25,8 +25,8 @@
             <div class="settlement">
                 <span class="settlement-text">
                     <van-checkbox v-model="checked" icon-size="24px" class="checkbox" checked-color="#F83600" @change="allCheckBox"></van-checkbox>
-                    <span class="btn1" @click="assign" :style="{backgroundColor:(btnFlag?'#FA5300':'#999')}">确认</span>
-                    <span class="p1">全选</span>
+                    <span class="btn1" @click="assign" :style="{backgroundColor:(btnFlag?'#FA5300':'#999')}">OK</span>
+                    <span class="p1">All</span>
                 </span>
             </div>
         </div>

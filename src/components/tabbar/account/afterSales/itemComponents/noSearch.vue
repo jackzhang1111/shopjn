@@ -1,12 +1,11 @@
 <template>
-<!-- 搜索框未搜到商品 -->
+<!-- 我的订单未搜到商品 -->
     <div class="no-search">
         <div class="content">
             <div class="no-search-img">
-                <img src="@/assets/img/search/chatu@2x.png" alt="">
+                <img src="@/assets/img/confirmOrder/order@2x.png" alt="">
             </div>
-            <div class="no-search-p1">No result!</div>
-            <div class="no-search-p2">No result!</div>
+            <div class="no-search-p1">No Record</div>
         </div>  
     </div>
 </template>
@@ -46,28 +45,25 @@ export default {
 .no-search{
     position: relative;
     padding: 39px 30px 0;
-    height: calc(100vh - 90px);
     box-sizing: border-box;
     .content{
         position: relative;
-        top:200px;
+        margin-top:200px;
         text-align: center;
     }
     .no-search-img{
         display: inline-block;
-        width: 196px;
-        height: 179px;
-        // left:50%;
-        // transform: translateX(-50%)
+        width: 160px;
+        height: 160px;
     }
     .no-search-p1{
-        margin-top:49px;
+        margin-top:41px;
         font-size:30px;
         color: #333;
     }
     .no-search-p2{
-        margin-top:18px;
-        font-size:24px;
+        margin-top:24px;
+        font-size:26px;
         color: #666;
     }
 }

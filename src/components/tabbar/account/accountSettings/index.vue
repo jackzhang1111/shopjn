@@ -7,31 +7,31 @@
             <van-icon name="chat-o" class="chat" size="17px" @click="jumpRouter('消息')"/>
         </div>
         <div class="cell"  @click="jumpRouter('收货地址')">
-            <span>我的收货地址</span>
+            <span>My Shipping Address</span>
             <van-icon name="arrow" class="arrow c-999"/>
         </div>
         <div class="cell" @click="jumpRouter('账户安全')">
-            <span>账户与安全</span>
+            <span>Account and Security</span>
             <van-icon name="arrow" class="arrow c-999"/>
         </div>
         <div class="cell bor-b-1" @click="clearCache">
-            <span>清除缓存</span>
+            <span>Clear Cache Data</span>
             <van-icon name="arrow" class="arrow c-999"/>
         </div>
         <div class="cell bor-b-1">
-            <span>法律条款</span>
+            <span>Legal Provision</span>
             <van-icon name="arrow" class="arrow c-999"/>
         </div>
-        <div class="cell bor-b-1" @click="jumpRouter('关于TOSPINO')">
-            <span>关于TOSPINO</span>
+        <div class="cell bor-b-1" @click="jumpRouter('About TOSPINO')">
+            <span>About TOSPINO</span>
             <van-icon name="arrow" class="arrow c-999"/>
         </div>
         <div class="cell bor-b-1" @click="checkUpdate">
-            <span>检查更新</span>
+            <span>View New Version</span>
             <van-icon name="arrow" class="arrow c-999"/>
         </div>
         <div class="cell bor-b-1">
-            <span>意见反馈:info@tospino.com</span>
+            <span>Feedback:info@tospino.com</span>
             <van-icon name="arrow" class="arrow c-999"/>
         </div>
         <!-- <div class="cell ">
@@ -45,26 +45,26 @@
             <div class="dialog">
                 <div v-if="qchcDialog">
                     <div class="dialog-title">
-                        <span>提示</span>
+                        <span>Tips</span>
                         <div class="fl-right">
                             <van-icon name="close" @click="zhezhaoStatus = false"/>
                         </div>
                     </div>
                     <div class="dialog-body">
-                        <p>您确定要清除缓存吗？</p>
-                        <div class="qd-btn" @click="zhezhaoStatus = false">确定</div>
+                        <p>Are you sure to clear cache data?</p>
+                        <div class="qd-btn" @click="zhezhaoStatus = false">Yes</div>
                     </div>
                 </div>
                 <div v-else>
                     <div class="gx-title">
-                        <span>更新提示</span>
+                        <span>Update</span>
                         <div class="fl-right">
                             <van-icon name="close" @click="zhezhaoStatus = false"/>
                         </div>
                     </div>
                     <div class="dialog-body">
-                        <p>{{gxStatus?bbh:'没有检测到最新版本！'}}</p>
-                        <div class="ljgx-btn" @click="zhezhaoStatus = false">{{gxStatus?'立即更新':'确定'}}</div>
+                        <p>{{gxStatus?bbh:'No New Version!'}}</p>
+                        <div class="ljgx-btn" @click="zhezhaoStatus = false">{{gxStatus?'Update Now':'Confirm'}}</div>
                     </div>
                 </div>
             </div>
@@ -81,7 +81,7 @@ export default {
     },
     data() {
         return {
-            title:'账户设置',
+            title:'Settings',
             qchcDialog:false,
             bbh:'新版本：v 1.0.2.0',
             gxStatus:false,

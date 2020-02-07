@@ -1,26 +1,26 @@
 <template>
 <!-- 修改支付密码 -->
     <div class="edit-paypawo">
-        <settings-header title="修改支付密码" title2=""></settings-header>
+        <settings-header title="Change Payment Password" title2=""></settings-header>
         <div class="edit-paypawo-content">
             <div class="m-b-19">
                 <div class="cell">
-                    <input :type="inputType3" class="input-xt" placeholder="请输入当前支付密码" v-model="formData.oldPwd">
+                    <input :type="inputType3" class="input-xt" placeholder="Enter payment password" v-model="formData.oldPwd">
                     <van-icon name="eye-o" class="pas-icon" v-if="eyeStuats3" @click="eyeStuats3 = !eyeStuats3"/>
                     <van-icon name="closed-eye"  class="pas-icon" v-else @click="eyeStuats3 = !eyeStuats3"/>
                 </div>
                 <div class="cell">
-                    <input :type="inputType" class="input-xt" placeholder="输入新密码" v-model="formData.userPwd">
+                    <input :type="inputType" class="input-xt" placeholder="Enter new password" v-model="formData.userPwd">
                     <van-icon name="eye-o" class="pas-icon" v-if="eyeStuats" @click="eyeStuats = !eyeStuats"/>
                     <van-icon name="closed-eye"  class="pas-icon" v-else @click="eyeStuats = !eyeStuats"/>
                 </div>
                 <div class="cell">
-                    <input :type="inputType2" class="input-xt" placeholder="确认密码" v-model="formData.userPwd2">
+                    <input :type="inputType2" class="input-xt" placeholder="Re-enter the new password" v-model="formData.userPwd2">
                     <van-icon name="eye-o" class="pas-icon" v-if="eyeStuats2" @click="eyeStuats2 = !eyeStuats2"/>
                     <van-icon name="closed-eye"  class="pas-icon" v-else @click="eyeStuats2 = !eyeStuats2"/>
                 </div>
             </div>
-            <div class="btn" @click="submit">确定</div>
+            <div class="btn" @click="submit">OK</div>
         </div>
     </div>
 </template>
@@ -71,14 +71,14 @@ export default {
         updateuserpaypassword(data){
             updateuserpaypasswordApi(data).then(res => {
                 if(res.code == 0){
-                    Toast('设置成功')
+                    Toast('Successful')
                     this.$router.go(-1)
                 }else if(res.code == -121){
-                    Toast('原登录密码不正确')
+                    Toast('Incorrect current login password')
                 }else if(res.code == -122){
-                    Toast('原支付密码不正确')
+                    Toast('Incorrect current payment password')
                 }else if(res.code == -12){
-                    Toast('密码不一致')
+                    Toast('Inconsistent passwords')
                 }
             })  
         },

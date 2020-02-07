@@ -19,26 +19,27 @@
                                 <img :src='$webUrl+good.imgUrl' :alt="good">
                             </div>
                             <div class="good-desc">
-                                <span class="p1">{{good.supplyTitle}}</span><br>
+                                <div class="p1">{{good.supplyTitle}}</div>
                                 <div class="country">
                                     <div class="country-img">
                                         <img :src="$webUrl+good.locationUrl">
                                     </div>
                                     <div class="guojia">
-                                        <span>{{good.locationName}}</span><br>
+                                        <span>{{good.locationNameEng}}</span><br>
                                     </div>
                                     <van-rate v-model="good.starNumber" readonly class="rate"/>
                                     <span class="rate-num">{{good.manNumber}}</span>
                                 </div>
+                                <div class="good-price">
+                                    <span class="p1">{{jn}}{{good.discountPrice == null ? good.salePrice:good.discountPrice}}</span>
+                                    <span class="p3" v-if="good.discountPrice != null">{{jn}}{{good.salePrice}}</span>
+                                    <!-- 省略号,暂时先隐藏 -->
+                                    <!-- <span class="p2">
+                                        <van-icon name="ellipsis" />
+                                    </span> -->
+                                </div>
                             </div>
-                            <div class="good-price">
-                                <span class="p1">{{jn}}{{good.discountPrice == null ? good.salePrice:good.discountPrice}}</span>
-                                <span class="p3" v-if="good.discountPrice != null">{{jn}}{{good.salePrice}}</span>
-                                <!-- 省略号,暂时先隐藏 -->
-                                <!-- <span class="p2">
-                                    <van-icon name="ellipsis" />
-                                </span> -->
-                            </div>
+                            
                         </div>
                     </div>
                 </div>
@@ -75,16 +76,16 @@ export default {
             value2: 0,
             value3:0,
             option1: [
-                { text: '综合', value: 0 },
-                { text: '信用优先', value: 1 },
+                { text: 'Overall Rank', value: 0 },
+                { text: 'Credit First', value: 1 },
             ],
             option2: [
-                { text: '销量', value: 0 },
+                { text: 'Popularity', value: 0 },
             ],
             option3: [
-                { text: '价格', value: 0 },
-                { text: '从高到低', value: 1 },
-                { text: '从低到高', value: 2 },
+                { text: 'Price', value: 0 },
+                { text: 'Highest Price', value: 1 },
+                { text: 'Lowest Price', value: 2 },
             ],
             checked:true,
             goodsShow1:true,
@@ -295,6 +296,7 @@ export default {
             background-color: #fff;
             position: relative;
             border-bottom: 1px solid #F2F3F5;
+            margin-bottom: 20px;
             .good-img{
                 width: 200px;
                 height: 200px;
@@ -328,9 +330,6 @@ export default {
                 }
             }
             .good-price{
-                position: absolute;
-                top:184px;
-                left:250px;
                 color: #F83600;
                 font-size:36px;
                 .p2{
@@ -352,8 +351,8 @@ export default {
         .country-img{
             width: 30px;
             height: 30px;
-            position: relative;
-            top:20px;
+            // position: relative;
+            // top:20px;
             // left:30px;
         }
         .guojia{

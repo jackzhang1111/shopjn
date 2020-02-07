@@ -2,56 +2,55 @@
 <!-- 个人页 -->
     <div class="account">
         <div class="header">
-            <span class="header-wd">我的</span>
-            <van-icon name="chat-o" size="17px" @click="jumpRouter('消息')"/>
+            <span class="header-wd">My Tospino</span>
+            <div class="fl-right">
+                <van-icon name="chat-o" size="17px" @click="jumpRouter('消息')"/>
+            </div>
+            
         </div>
         <div class="head-con">
             <div class="head-img">
                 <img src="@/assets/img/tabbar/my/account/touxiang@2x.png"><br>
                 <span class="head-name">{{userinfoShop.userName?userinfoShop.userName:"设置您的个人昵称"}}</span><br>
-                <span class="head-id">会员ID:{{userinfoShop.userId}}</span>
+                <span class="head-id">Account:{{userinfoShop.userId}}</span>
             </div>
         </div>
         <div class="record">
             <van-row>
                 <van-col span="8" @click="jumpRouter('收藏夹')">
-                    <span class="t1">收藏</span>
+                    <span class="t1">Collection</span>
                     <span class="num">{{shoucangTotal}}</span>
                 </van-col>
                  <van-col span="8">
-                    <span class="t1" @click="jumpRouter('我的足迹')">浏览</span>
+                    <span class="t1" @click="jumpRouter('我的足迹')">Pageviews</span>
                     <span class="num">{{zujiTotal}}</span>
                 </van-col>
                  <van-col span="8" @click="jumpRouter('账户余额')">
-                    <span class="t1">余额</span>
+                    <span class="t1">Balance</span>
                     <span class="num">{{jn}}{{walletMoney ? walletMoney:0}}</span>
                 </van-col>
             </van-row>
         </div>
         <div class="account-myorder">
             <div class="order-title" @click="toMyOrder(0)">
-                <span>
-                    我的订单
-                </span>
+                <span>My Order</span>
             </div>
             <div class="order-tabbar">
                 <van-tabbar class="icons" v-model="active" active-color="#666" inactive-color="#666" >
-                    <!-- <span>自定义</span> -->
-                    <!-- <img slot="icon" slot-scope="props" :src="props.active ? icon.active : icon.inactive"> -->
                     <van-tabbar-item @click="toMyOrder(1)">
-                        <span>待付款</span>
-                        <img slot="icon" slot-scope="props" :src="props.active ? icon.daifukuan : icon.daifukuan" class="icon-style">
+                        <span>Pending Payment</span>
+                        <img slot="icon" slot-scope="props" :src="props.active ? icon.daifukuan : icon.daifukuan" class="icon-style" >
                     </van-tabbar-item>
                     <van-tabbar-item @click="toMyOrder(2)">
-                        <span>待发货</span>
+                        <span>Pending Delivery</span>
                         <img slot="icon" slot-scope="props" :src="props.active ? icon.daifahuo : icon.daifahuo" class="icon-style">
                     </van-tabbar-item>
                     <van-tabbar-item @click="toMyOrder(3)">
-                        <span>待收货</span>
+                        <span>Pending Receiving</span>
                         <img slot="icon" slot-scope="props" :src="props.active ? icon.daishouhuo : icon.daishouhuo" class="icon-style">
                     </van-tabbar-item>
                     <van-tabbar-item @click="toMyOrder(4)">
-                        <span>已完成</span>
+                        <span>Finish</span>
                         <img slot="icon" slot-scope="props" :src="props.active ? icon.yiwancheng : icon.yiwancheng" class="icon-style">
                     </van-tabbar-item>
                 </van-tabbar>
@@ -66,7 +65,7 @@
             </van-field>
         </van-cell-group>
         <van-cell-group class="border-0">
-            <van-field v-model="username" clearable right-icon="arrow" placeholder="售后" left-icon="arrow" disabled @click="jumpRouter('售后内容')">
+            <van-field v-model="username" clearable right-icon="arrow" placeholder="After Sale Service" left-icon="arrow" disabled @click="jumpRouter('售后内容')">
                 <div slot="left-icon" size="small" type="primary" class="icon-left">
                     <img src="@/assets/img/tabbar/my/account/shouhou@2x.png">
                 </div>
@@ -80,7 +79,7 @@
             </van-field>
         </van-cell-group>
         <van-cell-group class="border-0">
-            <van-field v-model="username" clearable right-icon="arrow" placeholder="账户余额" left-icon="arrow" disabled @click="jumpRouter('账户余额')">
+            <van-field v-model="username" clearable right-icon="arrow" placeholder="My Balance" left-icon="arrow" disabled @click="jumpRouter('账户余额')">
                 <div slot="left-icon" size="small" type="primary" class="icon-left">
                     <img src="@/assets/img/tabbar/my/account/zhanghuyue@2x.png">
                 </div>
@@ -88,9 +87,7 @@
         </van-cell-group>
         <div class="account-myorder maigin-t-14">
             <div class="order-title">
-                <span>
-                    我的TOSPINO
-                </span>
+                <span>My TOSPINO</span>
             </div>
             <div class="order-tabbar">
                 <van-tabbar class="icons" v-model="active" active-color="#666" inactive-color="#666" >
@@ -101,11 +98,11 @@
                         <img slot="icon" slot-scope="props" :src="props.active ? icon.xinyuandan : icon.xinyuandan" class="icon-style">
                     </van-tabbar-item>
                     <van-tabbar-item @click="jumpRouter('我的足迹')">
-                        <span>最近浏览</span>
+                        <span>Recently Viewed</span>
                         <img slot="icon" slot-scope="props" :src="props.active ? icon.zuijinliulan : icon.zuijinliulan" class="icon-style">
                     </van-tabbar-item>
                     <van-tabbar-item @click="jumpRouter('消息')">
-                        <span>消息提醒</span>
+                        <span>New Messages</span>
                         <img slot="icon" slot-scope="props" :src="props.active ? icon.xiaoxitixing : icon.xiaoxitixing" class="icon-style">
                     </van-tabbar-item>
                     <van-tabbar-item v-if="false">
@@ -123,21 +120,21 @@
             </van-field>
         </van-cell-group>
         <van-cell-group class="border-0">
-            <van-field v-model="username" clearable right-icon="arrow" placeholder="联系客服" left-icon="arrow" disabled @click="show2=true">
+            <van-field v-model="username" clearable right-icon="arrow" placeholder="Customer Service" left-icon="arrow" disabled @click="show2=true">
                 <div slot="left-icon" size="small" type="primary" class="icon-left">
                     <img src="@/assets/img/tabbar/my/account/kefu.png">
                 </div>
             </van-field>
         </van-cell-group>
         <van-cell-group class="border-0">
-            <van-field v-model="username" clearable right-icon="arrow" placeholder="账户设置" left-icon="arrow" disabled @click="jumpRouter('账户设置')">
+            <van-field v-model="username" clearable right-icon="arrow" placeholder="Settings" left-icon="arrow" disabled @click="jumpRouter('账户设置')">
                 <div slot="left-icon" size="small" type="primary" class="icon-left">
                     <img src="@/assets/img/tabbar/my/account/zhanghushezhi@2x.png">
                 </div>
             </van-field>
         </van-cell-group>
         <van-cell-group class="border-0">
-            <van-field v-model="username" clearable right-icon="arrow" placeholder="更换国家/地区" left-icon="arrow" disabled @click="jumpRouter('语言')">
+            <van-field v-model="username" clearable right-icon="arrow" placeholder="Change Country/District" left-icon="arrow" disabled @click="jumpRouter('语言')">
                 <div slot="left-icon" size="small" type="primary" class="icon-left">
                     <img src="@/assets/img/tabbar/my/account/genggaiguojiadiqu@2x.png">
                 </div>
@@ -145,7 +142,7 @@
         </van-cell-group>
         
         <div class="footer-btn">
-            <van-button type="default" @click="logOut">退出登录</van-button>
+            <van-button type="default" @click="logOut">Log Out</van-button>
         </div>
 
 
@@ -268,13 +265,12 @@ export default {
 <style scoped lang="less">
 .account{
     padding: 0 30px;
+    /deep/ .van-tabbar-item{
+        text-align:center
+    }
     .header{
         line-height: 88px;
         box-sizing: border-box;
-        /deep/ .van-icon-chat-o{
-            position: relative;
-            left:585px;
-        }
     }
     .header-wd{
         font-size: 36px;

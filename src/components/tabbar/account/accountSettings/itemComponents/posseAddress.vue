@@ -4,32 +4,28 @@
             <div class="content-p1">
                 <span class="name">{{data.name}}</span>
                 <span class="phone">{{data.areaCode}} {{data.phoneNumber}}</span>
-                <span class="dqmr" v-if="data.isDefault == 1">当前默认</span>
+                <span class="dqmr" v-if="data.isDefault == 1">Default</span>
             </div>
             <div class="content-p2">
-                <span>收货地址：{{data.addreCitys}} {{data.userAddress}}</span>
+                <span>Shipping Address:{{data.addreCitys}} {{data.userAddress}}</span>
             </div>
             <div class="content-p3">
-                <span>地区编码：{{data.areaCode}}</span>
+                <span>Zip Code:{{data.areaCode}}</span>
             </div>
             <div class="content-btns">
-                <div class="btn-bj" @click.stop="editRedord(data)">编辑</div>
-                <div class="btn-sc" @click.stop="deleteRedord(data.addressId)">删除</div>
+                <div class="btn-bj" @click.stop="editRedord(data)">Edit</div>
+                <div class="btn-sc" @click.stop="deleteRedord(data.addressId)">Delete</div>
             </div>
         </div>
 
         <van-overlay :show="redordshow" @click="redordshow = false" >
             <!-- 删除历史记录 -->
             <div class="overlay-wrapper" @click.stop>
-                <div class="overlay-wrapper-p1">
-                    您确认要删除这个地址吗？
-                </div>
-                <div class="overlay-wrapper-p2">
-                    请注意：删除该地址不会删除任何等待发送到该地址的订单,为确保未来的订单旅行不受影响,请使用此地址更新所有愿望清单及订阅和保存设置。
-                </div>
+                <div class="overlay-wrapper-p1">Are you sure to delete the address?</div>
+                <div class="overlay-wrapper-p2">Attention: You can't cancel any orders gonna be sent to the address that you delete. To avoid impact on delivery, please upgrade all addresses on you wish list, subscription and default settings.</div>
                 <div class="overlay-wrapper-btns">
-                    <span class="btn-no" @click="redordshow = false">否</span>
-                    <span class="btn-yes" @click="$emit('deladdress',addressId)"> 是</span>
+                    <span class="btn-no" @click="redordshow = false">NO</span>
+                    <span class="btn-yes" @click="$emit('deladdress',addressId)"> YES</span>
                 </div>
             </div>
         </van-overlay>

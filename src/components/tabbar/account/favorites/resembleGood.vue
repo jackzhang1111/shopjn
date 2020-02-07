@@ -3,7 +3,7 @@
     <div class="resemble-good">
         <div class="footprint-header">
             <van-icon name="arrow-left" class="arrow-left" @click="$router.go(-1)"/>
-            <span class="header-t1">相似产品</span>
+            <span class="header-t1">Similar Items</span>
             <van-icon name="chat-o" class="chat" size="17px" @click="jumpRouter('消息')"/>
         </div>
         <div class="place"></div>
@@ -17,16 +17,16 @@
             </div>
             <div class="country">
                 <div class="good-img">
-                    <img src="@/assets/img/confirmOrder/guojia@2x.png" alt="">
+                    <img :src="$webUrl+product.locationUrl" alt="">
                 </div>
                 <div class="guojia">
-                     <span>{{product.locationName}}</span><br>
+                     <span>{{product.locationNameEng}}</span><br>
                 </div>
             </div>
             <div class="good-price" >
                 <span class="p1">{{jn}}{{product.discountPrice}}</span>
-                <span class="p3">已售{{product.skuSalesNum}}件</span>
-                <span class="p2" @click="buyProduct(product)">购买</span>
+                <span class="p3">Sales:{{product.skuSalesNum}}Pcs</span>
+                <span class="p2" @click="buyProduct(product)">Buy</span>
             </div>
         </div>
         <footer-exhibition :footerData="footerData2"></footer-exhibition>

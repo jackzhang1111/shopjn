@@ -1,6 +1,6 @@
 <template>
     <div class="account-details">
-        <balance-header title="账户明细"></balance-header>
+        <balance-header title="Details"></balance-header>
         <div class="account-tab">
             <van-tabs v-model="active" class="tab-list" title-active-color="#FA5300" @change="changeTab">
                 <van-tab :title="tab.title" v-for="(tab,index) in tabList" :key="index">
@@ -17,7 +17,7 @@
                                         <span>{{jn}}{{account.amount}}</span>
                                     </div>
                                     <div class="con-p3">
-                                        <span>交易流水号：</span>
+                                        <span>Serial No:</span>
                                         <span>{{account.payNo}}</span>
                                         <span>{{orderStatus(account.isPaid,'payStatusList')}}</span>
                                     </div>
@@ -48,8 +48,8 @@ export default {
             active:0,
             accountType:1,
             tabList:[
-                {title:'充值记录',type:1},
-                {title:'消费记录',type:2}
+                {title:'Top Up',type:1},
+                {title:'Consumption',type:2}
             ],
             formData:{
                 page:1,
@@ -63,18 +63,18 @@ export default {
             guanmengou:true,
             noSearchStatus:true,
             accountList:[
-                {type:1,name:'余额支付'},
-                {type:2,name:'后台充值'},
+                {type:1,name:'Pay by Balance'},
+                {type:2,name:'Recharge'},
             ],
             payStatusList:[
-                {type:1,name:'成功'},
-                {type:2,name:'失败'},
+                {type:1,name:'Success'},
+                {type:2,name:'Failed'},
             ]
         };
     },
     computed: {
         describe(){
-            return this.accountType==1 ? '您还没有充值记录':'您还没有充值消费'
+            return this.accountType==1 ? 'No Record':'No Record'
         }
     },
     created() {

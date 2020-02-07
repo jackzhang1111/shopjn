@@ -3,7 +3,7 @@
     <div class="my-order">
         <div class="footprint-header">
             <van-icon name="arrow-left" class="arrow-left" @click="$router.go(-1)"/>
-            <span class="header-t1">我的订单</span>
+            <span class="header-t1">My Order</span>
             <span class="header-t2" @click="jumpRouter('我的订单历史记录')">
                 <van-icon name="search" class="search"/>
             </span>
@@ -66,23 +66,23 @@ export default {
             pullup: true,
             tabList:[
                 {
-                    title:'全部',
+                    title:'All',
                     id:null
                 },
                 {
-                    title:'待付款',
+                    title:'Unpaid',
                     id:1
                 },
                 {
-                    title:'待发货',
+                    title:'Undelivered',
                     id:2
                 },
                 {
-                    title:'待收货',
+                    title:'Unreceived',
                     id:3
                 },
                 {
-                    title:'已完成',
+                    title:'Done',
                     id:4
                 },
             ],
@@ -313,9 +313,12 @@ export default {
                 }
                 .van-tab{
                     line-height: 80px;
-                    flex-basis: 20% !important;
                     font-size: 28px;
                     color: #000;
+                    text-overflow:clip;
+                    &:nth-child(3){
+                        flex-basis: 30% !important;
+                    }
                 }
                 .van-tabs__line{
                     bottom: 30px;

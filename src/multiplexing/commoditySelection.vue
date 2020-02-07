@@ -7,7 +7,7 @@
                     <img :src="$webUrl+titleImg" alt="">
                 </div>
                 <div class="p1">
-                    <span>{{attrTitle}}</span>
+                    <span>{{attrTitleEng}}</span>
                 </div>
                 <div class="p2">
                     <span>{{jn}}{{sectionPrice}}</span>
@@ -16,12 +16,12 @@
             </div>
             <div class="selection-conten" @click.stop>
                 <van-sidebar v-model="activeKey" class="selection-sidebar" @change="cliLeft">
-                    <van-sidebar-item :title="leftData.attrTitle" v-for="leftData in dataList" :key="leftData.attrId"/>
+                    <van-sidebar-item :title="leftData.attrTitleEng" v-for="leftData in dataList" :key="leftData.attrId"/>
                 </van-sidebar>
                 <div class="selection-right"  v-for="(rightData,index) in leftDataItem" :key="index">
                     <div class="selection-right-item" @click="getIndex(index)">
                         <div class="selection-right-p1">
-                            <span class="ggms">{{rightData.attrTitle}}</span>
+                            <span class="ggms">{{rightData.attrTitleEng}}</span>
                             <div class="jsq">
                                 <div class="reduce-btn" @click="operationNumber('jian',rightData)">
                                     <span>一</span>
@@ -37,21 +37,21 @@
                         </div>
                         <div class="selection-right-p2">
                             <span>{{jn}}{{rightData.skuPrice}}</span>
-                            <span class="fl-right">库存：{{rightData.canSalesNum}}</span>
+                            <span class="fl-right">In Stock:{{rightData.canSalesNum}}</span>
                         </div>
                     </div>
                 </div>
                 <div class="total">
                     <span class="c-orange" style="margin-left:10px;">{{jn}}{{money}}</span>
-                    <span>件</span>
+                    <span>pcs</span>
                     <span class="c-orange">&nbsp;{{leijia}} &nbsp;</span>  
-                    <span>共 </span>
+                    <span>total</span>
                 </div>
                 <div>
                     <div class="success-btn"  v-if="btnStatus" @click="buyProduct" :style="{backgroundColor:btnbgc}">{{btnName}}</div>
                     <div class="success-btn" v-else>
-                        <div class="btn-jrgwc" @click="buyshoppingCar" :style="{backgroundColor:btncolor.bgc,color:btncolor.color}">加入购物车</div>
-                        <div class="btn-qd" @click="buyProduct" :style="{backgroundColor:btnbgc}">立即购买</div>
+                        <div class="btn-jrgwc" @click="buyshoppingCar" :style="{backgroundColor:btncolor.bgc,color:btncolor.color}">Add to Cart</div>
+                        <div class="btn-qd" @click="buyProduct" :style="{backgroundColor:btnbgc}">Buy Now</div>
                     </div>
                 </div>
             </div>
@@ -89,7 +89,7 @@ export default {
             dataList:[],
             leftDataItem:[],
             titleImg:'',
-            attrTitle:'',
+            attrTitleEng:'',
             sectionPrice:0,
             money:0,
             leijia:0,
@@ -156,7 +156,7 @@ export default {
             })
             this.leftDataItem = this.dataList[0].tpproductskuattrvalue
             this.titleImg = this.leftDataItem[0].imgUrl
-            this.attrTitle = this.dataList[0].attrTitle
+            this.attrTitleEng = this.dataList[0].attrTitleEng
             this.sectionPrice = this.dataList[0].sectionPrice
             this.buyTotle(this.leftDataItem)
         },
@@ -164,7 +164,7 @@ export default {
         cliLeft(index){
             this.leftDataItem = this.dataList[index].tpproductskuattrvalue
             this.titleImg = this.leftDataItem[0].imgUrl
-            this.attrTitle = this.dataList[index].attrTitle
+            this.attrTitleEng = this.dataList[index].attrTitleEng
             this.sectionPrice = this.dataList[index].sectionPrice
             this.buyTotle(this.leftDataItem)
         },
@@ -214,7 +214,7 @@ export default {
             if(data.length == 0) return
             addshopcartApi(data).then(res => {
                 if(res.code == 0){
-                    Toast('成功添加购物车');
+                    Toast('Successful');
                     setTimeout(()=>{
                         this.closeModal()
                     },1000)
@@ -223,7 +223,7 @@ export default {
         },
         //确定按钮购买商品
         buyProduct(){
-            if(this.btnName == '确定'){
+            if(this.btnName == 'Confirm'){
                 this.buyshoppingCar()
                 return
             }
@@ -277,7 +277,7 @@ export default {
     max-height: 90%;
     position: absolute;
     bottom: 0;
-    overflow: auto;
+    // overflow: auto;
     .selection-title{
         width: 100%;
         height: 201px;

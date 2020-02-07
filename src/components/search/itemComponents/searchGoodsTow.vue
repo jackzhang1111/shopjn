@@ -8,7 +8,7 @@
                     <span class="icon">
                         <img :src="$webUrl+good.locationUrl">
                     </span>
-                    <span class="produced-font">{{good.locationName}}</span>
+                    <span class="produced-font">{{good.locationNameEng}}</span>
                 </div>
                 <div class="produced-title">
                     <span>{{good.supplyTitle}}</span>

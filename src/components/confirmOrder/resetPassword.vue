@@ -1,26 +1,26 @@
 <template>
 <!-- 重置密码 -->
     <div class="revise-password">
-        <balance-header title="重置支付密码"></balance-header>
+        <balance-header title="Reset Payment Password"></balance-header>
         <div class="content">
             <div class="line"></div>
             <div class="pass-word"> 
-                <span class="margin-l-30">新密码:</span>
+                <span class="margin-l-30">New Password:</span>
                 <div class="input-con">
-                    <input :type="inputType" class="name-input bgc-moren" placeholder="请输入6-20个字符的密码" v-model="formData.userPwd">
+                    <input :type="inputType" class="name-input bgc-moren" placeholder="password must cntain 6-20" v-model="formData.userPwd">
                     <van-icon :name="eyeName" class="fl-right" @click="eyeStatus = !eyeStatus" size="18px"/>
                 </div>
                 <div class="line"></div>
             </div>
             <div class="re-enter"> 
-                <span class="margin-l-30">确认密码:</span>
+                <span class="margin-l-30">Re-enter:</span>
                 <div class="input-con">
-                    <input :type="inputType2" class="name-input bgc-moren" placeholder="请再次输入新密码" v-model="formData.userPwd2">
+                    <input :type="inputType2" class="name-input bgc-moren" placeholder="Re-enter the new password" v-model="formData.userPwd2">
                 </div>
                  <div class="line"></div>
             </div>
             <div class="upload">
-                <van-button type="info" size="large" class="load-btn" @click="confirm">确认</van-button>
+                <van-button type="info" size="large" class="load-btn" @click="confirm">Confirm</van-button>
             </div>
         </div>
     </div>
@@ -66,7 +66,7 @@ export default {
     methods: {
         confirm(){
             if(this.formData.userPwd != this.formData.userPwd2){
-                Toast('两次密码不一致')
+                Toast('Inconsistent passwords')
             }else{
                 this.setuserpaypassword(this.formData)
             }

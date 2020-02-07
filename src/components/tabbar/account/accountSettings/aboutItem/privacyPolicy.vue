@@ -1,79 +1,72 @@
 <template>
 <!-- 隐私政策 -->
     <div>
-        <div class="title" v-if="showTitle">隐私政策</div>
+        <div class="title" v-if="showTitle">Privacy Policy</div>
         <p>
-            Tospino（以下或称“我们”）注重保护用户个人信息及个人隐私。本隐私政策解释了用户（“您”）个人信息收集（以下或称“信息”）和使用的有关情况，本隐私政策适用于Tospino向您提供的所有相关服务（包括但不限于电子商务、网络资讯、网络社交、互联网金融服务等，以下称“Tospino服务”或“服务”）。如果您不同意本隐私政策的任何内容，您应立即停止使用Tospino服务。当您使用Tospino提供的任一服务时，即表示您已同意我们按照本隐私政策来合法使用和保护您的个人信息。<br>
+            Tospino, hereinafter referred to as We, makes a firm commitment to protect users’ personal information and privacy. The Policy will explain the collection of the personal information and data of user, hereinafter referred to as You. This Policy applies to all relevant services provided to you by Tospino, including but not limited to e-commerce, network information, online social interaction and internet financial service, hereinafter referred to as Tospino Service or Service. <span class="jiacu">You shall stop using Tospino Services or Services immediately if you do not agree with any items of the Policy; otherwise, it means you have consented that we use and protect your personal information lawfully in accordance with the Policy when you are using any services provided by Tospino.</span>
             <br>
-            一、您个人信息的收集<br>
+            <br><span class='jiacu'>I. Collection of Personal Information</span>
+            <br>We collect personal information to provide you with better experiences and more personalized services. The information we collect as following: 
+            <br><span class='jiacu'>1. The information provided by you to Tospino</span>
+            <br>These information is provided by you through filling, submitting, e-mailing and/or any other forms when you register a Tospino account and/or use Tospino Service, including your name, gender, date of birth, ID number, or the last name and first name on your passport, the passport number, telephone number, E-mail, shipping address, Tospino Wallet, E-bank account, bank card information and other relevant/additional information (the province, city, or postal code of your address). <span class='jiacu'>You can choose not to provide some or parts of the information, but it may prevent you from enjoying diversified services provided by Tospino.</span> You should understand that we use the information because we need it to meet your requirements on good services, such as the sound, effective communication with you on Tospino websites. In addition, we may associate the information with your Tospino account to recognize your identity.          
+            <br><span class='jiacu'>2. The information we get from your use on Tospino Services</span>
+            <br>In order to improve the quality of services and users’ experiences, we will retain relevant records about the services and methods you use. Such record as following: 
+            <br><span class='jiacu'>(1)The information of your browser and computer. </span>When you access Tospino websites or enjoy Tospino Services, Tospino system will automatically receive and record the information of your browser and computer, including but not limited to your IP address, type of browser, language, date and time of accessing, characteristic information of hardware and software and/or your necessary website records.
+            <br><span class='jiacu'>(2)Your location information. </span>Tospino may read your location when you download or use Tospino websites and applications developed by its affiliated parties and partners, such as Tospino APP, or when you enjoy Tospino Services on mobile websites. Most of mobile phones are allowed to turn off the positioning system. We recommend you to contact the facilitator or manufacturer of your mobile device for more details.
+            <br><span class='jiacu'>(3)The information of your device.</span> Tospino may read the information of your terminal device when you access or use Tospino Services, including but not limited to device model, the ID code, operating system, resolution ratio and telecommunication operator.
+            <br><span class='jiacu'>(4)Your action and/or transaction data.</span> We may record your actions and relevant transaction information when you access Tospino websites or enjoy Tospino Services.
+            <br>In addition to above information, we may also obtain your other information to provide or improve the services for reasonable needs. It includes the information you provide while contacting with our customer service personnel, the reply you send while participating in questionnaire survey, and the relevant information we obtain when you interact with our affiliated parties and partners.       
+            <br>In the main time, to improve the security of Tospino Services and prevent it from Phishing Website and Trojan Virus accurately, we may estimate the risk of your account through your habits on network browsing or software information you often use, and may record some links we think are risky, like the URL.  
+            <br><span class='jiacu'>3. The information from third parties</span>
+            <br><span class='jiacu'>You authorize that Tospino obtains relevant information collected by its affiliated parties and partners when you register Tospino account and/or enjoy Tospino Services,</span> including but not limited to your ID, actions, transaction and device information. Tospino will collect the information to provide you with better user experiences or more personalized services and safer, more reliable protection from internet fraud.
+            <br><span class='jiacu'>You have learned and agreed that the information below is not applicable to the Privacy Policy.</span>
+            <br>(1) The keywords you type in when you use the search services provided by Tospino.
+            <br>(2)Credit rating, violation of laws and regulation,or violation of Tospino rules, and actions taken by Tospino against you. 
+            <br>(3)The relevant industrial and commercial registration information and the information of corporate natural person or operator required by laws and regulations, such as enterprise name.  
+            <br>(4)The protocols you sign with Tospino or its affiliated parties and partners, including e-agreements you signed online, such as the Users Instructions, and your relevant information stipulated clearly in the terms of Tospino that it is not applicable to the Policy. 
             <br>
-            我们收集信息是为了向您提供更好以及更个性化的服务，并努力提高您的用户体验。我们收集信息的种类如下：<br>
-            1、您向我们提供的信息<br>
-            当您注册Tospino账户及您在使用相关Tospino服务时填写、提交及/或其他任何方式提供的信息，包括您的姓名、性别、出生年月日、身份证号码、护照姓、护照名、护照号码、电话号码、电子邮箱、收货地址、Tospino钱包或网银在线账号、银行卡信息及相关附加信息（如您地址中的所在的省份和城市、邮政编码等）。您可以选择不提供某一或某些信息，但是这样可能使您无法使用Tospino的许多特色服务。请您理解，我们使用您提供的信息是为了回应您的要求，为您在Tospino购物或享受服务提供便利，完善Tospino网站以及与您进行信息沟通。另外，我们可能会将您所提供的信息与您的Tospino账户关联，用以识别您的身份。<br>
-            2、我们在您使用服务过程中获得的信息<br>
-            为了提高服务质量和用户体验，我们会留存您使用服务以及使用方式的相关信息，这类信息包括：<br>
-            （1）您的浏览器和计算机上的信息。在您访问Tospino网站或使用Tospino服务时，Tospino系统自动接收并记录的您的浏览器和计算机上的信息（包括但不限于您的IP地址、浏览器的类型、使用的语言、访问日期和时间、软硬件特征信息及您需求的网页记录等数据）。<br>
-            （2）您的位置信息。当您下载或使用Tospino、其关联方及合作伙伴开发的应用程序（例如TospinoAPP），或访问移动网页使用Tospino服务时，Tospino可能会读取您的位置（大多数移动设备将允许您关闭定位服务，具体建议您联系您的移动设备的服务商或生产商）。<br>
-            （3）您的设备信息。Tospino可能会读取您访问Tospino或使用Tospino服务时所使用的终端设备的信息，包括但不限于设备型号、设备识别码、操作系统、分辨率、电信运营商等。<br>
-            （4）您的行为或交易信息。Tospino可能会记录您访问Tospino或使用Tospino服务时所进行的操作以及您在Tospino网站上进行交易的相关信息。<br>
-            除上述信息外，我们还可能为了提供服务及改进服务质量的合理需要而获得的您的其他信息，包括您与我们的客服团队联系时您提供的相关信息，您参与问卷调查时向我们发送的问卷答复信息，以及您与Tospino的关联方、Tospino合作伙伴之间互动时我们获得的相关信息。<br>
-            同时，为提高您使用Tospino提供的服务的安全性，更准确地预防钓鱼网站欺诈和木马病毒，我们可能会通过了解一些您的网络使用习惯、您常用的软件信息等手段来判断您账户的风险，并可能会记录一些我们认为有风险的链接（“URL”）。<br>
-            3、来自第三方的信息<br>
-            指在您注册Tospino账户和使用服务过程中，您授权Tospino可向Tospino的关联方、合作伙伴获取其所收集的相关信息。这些信息包括但不限于您的身份信息、行为信息、交易信息、设备信息等，Tospino会将此类信息汇总，用于帮助Tospino向您提供更好以及更加个性化的服务或更好的预防互联网欺诈。<br>
-            您了解并同意，以下信息不适用本隐私政策：<br>
-            （1）您在使用Tospino提供的搜索服务时输入的关键字信息；<br>
-            （2）信用评价、违反法律法规规定或违反Tospino平台规则行为及Tospino已对您采取的措施；<br>
-            （3）应法律法规要求需公示的企业名称等相关工商注册信息以及自然人经营者的信息。<br>
-            （4）其他您与Tospino或Tospino的关联方所签署的协议（包括在线签署的电子协议，例如《Tospino用户注册协议》）以及Tospino平台规则中明确约定或提示您不适用本隐私政策的与您有关的信息。<br>
+            <br><span class='jiacu'>Ⅱ. Our Management and Use of Personal Information</span>
+            <br>In order to improve our service quality for better user experiences, we will use your personal information within the limits of laws and regulations for the following purposes.
+            <br>1. We provide you with the services and maintain and improve these services.
+            <br>2. We recommend the content that you may be interested in, including but bot limited to product and service information, personalized information promoted by third parties to you through the system, or shared information from Tospino’s partners with your consent allowing them to send you their product and service data. If you do not want to receive the above messages, you can unsubscribe the services through corresponding function.       
+            <br>3. We may use your personal information to verify your identify and/or prevent, detect and investigate such actions as fraud, security hazard , illegality or violation of the protocols and the policies and rules of Tospino or its affiliated parties and partners so as to protect the legal interests of you and and other users, or the interests of us and Tospino’s affiliated parties and partners.       
+            <br>4. We may combine your personal information coming from one service with the information gathering from others to provide you with more personalized user experiences. For example, your shopping information may be used, shared or disclosed to ensure you a wider social circle.    
+            <br>5. We will make a statistics for the using of Tospino Services and may share it to the public or third parties to show the popularity of our products and services. But these statistics won’t contain any private identifying information about you.  
+            <br>6. We invite you to participate in investigations related to our products and services.  
+            <br>7. Other purposes and usage with your consent or authorization.
             <br>
-            二、我们对您个人信息的管理和使用<br>
+            <br><span class='jiacu'>Ⅲ. Share of Personal Information</span>
+            <br>The protection of your personal information is an important part of our services. We will abide by the legal laws and regulations and undertake the obligations to keep your information confidential. Tospino will not disclose your personal information to unrelated third parties except the cases as below.
+            <br>1. We obtain your consent or authorization.
+            <br>2. We are asked by the stipulations of laws and regulations or required by administrative organizations to provide your personal information. 
+            <br>3. For the good implementation of the clause Our Management and Use of Personal Information(II), or the sound fulfillment of our obligations and effective enforcement of our rights stipulated in the User Agreement and the Policy, we may share your personal information to Tospino’s affiliated parties and partners or the third parties carrying out some duties on behalf of Tospino, such as a communication facilitator issuing a notification on our behalf or an institution processing payment and bank cards.   
+            <br>4. If you are qualified to complain about illegal intellectual property and have filed a lawsuit, we may disclose part of your personal information to the defendant at the request so that both parties can better handle any possible right disputes.   
+            <br>5. We have to share your information to provide the services you need, or handle disputes or argument between you and others.  
+            <br>6.We have to disclose your personal information to the third parties once you violate relevant Chinese laws and regulations or corresponding protocols that you have signed with Tospino(including e-agreements signed online), or breach the rules and terms of Tospino platform, 
+            <br>7. We must maintain the legitimate rights of Tospino, its affiliated parties and partners or other users. 
+            <br><span class='jiacu'>With the development of Tospino’s business, we may conduct mergers, acquisitions, asset transfers or similar transactions with our affiliated parties; therefore, your personal information may be transferred as part of such transactions. You will be informed before transfer. </span>
             <br>
-            为向您提供服务、提升我们的服务质量以及优化您的服务体验，我们会在符合法律规定下使用您的个人信息，并主要用于下列用途：<br>
-            1、向您提供您使用的各项服务，并维护、改进这些服务。<br>
-            2、向您推荐您可能感兴趣的内容，包括但不限于向您发出产品和服务信息，或通过系统向您展示个性化的第三方推广信息，或在征得您同意的情况下与Tospino的合作伙伴共享信息以便他们向您发送有关其产品和服务的信息。如您不希望接收上述信息，可通过相应的退订功能进行退订。<br>
-            3、我们可能使用您的个人信息以验证身份、预防、发现、调查欺诈、危害安全、非法或违反与我们或其关联方协议、政策或规则的行为，以保护您、其他Tospino用户，或我们或其关联方的合法权益。<br>
-            4、我们可能会将来自某项服务的个人信息与来自其他服务所获得的信息结合起来，用于为了给您提供更加个性化的服务使用，例如为让您通过购物拥有更广泛的社交圈而使用、共享或披露您的信息。<br>
-            5、我们会对我们的服务使用情况进行统计，并可能会与公众或第三方分享这些统计信息，以展示我们的产品或服务的整体使用趋势。但这些统计信息不包含您的任何身份识别信息。<br>
-            6、让您参与有关我们产品及服务的调查。<br>
-            7、经您同意或授权的其他用途。<br>
+            <br><span class='jiacu'>Ⅳ. Security of Personal Information</span>
+            <br>Tospino is committed to protecting your personal information. We prevent your personal information from unauthorized access, tampering, disclosure or destruction with reliable systems, secure technologies and programs. If you have any questions about the clause Security of Personal Information(IV), please contact our customer service personnel. When you have online product or service transactions with third parties through Tospino, you will inevitably disclose your personal information, such as you contact information or shipping address, to the counterparties or potential counterparties; please protect your personal information in security and provide it to others only when it is necessary. If you find your personal information was divulged, especially your account and password, please contact us immediately for the timely appropriate measures.  
             <br>
-            三、您个人信息的分享<br>
+            <br><span class='jiacu'>Ⅴ. Access and Update of Personal Information</span>
+            <br><span class='jiacu'>You can check all of your personal information on Tospino by following  “My Tospino” and “Settings” progressively; and update other personal information through the same path, except the authentication data with your identity, which is authenticated by yourself with your name and ID data. If you need to change the authentication data, please contact 0302949239.</span>
             <br>
-            您的个人信息是我们为您提供服务的重要部分，我们会遵循法律规定对您的信息承担保密义务。除以下情形外，我们不会将您的个人信息披露给第三方：<br>
-            1、征得您的同意或授权。<br>
-            2、根据法律法规的规定或行政或司法机构的要求。<br>
-            3、出于实现“我们对您个人信息的管理和使用”部分所述目的，或为履行我们在《Tospino用户注册协议》或本隐私政策中的义务和行使我们的权利，向Tospino的关联方、合作伙伴或代表Tospino履行某项职能的第三方（例如代表我们发出推送通知的通讯服务商、处理银行卡的支付机构等）分享您的个人信息。<br>
-            4、如您是适格的知识产权投诉人并已提起投诉，应被投诉人要求，向被投诉人披露，以便双方处理可能产生的权利纠纷。<br>
-            5、只有共享您的信息，才能提供您需要的服务，或处理您与他人的纠纷或争议。<br>
-            6、您出现违反中国有关法律、法规规定或者违反您与Tospino签署的相关协议（包括在线签署的电子协议）或违反相关Tospino平台规则时需要向第三方披露的情形。<br>
-            7、为维护Tospino及其关联方或其他Tospino用户的合法权益。<br>
-            随着我们业务的发展，我们及我们的关联方有可能进行合并、收购、资产转让或类似的交易，您的个人信息有可能作为此类交易的一部分而被转移。我们将在转移前通知您。<br>
+            <br><span class='jiacu'>Ⅵ. Use of Cookie and Network Beacon</span>
+            <br><span class='jiacu'>1.About Cookie</span>
+            <br>Cookie is the text file stored on your access device by web server. The Cookie assigned to you is unique and can only be read by the web server in domain issued by itself. 
+            <br>By using Cookie, Tospino provides you with personalized online experiences and easier accesses to Tospino and its affiliated parties and partners. For example, Cookie will recall your personal information record to simplify the process of login by One-click Login function; provide you with the setting of safe shopping preferences to optimize the advertising selection and interaction; and protect your account in security.    
+            <br>Most browsers automatically accept Cookie, but you have the right to refuse it. You can refuse Cookie by changing the settings of browser based on your requirements.  
+            <br><span class='jiacu'>2. About Beacon</span>
+            <br>Normally, there are some e-images on Tospino websites. They are called “single-pixel” GIF files or “Network Beacon”, hereinafter referred to as Network Beacon. Network Beacon can calculate users browsing Tospino websites or access some Cookie. Here are some methods that Tospino uses network beacon.  
+            <br>（1）Tospino calculates the amount of users and identifies registered users through Network beacon accessing Cookie On Tospino website.
+            <br>（2）Tospino can provide personalized services based on the information obtained by Cookie.
             <br>
-            四、您个人信息的安全<br>
+            <br><span class='jiacu'>Ⅶ. Protection for the Personal Information of Minors</span>
+            <br>Tospino attaches great importance to the security of personal information of minors. If you are a minor under the age of 18, please get your parents’ or legal guardian’s written consent prior to using Tospino Service. Tospino protect minors’ personal information in accordance with relevant national laws and regulations.   
             <br>
-            Tospino严格保护您的个人信息安全。我们使用各种制度、安全技术和程序等措施来保护您的个人信息不被未经授权的访问、篡改、披露或破坏。如果您对我们的个人信息保护有任何疑问，请联系我们的客服。<br>
-            在通过Tospino网站与第三方进行网上商品或服务的交易时，您不可避免的要向交易对方或潜在的交易对方披露自己的个人信息，如联络方式或者邮政地址等。请您妥善保护自己的个人信息，仅在必要的情形下向他人提供。如您发现自己的个人信息泄密，尤其是你的账户及密码发生泄露，请您立即联络我们的客服，以便我们采取相应措施。<br>
-            <br>
-            五、访问和更新您的个人信息<br>
-            您可以在“我的Tospino”页面的“账户设置”菜单中查阅您提交给Tospino的所有个人信息，你也可通过上述途径更新除实名认证信息之外的其他个人信息（您的实名认证信息是您通过实名认证时使用的姓名和身份证信息），如您需要变更您的实名认证信息，您可拨打95118服务热线申请变更。<br>
-            六、Cookie 及网络 Beacon的使用<br>
-            <br>
-            1、Cookie的使用<br>
-            Cookie是由网页服务器存放在您的访问设备上的文本文件。指定给您的Cookie 是唯一的，它只能被将Cookie发布给您的域中的Web服务器读取。<br>
-            Tospino使用 Cookie 来帮助您实现您的联机体验的个性化，使您在Tospino及其关联方获得更轻松的访问体验。例如，Cookie 会帮助您在后续访问Tospino网站时调用您的信息，简化记录您填写个人信息（例如一键登录等）的流程；为您提供安全购物的偏好设置；帮助您优化对广告的选择与互动；保护您的数据安全等。<br>
-            您有权接受或拒绝 Cookie。大多数浏览器会自动接受Cookie，但您通常可根据自己的需要来修改浏览器的设置以拒绝 Cookie。如果选择拒绝 Cookie，那么您可能无法完全体验所访问的Tospino网站或某些服务的全部功能。<br>
-            2、网络Beacon的使用<br>
-            Tospino网页上常会包含一些电子图象（称为"单像素" GIF 文件或 "网络 beacon"），它们可以帮助网站计算浏览网页的用户或访问某些cookie。Tospino使用网络beacon的方式有：<br>
-            （1）Tospino通过在Tospino网站上使用网络beacon，计算用户访问数量，并通过访问 cookie 辨认注册用户。 <br>
-            （2）Tospino通过得到的cookie信息，可以在Tospino网站提供个性化服务。<br>
-            <br>
-            七、未成年人的个人信息保护<br>
-            <br>
-            Tospino非常重视对未成年人个人信息的保护。若您是18周岁以下的未成年人，在使用Tospino服务前，应事先取得您家长或法定监护人的书面同意。Tospino根据国家相关法律法规的规定保护未成年人的个人信息。<br>
-            <br>
-            八、通知和修订<br>
-            <br>
-            为给你提供更好的服务，Tospino的业务将不时变化，本隐私政策也将随之调整。Tospino会通过在Tospino网站、移动端上发出更新版本并提醒您相关内容的更新，也请您访问Tospino以便及时了解最新的隐私政策。如果您对于本隐私政策或在使用Tospino服务时对于您的个人信息或隐私情况有任何问题，请联系Tospino客服并作充分描述，Tospino将尽力解决。
+            <br><span class='jiacu'>Ⅷ. Notification and Amendment</span>
+            <br>Tospino’s business will change from time to time to provide you with the better service; and accordingly,. the Privacy Policy will be adjusted. We will notify you the latest update and content on Tospino websites and mobile terminals, you shall know the latest Policy by accessing our websites or user terminals. If you have any questions about your personal information or privacy in the process of using Tospino, please contact our customer service personnel and provide more details, we will do our utmost to deal with each matter.
         </p>
     </div>
 </template>
@@ -124,5 +117,9 @@ p{
     font-size:26px;
     line-height:39px;
     color: #333;
+}
+.jiacu{
+    font-size:30px;
+    font-weight: bold;
 }
 </style>

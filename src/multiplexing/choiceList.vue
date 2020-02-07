@@ -6,8 +6,8 @@
             <span class="header-t1">{{title}}</span>
         </div>
         <div class="place"></div>
-        <div class="yuanyin-list" v-for="nationalCity in nationalCityList" :key="nationalCity.areaId" @click="choiceCity(nationalCity.areaId,nationalCity.areaName,nationalCity.areaCode)">
-            <span>{{nationalCity.areaName}}</span>
+        <div class="yuanyin-list" v-for="nationalCity in nationalCityList" :key="nationalCity.areaId" @click="choiceCity(nationalCity.areaId,nationalCity.areaNameEng,nationalCity.areaCode)">
+            <span>{{nationalCity.areaNameEng}}</span>
             <div class="yuan" ></div>
         </div>  
     </div>
@@ -22,7 +22,7 @@ export default {
     data() {
         return {
             istrue:true,
-            title:'请选择国家',
+            title:'',
             formData:{
                 area_level:null,
                 parent_id:null

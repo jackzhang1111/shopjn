@@ -13,7 +13,7 @@
                 <div class="good-detail-title">
                     <span class="name">{{detail.skuName}}</span>
                     <div class="guige">
-                        {{detail.skuValuesTitle}}
+                        {{detail.skuValuesTitleEng}}
                     </div>
                 </div>
                 <div class="price">

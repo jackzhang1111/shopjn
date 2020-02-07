@@ -1,14 +1,12 @@
 <template>
     <div class="no-address">
-        <div class="address-p1">
-            您的地址：
-        </div>
+        <div class="address-p1">Your Address:</div>
         <div class="address-p2">
-            <span>TOSPINO友情提示：此处我们只开放可配送区域的地址，若没有您需要的收获地址，请联系</span>
+            <span>Tospino's Tips: You can add a new address that is available to our Designated Distribution Area. Please contact Tospino's customer service if you fail to add your address.</span>
             <span class="c-orange" @click="show2=true">TOSPINO</span>
         </div>
        <div class="address-p3" @click="jumpRouter('新增地址')">
-            <span>添加新地址</span>
+            <span>Add New Address</span>
             <van-icon name="arrow" class="arrow c-999"/>
         </div>
 

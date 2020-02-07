@@ -1,44 +1,45 @@
 <template >
   <!-- 切换国家语言货币页面 -->
   <div class="toggle c-b-gray">
-    <balance-header title="更换国家/地区"></balance-header>
-    <div class="lead plr30">请选择您希望购物的国家/地区和语言</div>
+    <balance-header title="Change Country/District"></balance-header>
+    <div class="lead plr30">Choose your country/district and language.</div>
     <div class="options plr30">
-      <a class="clearfix" @click="toguojia">
-        <div class="fl">国家/地区</div>
+      <a class="clearfix">
+        <!-- <a class="clearfix" @click="toguojia"> -->
+        <div class="fl">Country/District</div>
         <div class="fr">
-          <img src="@/assets/img/goodsDetails/01@2x.png" alt class="nationFlagR" />
-          <span class="nation">中国</span>
+          <img src="@/assets/img/goodsDetails/02@2x.png" alt class="nationFlagR" />
+          <span class="nation">Ghana</span>
           <span>&gt;</span>
         </div>
       </a>
     </div>
     <div class="options plr30">
       <a class="clearfix">
-        <div class="fl">语言</div>
+        <div class="fl">Language</div>
         <div class="fr">
-          <span class="nation">简体中文</span>
+          <span class="nation">English</span>
           <span>&gt;</span>
         </div>
       </a>
     </div>
     <div class="options plr30">
       <a class="clearfix">
-        <div class="fl">货币</div>
+        <div class="fl">Currency</div>
         <div class="fr">
-          <span class="nation">{{jn}}-CNY-人民币</span>
+          <span class="nation">{{jn}}-GHS</span>
           <span>&gt;</span>
         </div>
       </a>
     </div>
     <!--  -->
-    <div class="lead plr30" style="margin-top: 50px;">以前访问的内容</div>
+    <div class="lead plr30" style="margin-top: 50px;">History</div>
     <div class="options history plr30">
       <a class="clearfix">
         <div class="fl clearfix">
           <img src="@/assets/img/goodsDetails/02@2x.png" alt class="nationFlagL" />
           <div class="nationName">
-            <span>加纳-English</span>
+            <span>Ghana-English</span>
             <span>Ghana-Tospino.com</span>
           </div>
         </div>
@@ -49,7 +50,7 @@
       </a>
     </div>
 
-    <button class="done">完成</button>
+    <button class="done" @click="$router.go(-1)">OK</button>
   </div>
 </template> 
 

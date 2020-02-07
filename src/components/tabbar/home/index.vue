@@ -45,7 +45,7 @@
                 <div class="good-recommend box">
                     <div class="flash-sale-1">
                         <span class="put-line"></span>
-                        <span class="t1">精品推荐</span>
+                        <span class="t1">Selectives</span>
                         <!-- <span class="t2">查看更多</span> -->
                     </div>
                     <div class="flash-sale-2">
@@ -61,7 +61,7 @@
                 <div class="good-world box">
                     <div class="flash-sale-1">
                         <span class="put-line"></span>
-                        <span class="t1">全球品牌精选</span>
+                        <span class="t1">Global Brands</span>
                         <!-- <span class="t2">查看更多</span> -->
                     </div>
                     <div class="good-world-brand">
@@ -78,7 +78,7 @@
                 <div class="good-world-best">
                     <div class="flash-sale-1">
                         <span class="put-line"></span>
-                        <span class="t1">全球畅销榜</span>
+                        <span class="t1">Hot Sales</span>
                         <!-- <span class="t2">查看更多</span> -->
                     </div>
                     <div class="flash-sale-2">
@@ -111,7 +111,7 @@
                 <div class="good-popular box">
                     <div class="flash-sale-1">
                         <span class="put-line"></span>
-                        <span class="t1">热门分类</span>
+                        <span class="t1">Hot</span>
                         <!-- <span class="t2">查看更多</span> -->
                     </div>
                     <div class="good-popular-top" >
@@ -128,7 +128,7 @@
                     <van-tabs v-model="active" title-active-color="#FA5300" title-inactive-color="#000" @change="changeTab(bottomTabs,$event)">
                         <van-tab v-for="(tab,index) in bottomTabs" :key="index">
                             <div slot="title">
-                                <span class="primary">{{tab.categoryName}}</span>
+                                <span class="primary">{{tab.classNameEng}}</span>
                             </div>
                         </van-tab>
                     </van-tabs>
@@ -140,12 +140,12 @@
                                     <span class="icon" v-if="searchgoodDao.locationUrl">
                                         <img :src="$webUrl + searchgoodDao.locationUrl">
                                     </span>
-                                    <span class="produced-font">{{searchgoodDao.locationName ? searchgoodDao.locationName : ''}}</span>
+                                    <span class="produced-font">{{searchgoodDao.locationNameEng ? searchgoodDao.locationNameEng : ''}}</span>
                                 </div>
                                 <div class="clamp-2 miaoshu">{{searchgoodDao.supplyTitle}}</div>
                                 <div class="score">
                                     <van-rate v-model="value" readonly  color="#FA5300"/>
-                                    <span>477</span>
+                                    <!-- <span>477</span> -->
                                 </div>
                                 <div class="price">
                                     <span class="price1">{{jn}}{{searchgoodDao.discountPrice ?searchgoodDao.discountPrice : searchgoodDao.salePrice}}</span>
@@ -765,9 +765,12 @@ export default {
         padding-top:20px;
         /deep/ .van-tabs{
             .van-tabs__wrap{
-                height: 88px;
+                min-height: 88px;
                 .van-tab{
-                    line-height: 88px;
+                    // line-height: 88px;
+                    .van-tab__text{
+                        white-space:pre-wrap
+                    }
                 }
                 .primary{
                    font-size:34px;

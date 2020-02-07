@@ -7,12 +7,7 @@
             <div class="create-user">
                 <van-cell-group>
                     <van-field v-model="formData.nickName" placeholder="User's name"/>
-                    <div class="iphone-option">
-                        <select name=""> 
-                            <option value="0">+86</option> 
-                        </select> 
-                    </div>
-                    <van-field v-model="formData.mobile" placeholder="Enter your phone number"  class="iphone-input"/>
+                    <van-field v-model="formData.mobile" placeholder="Enter your phone number"  class="zyyw"/>
                     <van-field v-model="formData.smsCode" placeholder="Enter verification code" class="register-otp">
                         <div slot="button" class="daojishi" @click="getCode" v-show="countTrue">{{countdown}}</div>
                         <div slot="button" class="daojishi" v-show="!countTrue">{{count}}S</div>
@@ -28,19 +23,19 @@
                     <van-field v-model="formData.companyName" placeholder="Company's name"/>
                 </van-cell-group>
                 <div class="cell" @click="toChoiceList(1,0)">
-                    <input type="text" :class="{'c-333':isBace}" class="input-xt" placeholder="请选择国家" v-model="form.lev1" :disabled='true'>
+                    <input type="text" :class="{'c-333':isBace}" class="input-xt" placeholder="Choose A Country" v-model="form.lev1" :disabled='true'>
                     <van-icon name="arrow" class="arrow c-999"/>
                 </div>
                 <div class="cell" @click="toChoiceList(2,choiceForm.lev1.id)">
-                    <input type="text" :class="{'c-333':isBace}" class="input-xt" placeholder="州/省/地区" v-model="form.lev2" :disabled='true'>
+                    <input type="text" :class="{'c-333':isBace}" class="input-xt" placeholder="State/Province/Region" v-model="form.lev2" :disabled='true'>
                     <van-icon name="arrow" class="arrow c-999"/>
                 </div>
                 <div class="cell " @click="toChoiceList(3,choiceForm.lev2.id)">
-                    <input type="text" :class="{'c-333':isBace}" class="input-xt" placeholder="城市/县/镇" v-model="form.lev3" :disabled='true'>
+                    <input type="text" :class="{'c-333':isBace}" class="input-xt" placeholder="City/County/Town" v-model="form.lev3" :disabled='true'>
                     <van-icon name="arrow" class="arrow c-999"/>
                 </div>
                 <div class="cell" @click="toChoiceList(4,choiceForm.lev3.id)">
-                    <input type="text" :class="{'c-333':isBace}" class="input-xt" placeholder="县/区/街道" v-model="form.lev4" :disabled='true'>
+                    <input type="text" :class="{'c-333':isBace}" class="input-xt" placeholder="County/District/Street" v-model="form.lev4" :disabled='true'>
                     <van-icon name="arrow" class="arrow c-999"/>
                 </div>
                 <van-cell-group class="m-10-b border-0 textarea">
@@ -58,21 +53,21 @@
 
                 
             </div>
-            <div class="item-title">拍照上传</div>
+            <div class="item-title">Shot&Upload</div>
             <div class="create-user">
                 <div class="uploader">
                     <van-row type="flex" justify="space-between">
                         <van-col span="8">
                             <upload-one @getfilePath="getfilePath" imgName="公司正面照"></upload-one>
-                            <div class="uploader-name">公司正面照</div> 
+                            <div class="uploader-name">Company Front</div> 
                         </van-col>
                         <van-col span="8">
                             <upload-one @getfilePath="getfilePath" imgName="公司内部照"></upload-one>
-                            <div class="uploader-name">公司内部照</div>
+                            <div class="uploader-name">Company Inside</div>
                         </van-col>
                         <van-col span="8">
                             <upload-one @getfilePath="getfilePath" imgName="营业执照"></upload-one>
-                            <div class="uploader-name">营业执照</div>
+                            <div class="uploader-name">Business License</div>
                         </van-col>
                     </van-row>
                     
@@ -81,15 +76,15 @@
                     <van-row type="flex" justify="space-between">
                         <van-col span="8">
                         <upload-one @getfilePath="getfilePath" imgName="人像照"></upload-one>
-                            <div class="uploader-name">法人/人像照</div>
+                            <div class="uploader-name">Legal Person</div>
                         </van-col>
                         <van-col span="8">
                             <upload-one @getfilePath="getfilePath" imgName="法人证件正面照"></upload-one>
-                            <div class="uploader-name">法人证件正面照</div>
+                            <div class="uploader-name">Front Image</div>
                         </van-col>
                         <van-col span="8">
                             <upload-one @getfilePath="getfilePath" imgName="法人证件背面照"></upload-one>
-                            <div class="uploader-name">法人证件背面照</div>
+                            <div class="uploader-name">Back Image</div>
                         </van-col>
                     </van-row>
                 </div>
@@ -98,16 +93,16 @@
                 <!-- <div class="checkbox"></div> -->
                 <input type="checkbox" class="checkbox" v-model="xieyi">
                 <span>
-                    <span class="c1">我已阅读并同意网站的</span>
-                    <span class="c-orange">使用条件</span>
-                    <span>及</span>
-                    <span class="c-orange">隐私声明</span>
+                    <span>I have read and agree to the</span>
+                    <span class="c-orange">Terms of Use</span>
+                    <span>and</span>
+                    <span class="c-orange">Privacy Policy.</span>
                 </span>
             </div>
             <div class="confirm-btn" @click="toRevise">
                 <div class="btn-zc" :style="{backgroundColor:(disabledSubmit?'#FA5300':'#999')}">Register</div>
             </div>
-            <div class="to-login fs-20" @click="$router.push({name:'登录'})">已有账户,去登录</div>
+            <div class="to-login fs-20" @click="$router.push({name:'登录'})">Login My Account</div>
         </div>
         
         <choiceList v-show="!choiceShow" @getchoice="getchoice" @choiceStatus="choiceStatus" ref="choiceList"></choiceList>
@@ -156,7 +151,7 @@ export default {
             formData:{
                 nickName:'',//用户名称
                 mobile:'',//用户手机号码
-                mobileCode:'+86',//用户手机号码所在国家的编号
+                mobileCode:'+233',//用户手机号码所在国家的编号
                 smsCode:'',//验证码
                 email:'',//邮箱
                 userPwd:'',//密码
@@ -176,39 +171,35 @@ export default {
             rules:{
                 nickName:{
                     required: true,
-                    messages: "用户名称不正确"
+                    messages: "Enter account"
                 },
                 mobile:{
                     required: true,
-                    messages: "用户手机号码不正确"
-                },
-                mobileCode:{
-                    required: true,
-                    messages: "用户手机号码所在国家的编号不正确"
+                    messages: "Enter phone number"
                 },
                 smsCode:{
                     required: true,
-                    messages: "验证码不正确"
+                    messages: "Enter verification code"
                 },
                 userPwd:{
                     required: true,
-                    messages: "密码不正确"
+                    messages: "Enter login password"
                 },
                 userPwd2:{
                     required: true,
-                    messages: "确认密码不正确"
+                    messages: "Confirm the password"
                 },
                 companyName:{
                     required: true,
-                    messages: "公司名称不正确"
+                    messages: "Enter company name"
                 },
                 mainBusiness:{
                     required: true,
-                    messages: "主营业务不正确"
+                    messages: "Choose your major business"
                 },
                 companyAreaId:{
                     required: true,
-                    messages: "公司地址ID不正确"
+                    messages: "Choose company address"
                 }
             },
             form:{
@@ -243,7 +234,7 @@ export default {
             yzmData:{
                 msgphone:'',
                 types:'1',
-                areaCode:'86'
+                areaCode:'233'
             }
         };
     },
@@ -275,7 +266,7 @@ export default {
         getCode(){
             console.log(this.formData,'this.formData');
             if(this.formData.mobile == ''){
-                Toast('请输入手机号码')
+                Toast('Enter phone number')
                 return
             }
             const TIME_COUNT = 60;
@@ -387,7 +378,7 @@ export default {
                 if(res.code == 0){
                     
                 }else if(res.code == 1){
-                    Toast('手机号一天不能超于20条短信发送请求')
+                    Toast('A phone number cannot send over 20 messages a day')
                 }else{
                     Toast('error')
                 }
@@ -428,23 +419,13 @@ export default {
     }
     .create-user{
         padding: 0 30px;
-        .iphone-input{
-            /deep/ .van-cell__value{
-                .van-field__body{
-                    margin-left: 100px;
-                    .van-field__control{
-                        
-                    }
-                }
-            }
-        }
     }
     /deep/ .register-otp{
         position: relative;
         .daojishi{
             width: 180px;
             height: 60px;
-            background-color: #F2F3F5;
+            background-color: #dcdcdc;
             color: #333333;
             line-height: 60px;
             text-align: center;
@@ -531,7 +512,7 @@ export default {
     }
     .item-title{
         background-color: #666666;
-        width:200px;
+        width:280px;
         height:60px;
         color: #fff;
         font-size: 36px;

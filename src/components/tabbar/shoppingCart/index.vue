@@ -2,8 +2,8 @@
 <!-- 购物车 -->
     <div class="shopping-cart" ref="content">
         <div class="shopping-cart-header">
-            <span class="header-t1">购物车({{shoplength}})</span>
-            <span class="header-t2" @click="mange" v-if="conditions">{{showMange?'管理':'完成'}}</span>
+            <span class="header-t1">Cart({{shoplength}})</span>
+            <span class="header-t2" @click="mange" v-if="conditions">{{showMange?'Management':'OK'}}</span>
         </div>
         <div class="shopping-cart-container" v-if="conditions" ref="shoppingContainer">
             <!-- 有商品的页面 -->
@@ -20,7 +20,7 @@
                         <span class="good-describe" @click="toDetail(dataitem.skuId)">{{dataitem.skuName}}</span>
                         <div class="good-seclet">
                             <select name="" disabled> 
-                                <option value="0">{{dataitem.skuValuesTitle}}</option> 
+                                <option value="0">{{dataitem.skuValuesTitleEng}}</option> 
                             </select> 
                         </div>
                         <!-- <div class="good-logistics">
@@ -28,9 +28,9 @@
                         </div> -->
                         <div class="good-price">
                             <span class="price-p1">{{jn}}{{dataitem.discountPrice}}</span>
-                            <span class="price-p2" v-if="dataitem.salePriceFlag">159.00</span>
+                            <span class="price-p2" v-if="dataitem.salePriceFlag">{{dataitem.salePrice}}</span>
                             <van-stepper class="price-quantity" v-model="dataitem.shopNumber" :min="dataitem.numIntervalStart" @change="changeStepper" />
-                            <span class="price-batch">起订量{{dataitem.numIntervalStart}}件</span>
+                            <span class="price-batch">MOQ{{dataitem.numIntervalStart}}Pcs</span>
                         </div>
                     </div>
                 </div>
@@ -39,23 +39,21 @@
             <!-- 失效商品 -->
             <div class="shopping-cart-content" v-if="wuxiaoList.length>0">
                 <div class="serial-number">
-                    <span class="invalid-num">失效宝贝{{wuxiaoList.length}}件</span>
-                    <span class="empty" @click="emptyPro">清空</span>
+                    <span class="invalid-num">Invalid Products:{{wuxiaoList.length}}</span>
+                    <span class="empty" @click="emptyPro">Clear</span>
                 </div>
                 <div class="goods-content" v-for="(wuxiao,index) in wuxiaoList" :key="index">
-                    <span class="invalid">
-                        失效
-                    </span>
+                    <span class="invalid">Invalid </span>
                     <div class="good-img">
                         <img :src="$webUrl+wuxiao.imgUrl">
                     </div>
                     <span class="good-describe">{{wuxiao.skuName}}</span>
                     <div class="good-seclet">
-                        <span class="specifications">{{wuxiao.skuValuesTitle}}</span>
+                        <span class="specifications">{{wuxiao.skuValuesTitleEng}}</span>
                     </div>
                     <div class="good-price">
-                        <span class="price-batch-left">已下架</span>
-                        <span class="price-batch-right" @click="toXiangsi(wuxiao)">找相似</span>
+                        <span class="price-batch-left">Sold Out</span>
+                        <span class="price-batch-right" @click="toXiangsi(wuxiao)">Similar Items</span>
                     </div>
                 </div>
             </div>
@@ -64,12 +62,8 @@
             <!-- 没有商品的页面 -->
             <div class="no-shopping-img">
                 <img src="@/assets/img/tabbar/shoppingCart/icon@2x.png">
-                <div class="no-shopping-p1">
-                    您还没有选购商品哦
-                </div>
-                <div class="no-shopping-p2" @click="jumpRouter('首页')">
-                    去商城选购商品
-                </div>
+                <div class="no-shopping-p1">Your cart is empty</div>
+                <div class="no-shopping-p2" @click="jumpRouter('首页')">Go to the Mall</div>
             </div>
         </div>
         <div>
@@ -79,16 +73,16 @@
             <div class="settlement">
                 <span class="settlement-text" v-if="showMange">
                     <van-checkbox v-model="checked" icon-size="24px" class="checkbox" checked-color="#F83600" @change="cliAllcheck"></van-checkbox>
-                    <span class="btn" @click="settlementBtn" :style="{background : (totlaNum>0 ? '#FA5300':'#999')}">结算({{totlaNum}})</span>
+                    <span class="btn" @click="settlementBtn" :style="{background : (totlaNum>0 ? '#FA5300':'#999')}">Checkout({{totlaNum}})</span>
                     <span class="p3">{{jn}}{{totlaMoney}}</span>
-                    <span class="p2">合计:</span>
-                    <span class="p1">全选</span>
+                    <span class="p2">Total:</span>
+                    <span class="p1">Select All</span>
                 </span>
                 <span class="settlement-text" v-else>
                     <van-checkbox v-model="checked" icon-size="24px" class="checkbox" checked-color="#F83600" @change="cliAllcheck"></van-checkbox>
-                    <span class="btn1" @click="delOrder">删除</span>
-                    <span class="btn2">移入收藏夹</span>
-                    <span class="p1">全选</span>
+                    <span class="btn1" @click="delOrder">Delete</span>
+                    <span class="btn2">Move to Collection</span>
+                    <span class="p1">Select All</span>
                 </span>
             </div>
         </div>
@@ -97,11 +91,11 @@
             <!-- 遮罩层确认购买弹框 -->
             <div class="overlay-wrapper" @click.stop>
                 <div class="overlay-wrapper-p1">
-                    确认删除这{{totlaNum}}件商品吗？
+                    Delete the {{totlaNum}} products?
                 </div>
                 <div class="overlay-wrapper-btns">
-                    <span @click="show = false">取消</span>
-                    <span @click="delgood">确定</span>
+                    <span @click="show = false">No</span>
+                    <span @click="delgood">Yes</span>
                 </div>
             </div>
         </van-overlay>
@@ -323,7 +317,7 @@ export default {
         //结算
         settlementBtn(){
             if(this.totlaNum == 0) {
-                Toast('没有选择商品')
+                Toast('Didn’t choose product')
                 return
             }
             this.setstopcarlist(this.selectionList.map(o => Object.assign({}, o)))
@@ -359,7 +353,7 @@ export default {
         //删除订单
         delOrder(){
             if(this.totlaNum == 0) {
-                Toast('没有可以删除的东西')
+                Toast('No orders can be canceled')
                 return
             }
             this.show = true
@@ -557,7 +551,7 @@ export default {
                     line-height: 40px;
                 }
                 .price-batch-right{
-                    width: 140px;
+                    // width: 140px;
                     height: 40px;
                     display: inline-block;
                     border:2px solid rgba(219,144,0,1);
@@ -568,13 +562,12 @@ export default {
             }
             .invalid{
                 display: inline-block;
-                width: 52px;
                 height: 34px;
                 border:2px solid rgba(220,220,220,1);
                 border-radius:5px;
                 line-height: 34px;
                 text-align: center;
-                margin-left:30px;
+                margin-left:20px;
             }
        }
     }
@@ -613,9 +606,8 @@ export default {
             }
             .btn{
                 float: right;
-                width:160px;
+                padding: 0 20px;
                 height:90px;
-                // background:linear-gradient(-90deg,rgba(248,54,0,1),rgba(250,83,0,1));
                 border-radius:45px;
                 color:rgba(255,255,255,1);
                 line-height:90px;
@@ -623,7 +615,7 @@ export default {
                 margin:16px 30px 0 18px;
             }
             .btn2{
-                width:186px;
+                padding: 0 10px;
                 height:50px;
                 border:2px solid rgba(219,144,0,1);
                 border-radius:25px;

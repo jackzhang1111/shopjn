@@ -1,7 +1,7 @@
 
 <template>
     <div>
-        <order-title title="售后"></order-title>
+        <order-title title="After Sale Service"></order-title>
         <router-view></router-view>
     </div>
 </template>

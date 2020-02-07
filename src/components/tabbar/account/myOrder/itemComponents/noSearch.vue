@@ -5,12 +5,8 @@
             <div class="no-search-img">
                 <img src="@/assets/img/confirmOrder/order@2x.png" alt="">
             </div>
-            <div class="no-search-p1">
-                您还没有相关的订单
-            </div>
-            <div class="no-search-p2">
-                可以去看看有哪些想买的
-            </div>
+            <div class="no-search-p1">No Record</div>
+            <div class="no-search-p2">Browse for more products</div>
         </div>  
     </div>
 </template>
