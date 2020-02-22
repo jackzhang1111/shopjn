@@ -23,10 +23,14 @@
                     <div class="p4 through">
                         {{detail.currencySignWebsite}}{{detail.originPriceWebsite}}
                     </div>
-                    <div class="p4 fl-right">
+                    <div class="p4">
                         x{{detail.detailNum}}
                     </div>
-                    
+                    <div class="p2">
+                        <span v-if="detail.applyRefund == 1">Refund</span>
+                        <span v-if="detail.applyReturn == 1">Return</span>
+                        <span v-if="detail.applyReturnAndRefund == 1">Return & Refund</span>
+                    </div>
                 </div>
                 <div style="height:15px;"></div>
             </div>
@@ -56,13 +60,13 @@
                         <div class="btn-qxdd fl-right c-orange">Confirm Receipt</div>
                     </div>
                     <!-- 已完成按钮栏 -->
-                    <div class="lan" v-if="dfkData.orderStatusApp == 3">
+                    <!-- <div class="lan" v-if="dfkData.orderStatusApp == 3">
                         <div class="btn-qzf fl-right c-orange">Review</div>
-                    </div>
+                    </div> -->
                     <!-- 订单关闭 -->
-                    <div class="lan" v-if="dfkData.orderStatusApp == 4">
+                    <!-- <div class="lan" v-if="dfkData.orderStatusApp == 4">
                         <div class="btn-qxdd fl-right c-orange">Delete</div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
             <div v-else>
@@ -277,7 +281,10 @@ export default {
                 color: #999;
                 font-size: 20px;
             }
-            
+            .p2{
+                color: #DB9000;
+                font-size: 20px;
+            }
             .selection-right-stepper{
                 position: relative;
                 width: 100%;

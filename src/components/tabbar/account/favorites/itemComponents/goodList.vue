@@ -6,18 +6,17 @@
                 <div class="fl-left">
                     <div class="good-img">
                         <van-checkbox v-model="product.checked" icon-size="24px" class="img-checkbox" v-if="showCheck"></van-checkbox>
-                        <img :src="$webUrl+product.locationUrl">
+                        <img :src="$webUrl+product.imgUrl" @click="toDetail(product.skuId)">
                         <div class="shixiao" v-if="false">Invalid</div>
                     </div>
                 </div>
                 <div class="fl-right clearfix">
                     <div class="good-desc">
-                        <span class="p1 clamp-2">{{product.supplyTitle}}</span><br>
-                        <span class="p2" v-if="false">Collected by {{product.scTotal}} users</span>
-                        <span class="p2" v-else>Sales：{{product.skuSalesNum}}Pcs</span>
+                        <span class="p1 clamp-2">{{product.supplyTitle}}</span>
+                        <span class="p2">Collected by {{product.scTotal}} users</span>
                     </div>
                     <div class="good-price">
-                        <span class="p1" v-if="false">{{jn}}{{product.discountPrice ? product.discountPrice : product.salePrice}}</span>
+                        <span class="p1" v-if="true">{{jn}}{{product.discountPrice ? product.discountPrice : product.salePrice}}</span>
                         <div class="p3" v-else>You can't buy the products. Please contact customer service if you want to order.</div>
                         <span class="p2 fl-right" @click="toResembleGood">Similar Items</span>
                     </div>
@@ -102,7 +101,11 @@ export default {
         //列表数据
         getList(){
             this.dataList = this.list.map(o => Object.assign({}, o));
-        }
+        },
+        //跳转商品详情
+        toDetail(skuid){
+            this.$router.push({name:'商品详情',query:{skuId:skuid}})
+        },
     },
     components: {
         

@@ -220,11 +220,19 @@ export default {
         },
         //全选
         allCheck(){
-            let arr = this.dataList.map(o => Object.assign({}, o));
-            arr.forEach(item => {
-                item.checked = this.allChecked
-            })
-            this.dataList = arr
+            if(this.viewOne){
+                let arr = this.dataList.map(o => Object.assign({}, o));
+                arr.forEach(item => {
+                    item.checked = this.allChecked
+                })
+                this.dataList = arr
+            }else{
+                let arr = this.twoDataList.map(o => Object.assign({}, o));
+                arr.forEach(item => {
+                    item.checked = this.allChecked
+                })
+                this.twoDataList = arr
+            }
         },
     },
     components: {

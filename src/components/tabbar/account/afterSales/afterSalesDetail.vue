@@ -40,7 +40,7 @@
                     <span class="margin-l-40 c-333">{{detailData.orderSn}}</span>
                 </div>
                 <div class="middle-p1">
-                    <span class="c-999">Order No:</span>
+                    <span class="c-999">No:</span>
                     <span class="margin-l-40 c-333" id="orderSn">{{detailData.saleOrderSn}}</span>
                     <span class="fl-right c-orange" ref="copy" data-clipboard-action="copy" data-clipboard-target="#orderSn" @click="copyLink">Copy</span>
                 </div>

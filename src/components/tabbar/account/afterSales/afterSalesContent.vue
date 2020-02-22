@@ -4,7 +4,7 @@
             <div class="bscroll-con" v-if="dataList.length>0">
                 <div class="good-detail" v-for="(product,index) in dataList" :key="index">
                     <div class="good-detail-header">
-                        <span>Order No:{{product.orderSn}}</span>
+                        <span>No:{{product.orderSn}}</span>
                         <span class="fl-right c-orange ft-24">{{orderStatus(product.orderStatusApp,'statusList')}}</span>
                     </div>
                     <div class="good-detail-content" v-for="(detail,index) in product.detailList2" :key="index">

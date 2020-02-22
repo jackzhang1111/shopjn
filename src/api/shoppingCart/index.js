@@ -33,3 +33,12 @@ export function emptycartApi(params) {
         data:params
     })
 }
+
+//根据商品skuid与商品数量获取优惠价
+export function getproductskunumpricelistApi(params) {
+    return park({
+        url:`/appproduct/getproductskunumpricelist`,
+        method: 'POST',
+        data:params
+    })
+}

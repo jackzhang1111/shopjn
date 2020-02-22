@@ -42,7 +42,7 @@ export default {
             yzmData:{
                 msgphone:'',
                 types:'2',
-                areaCode:'+233'
+                areaCode:'233'
             },
             jiaoyan:{
                 msg_phone:'',

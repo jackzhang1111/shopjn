@@ -27,7 +27,7 @@
         </div>
         <div class="sousuo" v-else>
             <ul>
-                <li v-for="product in searGoodList" :key="product.productId" @click="toGoodsOne">
+                <li v-for="product in searGoodList" :key="product.productId" @click="toGoodsOne(product.productName)">
                     <span>{{product.productName}}</span>
                     <span class="icon">
                         <img src="@/assets/img/search/enter@3x.png" alt="">
@@ -103,8 +103,8 @@ export default {
         deleteRecord(){
             this.redordshow = true;
         },
-        toGoodsOne(){
-            this.$router.push({name:'搜索商品1'})
+        toGoodsOne(seraname){
+            this.$router.push({name:'搜索商品1',query:{seraname}})
         },
         //输入框获得焦点时触发
         onfocus(){

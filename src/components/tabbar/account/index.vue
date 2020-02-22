@@ -25,7 +25,7 @@
                     <span class="t1" @click="jumpRouter('我的足迹')">Pageviews</span>
                     <span class="num">{{zujiTotal}}</span>
                 </van-col>
-                 <van-col span="8" @click="jumpRouter('账户余额')">
+                 <van-col span="8">
                     <span class="t1">Balance</span>
                     <span class="num">{{jn}}{{walletMoney ? walletMoney:0}}</span>
                 </van-col>
@@ -79,7 +79,7 @@
             </van-field>
         </van-cell-group>
         <van-cell-group class="border-0">
-            <van-field v-model="username" clearable right-icon="arrow" placeholder="My Balance" left-icon="arrow" disabled @click="jumpRouter('账户余额')">
+            <van-field v-model="username" clearable right-icon="arrow" placeholder="My Balance" left-icon="arrow" disabled @click="jumpRouter('账户余额')" v-if="false">
                 <div slot="left-icon" size="small" type="primary" class="icon-left">
                     <img src="@/assets/img/tabbar/my/account/zhanghuyue@2x.png">
                 </div>
@@ -134,7 +134,7 @@
             </van-field>
         </van-cell-group>
         <van-cell-group class="border-0">
-            <van-field v-model="username" clearable right-icon="arrow" placeholder="Change Country/District" left-icon="arrow" disabled @click="jumpRouter('语言')">
+            <van-field v-model="username" clearable right-icon="arrow" placeholder="Change Country/District" left-icon="arrow" disabled @click="jumpRouter('语言')" v-if="false">
                 <div slot="left-icon" size="small" type="primary" class="icon-left">
                     <img src="@/assets/img/tabbar/my/account/genggaiguojiadiqu@2x.png">
                 </div>
@@ -218,7 +218,8 @@ export default {
             this.$router.push({name})
         },
         toMyOrder(num){
-            this.$router.push({name:'我的订单',query:{active:num}})
+            sessionStorage.setItem("activeIndex", num);
+            this.$router.push({name:'我的订单'})
         },
         //登出
         logOut(){

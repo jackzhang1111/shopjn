@@ -7,7 +7,12 @@
             <div class="create-user">
                 <van-cell-group>
                     <van-field v-model="formData.nickName" placeholder="User's name"/>
-                    <van-field v-model="formData.mobile" placeholder="Enter your phone number"  class="zyyw"/>
+                    <div class="iphone-option">
+                        <select name=""> 
+                            <option value="0">+233</option> 
+                        </select> 
+                    </div>
+                    <van-field v-model="formData.mobile" placeholder="Enter your phone number"  class="zyyw aaa"/>
                     <van-field v-model="formData.smsCode" placeholder="Enter verification code" class="register-otp">
                         <div slot="button" class="daojishi" @click="getCode" v-show="countTrue">{{countdown}}</div>
                         <div slot="button" class="daojishi" v-show="!countTrue">{{count}}S</div>
@@ -151,7 +156,7 @@ export default {
             formData:{
                 nickName:'',//用户名称
                 mobile:'',//用户手机号码
-                mobileCode:'+233',//用户手机号码所在国家的编号
+                mobileCode:'233',//用户手机号码所在国家的编号
                 smsCode:'',//验证码
                 email:'',//邮箱
                 userPwd:'',//密码
@@ -595,6 +600,14 @@ export default {
             top:50%;
             transform: translateY(-50%);
             right:57px;
+        }
+    }
+    .aaa{
+        /deep/ .van-cell__value{
+            .van-field__body{
+                margin-left:120px;
+                
+            }
         }
     }
 }

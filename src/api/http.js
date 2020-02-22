@@ -73,13 +73,13 @@ mainAxios.interceptors.response.use(function (response) {
         if(data.code < 0){
             if(data.code == -1){
                 data.msg = "Token cannot be null"
-                setTimeout(()=>{main.$router.push({name: '登录'})},1000)
+                setTimeout(()=>{main.$router.replace({name: '登录'})},1000)
             }else if(data.code == -2){
                 data.msg = "No account information! Please login again."
-                setTimeout(()=>{main.$router.push({name: '登录'})},1000)
+                setTimeout(()=>{main.$router.replace({name: '登录'})},1000)
             }else if(data.code == -3){
                 data.msg = "The login is invalid. Please login again."
-                setTimeout(()=>{main.$router.push({name: '登录'})},1000)
+                setTimeout(()=>{main.$router.replace({name: '登录'})},1000)
             }else if(data.code == -4){
                 data.msg = "Non-existent account/incorrect password"
             }
@@ -119,14 +119,14 @@ parkAxios.interceptors.response.use(function (response) {
         if(data.code < 0){
             if(data.code == -1){
                 data.msg = "Token cannot be null"
-                setTimeout(()=>{main.$router.push({name: '登录'})},1000)
+                setTimeout(()=>{main.$router.replace({name: '登录'})},1000)
             }else if(data.code == -2){
                 data.msg = "No account information! Please login again."
-                setTimeout(()=>{main.$router.push({name: '登录'})},1000)
+                setTimeout(()=>{main.$router.replace({name: '登录'})},1000)
                 
             }else if(data.code == -3){
                 data.msg = "The login is invalid. Please login again."
-                setTimeout(()=>{main.$router.push({name: '登录'})},1000)
+                setTimeout(()=>{main.$router.replace({name: '登录'})},1000)
             }else if(data.code == -4){
                 data.msg = "Non-existent account/incorrect password"
             }

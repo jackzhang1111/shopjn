@@ -5,12 +5,13 @@
             <span class="header-t1">Cart({{shoplength}})</span>
             <span class="header-t2" @click="mange" v-if="conditions">{{showMange?'Management':'OK'}}</span>
         </div>
+        <div class="place"></div>
         <div class="shopping-cart-container" v-if="conditions" ref="shoppingContainer">
             <!-- 有商品的页面 -->
             <div v-if="dataList.length>0">
                 <div class="shopping-cart-content" v-for="(data,index) in dataList" :key="index">
                     <div class="serial-number">
-                        <van-checkbox v-model="data.checkStatus" icon-size="24px" checked-color="#F83600" @click="changeCheckbox(data,'all')">DJF161611616</van-checkbox>
+                        <van-checkbox v-model="data.checkStatus" icon-size="24px" checked-color="#F83600" @click="changeCheckbox(data,'all')"></van-checkbox>
                     </div>
                     <div class="goods-content" v-for="(dataitem,index) in data.list" :key="index">
                         <van-checkbox v-model="dataitem.checkStatus" icon-size="24px" checked-color="#F83600" @click="changeCheckbox(dataitem,'',data)"></van-checkbox>
@@ -27,9 +28,9 @@
                             <span>物流：TOSPINO物流</span>
                         </div> -->
                         <div class="good-price">
-                            <span class="price-p1">{{jn}}{{dataitem.discountPrice}}</span>
-                            <span class="price-p2" v-if="dataitem.salePriceFlag">{{dataitem.salePrice}}</span>
-                            <van-stepper class="price-quantity" v-model="dataitem.shopNumber" :min="dataitem.numIntervalStart" @change="changeStepper" />
+                            <span class="price-p1">{{jn}}{{dataitem.discountPrice ? dataitem.discountPrice : dataitem.salePrice}}</span>
+                            <span class="price-p2" v-if="dataitem.discountPrice">{{dataitem.salePrice}}</span>
+                            <van-stepper class="price-quantity" v-model="dataitem.shopNumber" :min="dataitem.numIntervalStart" :max="dataitem.canSalesNum" @change="changeStepper" />
                             <span class="price-batch">MOQ{{dataitem.numIntervalStart}}Pcs</span>
                         </div>
                     </div>
@@ -81,7 +82,7 @@
                 <span class="settlement-text" v-else>
                     <van-checkbox v-model="checked" icon-size="24px" class="checkbox" checked-color="#F83600" @change="cliAllcheck"></van-checkbox>
                     <span class="btn1" @click="delOrder">Delete</span>
-                    <span class="btn2">Move to Collection</span>
+                    <span class="btn2" @click="adduserfavor">Move to Collection</span>
                     <span class="p1">Select All</span>
                 </span>
             </div>
@@ -104,10 +105,11 @@
 
 <script>
 import footerExhibition from '@/multiplexing/footerExhibition'
-import {shopcartlistApi,deleteshopcartApi,emptycartApi} from '@/api/shoppingCart/index'
+import {shopcartlistApi,deleteshopcartApi,emptycartApi,getproductskunumpricelistApi} from '@/api/shoppingCart/index'
 import {guessyoulikeApi} from '@/api/search/index'
 import { Toast,Dialog } from 'vant';
 import {mapState,mapActions} from 'vuex'
+import {adduserfavoritesApi} from '@/api/favorites/index.js'
 export default {
     props: {
 
@@ -229,12 +231,7 @@ export default {
                     this.dataList = this.groupArr(this.youxiaoList,'businessId')
                     this.dataList.forEach(item => {
                         item.list.forEach(listitem => {
-                            listitem.salePriceFlag = true
                             listitem.checkStatus = false
-                            if(listitem.discountPrice == null){
-                                listitem.discountPrice = listitem.salePrice
-                                listitem.salePriceFlag = false
-                            }
                         })
                     })
                 }else{
@@ -325,29 +322,47 @@ export default {
         },
         //总计计算
         zongji(){
-            let money = 0
-            let num = 0
             let arr = []
+            let arr2 = []
             this.dataList.forEach(ele => {
                 ele.list.forEach(item => {
                     if(item.checkStatus){
-                        money += (item.discountPrice * item.shopNumber)
-                        num += item.shopNumber
                         let obj = {
                             skuId:item.skuId,
                             detailNum:item.shopNumber,
                             shopcrtId:item.shopcrtId
                         }
+                        let obj2 = {
+                            skuId:item.skuId,
+                            num:item.shopNumber,
+                        }
+                        arr.push(obj)
+                        arr2.push(obj2)
+                    }
+                })
+            })
+            this.selectionList = arr.map(o => Object.assign({}, o));
+            if(arr2.length==0){
+                this.totlaMoney = 0
+                this.totlaNum = 0
+                return
+            }
+            this.getproductskunumpricelist(arr2)
+        },
+        //更改数量
+        changeStepper(){
+            let arr = []
+            this.dataList.forEach(ele => {
+                ele.list.forEach(item => {
+                    if(item.checkStatus){
+                        let obj = {
+                            num:item.shopNumber,
+                            skuId:item.skuId
+                        }
                         arr.push(obj)
                     }
                 })
             })
-            this.totlaMoney = money
-            this.totlaNum = num,
-            this.selectionList = arr.map(o => Object.assign({}, o));
-        },
-        //更改数量
-        changeStepper(){
             this.zongji()
         },
         //删除订单
@@ -389,6 +404,49 @@ export default {
         emptyPro(){
             this.emptycart()
         },
+        //移入收藏夹
+        adduserfavor(){
+            let arr = []
+            this.dataList.forEach(ele => {
+                ele.list.forEach(item => {
+                    if(item.checkStatus){
+                        arr.push(item.skuId)
+                    }
+                })
+            })
+            this.adduserfavorites(arr)
+        },
+        //加入收藏夹
+        adduserfavorites(data){
+            adduserfavoritesApi(data).then(res => {
+                if(res.code == 0){
+                    Toast('Collected')
+                }
+            })
+        },
+        //根据商品skuid与商品数量获取优惠价
+        getproductskunumpricelist(data){
+            getproductskunumpricelistApi(data).then(res => {
+                if(res.code == 0){
+                    this.totlaMoney = res.totalprice
+                    this.totlaNum = res.totalnum
+                    this.dataList.forEach(ele => {
+                        ele.list.forEach(item => {
+                            res.Data.forEach(dataItem => {
+                                if(item.skuId == dataItem.skuId){
+                                    if(item.discountPrice){
+                                        item.discountPrice = dataItem.price
+                                    }else{
+                                        item.salePrice = dataItem.price
+                                    }
+                                }
+                            })
+                            
+                        })
+                    })
+                }
+            })
+        }
     },
     components: {
         footerExhibition
@@ -403,7 +461,8 @@ export default {
         height: 88px;
         background-color: #f2f3f5;
         text-align: center;
-        position: relative;
+        position: absolute;
+        z-index: 1;
         .header-t1{ 
             display: inline-block;
             line-height: 88px;
@@ -482,7 +541,6 @@ export default {
                 overflow: hidden;
            }
            .good-seclet{
-                width: 220px;
                 height: 44px;
                 position: absolute;
                 top:115px;

@@ -1,6 +1,6 @@
 <template>
     <div class="my-order-good">
-        <search-head @onfocus="onfocus" @getInputVal="getInputVal" @onSearch="onSearch"></search-head>
+        <search-head @onfocus="onfocus" @getInputVal="getInputVal" @onSearch="onSearch" :searName="searName"></search-head>
         <div>
             <scroll 
                 class="bscroll-wrapper"
@@ -45,7 +45,8 @@ export default {
                 page:1,
                 limit:10
             },
-            dataList:[]
+            dataList:[],
+            searName:''
         };
     },
     computed: {
@@ -57,8 +58,13 @@ export default {
 
     },
     mounted() {
+        return
         this.formData = Object.assign({},this.formData,this.searchOrderFormData)
         this.orderlist(this.formData,true)
+        this.searName = this.$route.query.keyName
+        if(this.searName != null) {
+            this.formData. product_key_name = this.searName
+        }
     },
     watch: {
 

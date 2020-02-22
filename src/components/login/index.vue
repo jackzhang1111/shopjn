@@ -7,6 +7,9 @@
         <div class="user-name">
             <img src="@/assets/img/login/user@3x.png" alt="图标" class="name-icon">
             <div class="input-con">
+                <select name=""> 
+                    <option value="0">+233</option> 
+                </select> 
                 <input type="text" class="name-input" placeholder="Enter your user name" v-model="userData.username">
             </div>
         </div>
@@ -195,7 +198,7 @@ export default {
             margin-left:20px;
         }
         .name-input{
-            width: 450px;
+            width: 380px;
             border: 0;
         }
     }

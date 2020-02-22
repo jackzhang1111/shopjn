@@ -37,7 +37,7 @@ export default {
                 limit:10
             }
             this.setorderformdata(formData)
-            this.$router.push({name:'我的订单搜索商品'})
+            this.$router.push({name:'我的订单搜索商品',query:{keyName:this.goodName}})
         },
         
         //订单历史记录

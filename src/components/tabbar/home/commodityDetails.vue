@@ -89,6 +89,7 @@
                         <span>open</span>
                         <van-icon name="arrow-down" />
                     </div>
+                     <div v-html="detailmData.supplyDetailpara"></div>
                 </div>
                 <div class="bbxq" ref="xiangqing">
                     <span class="line-left"></span>
@@ -161,7 +162,8 @@ export default {
             btnStatus:false,
             btnName:'',
             productParamList:[],
-            productParamList2:[]
+            productParamList2:[],
+            shousuoStatus:false
         };
     },
     computed: {
@@ -250,7 +252,9 @@ export default {
         //点击收藏图标
         cliShoucang(){
             if(this.Isfavorites == 1) return
-            this.adduserfavorites({skuid:this.detailmData.skuId})           
+            let arr = []
+            arr.push(this.detailmData.skuId)
+            this.adduserfavorites(arr)
         },
         //加入收藏夹
         adduserfavorites(data){

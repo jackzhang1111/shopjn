@@ -50,13 +50,18 @@
                         <div class="p4 through">
                             {{data.currencySignWebsite}}{{data.originPriceWebsite}}
                         </div>
-                        <div class="p4 fl-right">
+                        <div class="p4">
                             x{{data.detailNum}}
+                        </div>
+                        <div class="p2">
+                            <span v-if="data.applyRefund == 1">Refund</span>
+                            <span v-if="data.applyReturn == 1">Return</span>
+                            <span v-if="data.applyReturnAndRefund == 1">Return & Refund</span>
                         </div>
                     </div>
                     <!-- 售后成功:按钮审核中或者退款成功 -->
                     <div v-if="detailObj.orderStatusApp == 2 || detailObj.orderStatusApp == 3">
-                        <div class="sqsh" @click="toReturnRefund(data)" v-if="data.canReturn == 1">退货退款</div>
+                        <div class="sqsh" @click="toReturnRefund(data)" v-if="data.canReturn == 1">Return & Refund</div>
                     </div>
                     <!-- <div class="fl-right c-jinse">申请中</div> -->
                     <!-- <div class="fl-right c-jinse">退款成功</div> -->
@@ -67,7 +72,7 @@
                 </div>
                 <div class="mingxi">
                     <span>Freight:</span>
-                    <span class="fl-right">{{detailObj.currencySignWebsite}}{{detailObj.orderProductAmountWebsite}}</span>
+                    <span class="fl-right">{{detailObj.currencySignWebsite}}{{detailObj.orderFareWebsite}}</span>
                 </div>
                 <div class="mingxi">
                     <span>Sum:</span>
@@ -113,8 +118,8 @@
             <div class="btn-qzf fl-right c-orange" @click="showPay" v-if="detailObj.orderStatusApp == 0">Pay Now</div>
             <div class="btn-xgdz fl-right" @click="toEditAddress" v-if="detailObj.orderStatusApp == 0">Change Address</div>
             <div class="btn-xgdz fl-right" v-if="detailObj.orderStatusApp == 2 || detailObj.orderStatusApp == 3" @click="toLogistics(detailObj.orderId)">Check Logistics</div>
-            <div class="btn-qzf fl-right c-orange" v-if="detailObj.orderStatusApp == 3">Review</div>
-            <div class="btn-qzf fl-right c-orange" v-if="detailObj.orderStatusApp == 4">Delete</div>
+            <!-- <div class="btn-qzf fl-right c-orange" v-if="detailObj.orderStatusApp == 3">Review</div> -->
+            <!-- <div class="btn-qzf fl-right c-orange" v-if="detailObj.orderStatusApp == 4">Delete</div> -->
 
             <div class="btn-qxdd fl-right" @click="closeOverlay(true,detailObj.orderId)" v-if="detailObj.canRevoke == 1">Cancel Order</div>
 
@@ -169,6 +174,7 @@ export default {
                 {type:2,name:'Sent by Seller'},
                 {type:3,name:'Finish'},
                 {type:4,name:'Closed'},
+                {type:5,name:'Refused'},
             ],
             deliverTypes:[
                 {type:1,name:'Fulfillment by Tospino'},
@@ -462,6 +468,10 @@ export default {
             }
             .p4{
                 color: #999;
+                font-size: 20px;
+            }
+            .p2{
+                color: #DB9000;
                 font-size: 20px;
             }
         }

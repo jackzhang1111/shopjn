@@ -19,7 +19,7 @@
                         <div class="footprint-goods-content" v-for="(product,index) in day.listhistory" :key="index">
                             <div class="good-img">
                                 <van-checkbox v-model="product.checked" icon-size="24px" class="img-checkbox" checked-color="#F83600" v-if="showFooter" @click="productCheckBox(product,'',day)"></van-checkbox>
-                                <img :src="$webUrl+product.imgUrl">
+                                <img :src="$webUrl+product.imgUrl" @click="toDetail(product.skuId)">
                             </div>
                             <div class="good-desc">
                                 <span class="p1 clamp-2">{{product.supplyTitle}}</span>
@@ -110,8 +110,9 @@ export default {
         editBj(){
             this.showFooter = !this.showFooter
         },
-        jumpRouter(name){
-            this.$router.push({name})
+        //跳转商品详情
+        toDetail(skuid){
+            this.$router.push({name:'商品详情',query:{skuId:skuid}})
         },
         selectuserbrowhistory(data,flag){
             selectuserbrowhistoryApi(data).then(res => {
@@ -163,10 +164,9 @@ export default {
         //收藏该商品
         shoucangProdu(item){
             if(item.isfavorites == 1) return
-            let obj = {
-                skuid:item.skuId
-            }
-            this.adduserfavorites(obj,item)
+            let arr = []
+            arr.push(item.skuId)
+            this.adduserfavorites(arr,item)
             
         },
         //日期解析

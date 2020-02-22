@@ -179,7 +179,7 @@ export default {
             }
             let obj = {
                 addressAreaId:addressAreaId,
-                phoneCode:'+233',
+                phoneCode:'233',
                 isDefault:this.form.checked ? 1 : 2,
                 name:this.form.shr,
                 phoneNumber:this.form.sjhm,

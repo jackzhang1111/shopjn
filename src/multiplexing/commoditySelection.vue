@@ -18,7 +18,7 @@
                 <van-sidebar v-model="activeKey" class="selection-sidebar" @change="cliLeft">
                     <van-sidebar-item :title="leftData.attrTitleEng" v-for="leftData in dataList" :key="leftData.attrId"/>
                 </van-sidebar>
-                <div class="selection-right"  v-for="(rightData,index) in leftDataItem" :key="index">
+                <div class="selection-right"  v-for="(rightData,index) in leftDataItem" :key="index" :class="{active: currentKey === index}" @click="son(index)">
                     <div class="selection-right-item" @click="getIndex(index)">
                         <div class="selection-right-p1">
                             <span class="ggms">{{rightData.attrTitleEng}}</span>
@@ -62,7 +62,7 @@
 </template>
 
 <script>
-import {addshopcartApi} from '@/api/shoppingCart/index'
+import {addshopcartApi,getproductskunumpricelistApi} from '@/api/shoppingCart/index'
 import { Toast } from 'vant';
 import {mapActions} from 'vuex'
 export default {
@@ -93,6 +93,7 @@ export default {
             sectionPrice:0,
             money:0,
             leijia:0,
+            currentKey:-1,
         };
     },
     computed: {
@@ -156,22 +157,24 @@ export default {
             })
             this.leftDataItem = this.dataList[0].tpproductskuattrvalue
             this.titleImg = this.leftDataItem[0].imgUrl
-            this.attrTitleEng = this.dataList[0].attrTitleEng
+            this.attrTitleEng = this.leftDataItem[0].attrTitleEng
             this.sectionPrice = this.dataList[0].sectionPrice
-            this.buyTotle(this.leftDataItem)
+            this.currentKey = -1
         },
         //点击左侧导航
         cliLeft(index){
             this.leftDataItem = this.dataList[index].tpproductskuattrvalue
             this.titleImg = this.leftDataItem[0].imgUrl
-            this.attrTitleEng = this.dataList[index].attrTitleEng
+            this.attrTitleEng = this.leftDataItem[0].attrTitleEng
             this.sectionPrice = this.dataList[index].sectionPrice
-            this.buyTotle(this.leftDataItem)
+            this.currentKey = -1
         },
         getIndex(i){
             this.titleImg = this.leftDataItem[i].imgUrl
         },
+        //数量加减
         operationNumber(type,data){
+            let arr = []
             if(type=='jian'){
                 if(data.shopNumber == 0 || data.shopNumber<=data.numIntervalStart) return
                 data.shopNumber--
@@ -184,32 +187,34 @@ export default {
                     data.shopNumber++
                 }
             }
-            //遍历求出购买数量金额
-            this.buyTotle(this.leftDataItem)
-        },
-        //购买数量金额
-        buyTotle(list){
-            let leijia = 0;
-            let money = 0
-            list.forEach(listItem => {
-                leijia += listItem.shopNumber
-                money += listItem.skuPrice * listItem.shopNumber
+            this.dataList.forEach(ele => {
+                ele.tpproductskuattrvalue.forEach(item => {
+                    if(item.shopNumber > 0){
+                        let obj = {
+                            num:item.shopNumber,
+                            skuId:item.skuId
+                        }
+                        arr.push(obj)
+                    }
+                })
             })
-            this.leijia = leijia
-            this.money = money
+            this.getproductskunumpricelist(arr)
+            this.$forceUpdate()
         },
         //点击确定收入购物车
         buyshoppingCar(){
-            this.addshopcart(this.leftDataItem)
+            this.addshopcart(this.dataList)
         },
         //添加购物车
         addshopcart(data){
             let arr = data
             data = []
-            arr.forEach(item => {
-                if(item.shopNumber > 0){
-                    data.push(item)
-                }
+            arr.forEach(ele => {
+                ele.tpproductskuattrvalue.forEach(item => {
+                    if(item.shopNumber > 0){
+                        data.push(item)
+                    }
+                })
             })
             if(data.length == 0) return
             addshopcartApi(data).then(res => {
@@ -228,14 +233,16 @@ export default {
                 return
             }
             let data = []
-            this.leftDataItem.forEach(item => {
-                if(item.shopNumber > 0){
-                    let obj = {
-                        skuId:item.skuId,
-                        detailNum:item.shopNumber
+            this.dataList.forEach(ele => {
+                ele.tpproductskuattrvalue.forEach(item => {
+                    if(item.shopNumber > 0){
+                        let obj = {
+                            skuId:item.skuId,
+                            detailNum:item.shopNumber
+                        }
+                        data.push(obj)
                     }
-                    data.push(obj)
-                }
+                })
             })
             if(data.length == 0) return
             this.setstopcarlist(data)
@@ -243,15 +250,48 @@ export default {
         },
         //input失焦事件
         blur(item){
+            let arr = []
             if(item.shopNumber<item.numIntervalStart && item.shopNumber != 0 ){ 
                 item.shopNumber = item.numIntervalStart
             }else if(item.shopNumber > item.canSalesNum){
                 item.shopNumber = item.canSalesNum
             }
             item.shopNumber = Math.ceil(item.shopNumber)
+            this.dataList.forEach(ele => {
+                ele.tpproductskuattrvalue.forEach(item => {
+                    if(item.shopNumber > 0){
+                        let obj = {
+                            num:item.shopNumber,
+                            skuId:item.skuId
+                        }
+                        arr.push(obj)
+                    }
+                })
+            })
+            this.getproductskunumpricelist(arr)
             this.$forceUpdate()
-            //遍历求出购买数量金额
-            this.buyTotle(this.leftDataItem)
+        },
+        //点击变色
+        son(key){
+            this.currentKey =  key
+        },
+        //根据商品skuid与商品数量获取优惠价
+        getproductskunumpricelist(data){
+            getproductskunumpricelistApi(data).then(res => {
+                if(res.code == 0){
+                    this.leijia = res.totalnum
+                    this.money = res.totalprice
+                    this.dataList.forEach(ele => {
+                        ele.tpproductskuattrvalue.forEach(item => {
+                            res.Data.forEach(dataItem => {
+                                if(dataItem.skuId == item.skuId){
+                                    item.skuPrice = dataItem.price
+                                }
+                            })
+                        })
+                    })
+                }
+            })
         }
     },
     components: {
@@ -439,6 +479,9 @@ export default {
         .btn-qd{
             color: #fff;
         }
+    }
+    .active{
+        background: #969292;
     }
 }
 </style>
