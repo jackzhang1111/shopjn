@@ -45,7 +45,7 @@
                     <div class="fl-right">
                         <span>{{dfkData.goodCount}}Pcs</span>
                         <span>Total:</span>
-                        <span class="c-orange">{{dfkData.currencySignWebsite}}{{dfkData.orderProductAmountWebsite}}</span>
+                        <span class="c-orange">{{dfkData.currencySignWebsite}}{{dfkData.orderAmountWebsite}}</span>
                     </div>
                 </div>
                 <div class="good-detail-footer">
@@ -80,7 +80,7 @@
                     <div class="dfh-footer-bottom">
                         <span>{{dfkData.goodCount}}Pcs</span>
                         <span>Total:</span>
-                        <span class="c-orange font-30">{{dfkData.currencySignWebsite}}{{dfkData.orderProductAmountWebsite}}</span>
+                        <span class="c-orange font-30">{{dfkData.currencySignWebsite}}{{dfkData.orderAmountWebsite}}</span>
                         <span>(Freight{{dfkData.currencySignWebsite}}{{dfkData.orderFareWebsite}}）</span>
                     </div>
                 </div>
@@ -129,7 +129,9 @@ export default {
 
     },
     mounted() {
-        this.userinfoShop = JSON.parse(localStorage.userinfoShop)
+        if(localStorage.userinfoShop){
+            this.userinfoShop = JSON.parse(localStorage.userinfoShop)
+        }
     },
     watch: {
         dfkList:{

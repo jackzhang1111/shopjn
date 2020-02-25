@@ -34,7 +34,7 @@
             <div class="cell">
                 <span>Refund</span>
                 <span class="text-tk c-orange f-30">
-                    <span>{{orderData.orderAmountWebsite}}</span> 
+                    <span>{{orderData.currencySignWebsite}}{{orderData.orderAmountWebsite}}</span> 
                     <span class="c-999 f-22">(Freight Included)</span>
                 </span>
             </div>
@@ -186,14 +186,14 @@ export default {
     position: relative;
     min-height: 100vh;
     .cell{
-        height: 88px;
-        line-height: 88px;
-        padding: 0 30px;
+        line-height: 40px;
+        padding: 20px 30px;
         background-color: #fff;
         color: #333;
         position: relative;
         font-size: 26px;
         margin-bottom: 20px;
+        overflow: hidden;
         .arrow{
             position: absolute;
             right:30px;
@@ -202,8 +202,10 @@ export default {
             
         }
         .text{
-            position: absolute;
-            right:60px;
+            float: right;
+            width: 350px;
+            text-align: right;
+            margin-right:30px;
         }
         .text-tk{
             position: absolute;

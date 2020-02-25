@@ -17,7 +17,7 @@
                 <img slot="icon" slot-scope="props" :src="props.active ? icon.cart1 : icon.cart" class="icon-style">
             </van-tabbar-item>
             <van-tabbar-item route to="/control/account"> 
-                <span>My Tospino</span>
+                <span>My</span>
                 <img slot="icon" slot-scope="props" :src="props.active ? icon.mine1 : icon.mine" class="icon-style">
             </van-tabbar-item>
         </van-tabbar>

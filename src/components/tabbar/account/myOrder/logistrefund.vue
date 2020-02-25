@@ -125,6 +125,7 @@ export default {
                 if(res.code == 0){
                     this.detailObj = res.Data.order
                     this.dataList = this.detailObj.detailList
+                    this.headerTitle = res.Data.order.saleOrderPayStatus == 0 ? 'Return':'Refund'
                 }
             })
         },

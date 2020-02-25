@@ -139,6 +139,7 @@ export default {
             })
         },
         timeSubstring(timer){
+            timer = timer.replace(/-/g,"/")
             return timer.substring(0,10)
         },
         //上拉加载

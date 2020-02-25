@@ -123,7 +123,7 @@ export default {
         padding-right:30px;
         margin: 15px 0 0 0;
         .banner{
-            width: 524px;
+            // width: 524px;
             height: 180px;
         }
         .recommend{

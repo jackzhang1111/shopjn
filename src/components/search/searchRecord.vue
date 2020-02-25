@@ -124,7 +124,7 @@ export default {
             }
         },
         //搜索商品
-        searchGood(value){
+        searchGood(value=''){
             searchGoodApi({keyname:value}).then(res => {
                 if(res.code == 0){
                     this.searGoodList = res.datalist

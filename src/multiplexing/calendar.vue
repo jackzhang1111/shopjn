@@ -1,7 +1,7 @@
 <template>
 <!-- 日历组件 -->
     <div>
-        <Calendar v-on:choseDay="clickDay" v-on:changeMonth="changeDate" :markDate="checkArr" class="calen-dar" ref="aaa" dateTop="123123"></Calendar>
+        <Calendar v-on:choseDay="clickDay" v-on:changeMonth="changeDate" :markDate="checkArr" class="calen-dar" ref="aaa" dateTop="123123" :textTop="textTop"></Calendar>
     <!-- 
         <Calendar
       v-on:choseDay="clickDay"
@@ -44,7 +44,7 @@ export default {
     },
     data() {
         return {
-            
+            textTop:['Mon','Tue','Wed','Thu','Fri','Sat','Sun',]
         };
     },
     computed: {

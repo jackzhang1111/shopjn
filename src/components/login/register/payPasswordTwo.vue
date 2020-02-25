@@ -24,7 +24,9 @@ export default {
 
     },
     mounted() {
-        this.userinfoShop = JSON.parse(localStorage.userinfoShop)
+        if(localStorage.userinfoShop){
+            this.userinfoShop = JSON.parse(localStorage.userinfoShop)
+        }
     },
     beforeDestroy(){
         this.clearpaypassword()

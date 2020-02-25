@@ -94,11 +94,11 @@
                 </div>
                 <div class="middle-p1">
                     <span>Starts from:</span>
-                    <span>{{detailObj.orderAddtime}}</span>
+                    <span>{{detailObj.orderAddtimeWebsite}}</span>
                 </div>
                 <div class="middle-p1">
                     <span> Time of Payment:</span>
-                    <span>{{detailObj.orderPaytime}}</span>
+                    <span>{{detailObj.orderPaytimeWebsite}}</span>
                 </div>
                 <div class="middle-p1">
                     <span>Pay (by):</span>
@@ -170,7 +170,7 @@ export default {
             detailObj:{},
             status:[
                 {type:0,name:'Pending Payment'},
-                {type:1,name:'Paid by Buyer'},
+                {type:1,name:'Pending Delivery'},
                 {type:2,name:'Sent by Seller'},
                 {type:3,name:'Finish'},
                 {type:4,name:'Closed'},
@@ -199,7 +199,9 @@ export default {
     },
     mounted() {
         this.orderinfo()
-        this.userinfoShop = JSON.parse(localStorage.userinfoShop)
+        if(localStorage.userinfoShop){
+            this.userinfoShop = JSON.parse(localStorage.userinfoShop)
+        }
         this.copyBtn = new this.clipboard(this.$refs.copy)
     },
     watch: {

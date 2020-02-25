@@ -205,7 +205,9 @@ export default {
 
     },
     mounted() {
-        this.userinfoShop = JSON.parse(localStorage.userinfoShop)
+        if(localStorage.userinfoShop){
+            this.userinfoShop = JSON.parse(localStorage.userinfoShop)
+        }
         this.selectuserfavorites()
         this.walletInfo()
         this.selectuserbrowhistory(this.formData)

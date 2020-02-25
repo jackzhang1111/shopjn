@@ -66,7 +66,9 @@ export default {
 
     },
     mounted() {
-        this.userinfoShop = JSON.parse(localStorage.userinfoShop)
+        if(localStorage.userinfoShop){
+            this.userinfoShop = JSON.parse(localStorage.userinfoShop)
+        }
         this.formData.msgphone = this.userinfoShop.mobile
         this.formData.areaCode = this.userinfoShop.mobileCode
         this.msglist(this.formData)

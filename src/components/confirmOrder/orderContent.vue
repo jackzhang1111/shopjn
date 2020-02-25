@@ -76,7 +76,7 @@
 
             <div class="yunfei b-t-1">
                 <span class="p1">Freight</span>
-                <span class="p2">{{order.orderFareWebsite==0 ? 'Free Shipping':order.orderFareWebsite}}</span>
+                <span class="p2">{{order.currencySignWebsite}}{{order.orderFareWebsite==0 ? 'Free Shipping':order.orderFareWebsite}}</span>
             </div>
             <div class="payment b-t-1">
                 <span>Transporation</span>
@@ -200,11 +200,7 @@ export default {
             this.querydefaultObject()
         }else{
             this.defaultAdderss = this.$store.state.adressItem
-            let obj = {
-                addressId:this.defaultAdderss.addressId,
-                detailList:this.selectionShopCar
-            } 
-            this.getconfirmorder(obj)
+            this.refresh()
         }
         //通过购物车进来
         if(this.$route.query.type == 'shopcar'){
@@ -216,7 +212,9 @@ export default {
                 this.shopcrtList.push(shopCarObj)
             })
         }
-        this.userinfoShop = JSON.parse(localStorage.userinfoShop)
+        if(localStorage.userinfoShop){
+            this.userinfoShop = JSON.parse(localStorage.userinfoShop)
+        }
     },
     watch: {
         
@@ -295,11 +293,7 @@ export default {
                         return
                     }
                     this.defaultAdderss = res.Data
-                    let obj = {
-                        addressId:this.defaultAdderss.addressId,
-                        detailList:this.selectionShopCar
-                    } 
-                    this.getconfirmorder(obj)
+                    this.refresh()
                 }
             })
         },
@@ -382,26 +376,76 @@ export default {
                             this.orderIdList.push({orderId:Number(item.orderId)})
                         })
                     }
-                    
-                }else if(res.code > 20){
-                    let obj = {
-                        addressId:this.defaultAdderss.addressId,
-                        detailList:this.selectionShopCar
-                    } 
-                    this.getconfirmorder(obj)
-                }else{
-                    Toast('Failed')
+                }else if(res.code == 1){
+                    Toast('参数requestModel不能为空')
+                }else if(res.code == 2){
+                    Toast('参数订单列表orderList不能为空')
+                }else if(res.code == 3){
+                    Toast('参数付款方式不能为空')
+                }else if(res.code == 4){
+                    Toast('参数收获地址Id不能为空')
+                }else if(res.code == 5){
+                    Toast('参数是否匿名不能为空')
+                }else if(res.code == 6){
+                    Toast('参数订单来源不能为空')
+                }else if(res.code == 7){
+                    Toast('参数订单明细列表detailList不能为空')
+                }else if(res.code == 21){
+                    Toast('商品已失效，请重新确认订单')
+                    this.refresh()
+                }else if(res.code == 22){
+                    Toast('商品起订量不足，请重新确认订单')
+                    this.refresh()
+                }else if(res.code == 23){
+                    Toast('商品库存不足，请重新确认订单')
+                    this.refresh()
+                }else if(res.code == 24){
+                    Toast('商品价格已经变化，请重新确认订单')
+                    this.refresh()
+                }else if(res.code == 25){
+                    Toast('FBM商品不能使用货到付款')
+                    this.refresh()
                 }
             })
+        },
+        //刷新页面
+        refresh(){
+            let obj = {
+                addressId:this.defaultAdderss.addressId,
+                detailList:this.selectionShopCar
+            } 
+            this.getconfirmorder(obj)
         },
         //订单发起支付
         orderlaunchpay(data){
             orderlaunchpayApi(data).then(res => {
                 if(res.code == 0){
                     this.showsucess()
-
+                }else if(res.code == 1){
+                    Toast('参数requestModel不能为空')
+                }else if(res.code == 2){
+                    Toast('参数支付方式不能为空')
+                }else if(res.code == 3){
+                    Toast('余额支付支付密码不能为空')
+                }else if(res.code == 4){
+                    Toast('参数订单列表orderList不能为空')
+                }else if(res.code == 5){
+                    Toast('参数订单Id必须大于0')
                 }else if(res.code == 21){
-                    this.$router.push({name:'设置支付密码'})
+                    Toast('请先设置支付密码')
+                    setTimeout(()=>{this.$router.push({name:'设置支付密码'})},1000)
+                }else if(res.code == 22){
+                    Toast('支付密码不正确')
+                }else if(res.code == 31){
+                    Toast('提交的订单列表不能为空')
+                }else if(res.code == 32){
+                    Toast('存在订单不属于当前用户，不能进行操作')
+                }else if(res.code == 33){
+                    Toast('存在订单已经支付，不能重复支付')
+                }else if(res.code == 34){
+                    Toast('提交的订单列表包含状态不为待付款的订单')
+                }else if(res.code == 35){
+                    Toast('提交的订单列表包含已过支付有效期的订单')
                 }
             })
         },

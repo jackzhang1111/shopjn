@@ -46,7 +46,7 @@
                 </div>
                 <div class="middle-p1">
                     <span class="c-999">Starts from:</span>
-                    <span class="margin-l-40 c-333">{{detailData.orderAddtime}}</span>
+                    <span class="margin-l-40 c-333">{{detailData.orderAddtimeWebsite}}</span>
                 </div>
                 <div class="middle-p1">
                     <span class="c-999">Total refund:</span>

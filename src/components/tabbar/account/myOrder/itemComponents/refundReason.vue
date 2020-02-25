@@ -7,7 +7,7 @@
                     <div class="cancel-order" v-show="closeStatu">
                         <div class="cancel-list">
                             <div class="cancel-title">
-                                <span>退款原因</span>
+                                <span>Reason for refunding</span>
                                 <van-icon name="cross" class="cross" @click="closeStatu = false"/>
                             </div>
                             <div class="yuanyin-list" v-for="(reason,index) in reasonList" :key="index" @click="obtainText(reason.text)">
@@ -15,12 +15,10 @@
                             </div>
                             
                         </div>
-                        <div class="btns" @click="closeStatu = false">
-                            关闭
-                        </div>
+                        <div class="btns" @click="closeStatu = false">Close</div>
                     </div>
                  </transition>
-        </zhezhao>
+            </zhezhao>
         </transition>
     </div>
 </template>
@@ -36,22 +34,22 @@ export default {
             closeStatu:false,
             reasonList:[
                 {
-                    text:'商品描述的尺寸与实物不符'
+                    text:'The size does not confirm with the specification.'
                 },
                 {
-                    text:'商品描述的颜色/款式与实物不符'
+                    text:'The color/style does not confirm with the specification.'
                 },
                 {
-                    text:'商品描述的材质面料与实物不符'
+                    text:'The material does not confirm with the specification.'
                 },
                 {
-                    text:'少件/漏发'
+                    text:'Missing piece(s).'
                 },
                 {
-                    text:'包装/商品破损/污渍'
+                    text:'Packaging/goods damaged or stained.'
                 },
                 {
-                    text:'卖家发错货'
+                    text:'Buyer has sent me the wrong goods.'
                 }
             ]
         };
@@ -113,12 +111,13 @@ export default {
             margin-bottom: 30px;
         }
         .yuanyin-list{
-            height: 100px;
-            line-height: 100px;
+            // height: 100px;
+            line-height: 50px;
             font-size:30px;
             color: #333;
             border-bottom: 1px solid #DCDCDC;
             position: relative;
+            padding: 10px 0
         }
         .yuan{
             width:40px;

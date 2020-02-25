@@ -198,7 +198,7 @@ export default {
         showPay(flag,alldata){
             this.$refs.actionSheetPaymen.showAction = flag
             if(!alldata) return
-            this.moeny = alldata.orderProductAmountWebsite
+            this.moeny = alldata.orderAmountWebsite
             this.orderData = alldata
         },
         //密码弹窗

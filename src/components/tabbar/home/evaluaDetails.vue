@@ -60,11 +60,11 @@ export default {
             dataList:[],
             tabs:[
                 {
-                    title:'有内容的评价',
+                    title:'Rewiew Images',
                     num:0
                 },
                 {
-                    title:'全部评价',
+                    title:'Overall Reviews',
                     num:0
                 }
             ]

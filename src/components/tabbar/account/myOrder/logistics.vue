@@ -14,7 +14,7 @@
                         </div>
                     </div>
                     <div class="btns" v-if="parcel.canRefund == 1">
-                        <div class="tk-btn" @click="tuikuan(parcel)">Refund</div>
+                        <div class="tk-btn" @click="tuikuan(parcel)">{{parcel.saleOrderPayStatus == 0 ? 'Return':'Refund' }}</div>
                     </div>
                 </div>
             </div>
@@ -35,7 +35,7 @@
                     <van-step class="steps-item" v-for="(logistics,index) in logisticsList" :key="index">
                         <h3>{{logistics.orderStatusNoteEng}}</h3>
                         <p class="p1">{{logistics.remarkEng}}</p>
-                        <p class="p2">{{logistics.addTime}}</p>
+                        <p class="p2">{{logistics.addTimeWebsite}}</p>
                     </van-step>
                 </van-steps>
             </div>

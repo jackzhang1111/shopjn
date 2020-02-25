@@ -58,7 +58,9 @@ export default {
 
     },
     mounted() {
-        this.userinfoShop = JSON.parse(localStorage.userinfoShop)
+        if(localStorage.userinfoShop){
+            this.userinfoShop = JSON.parse(localStorage.userinfoShop)
+        }
         console.log(this.userinfoShop,'this.userinfoShop');
     },
     watch: {

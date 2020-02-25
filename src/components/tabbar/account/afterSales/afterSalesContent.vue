@@ -6,6 +6,7 @@
                     <div class="good-detail-header">
                         <span>No:{{product.orderSn}}</span>
                         <span class="fl-right c-orange ft-24">{{orderStatus(product.orderStatusApp,'statusList')}}</span>
+                        <br><span>order No:{{product.saleOrderSn}}</span>
                     </div>
                     <div class="good-detail-content" v-for="(detail,index) in product.detailList2" :key="index">
                         <div class="good-detail-img">
@@ -74,6 +75,7 @@ export default {
             backTypeList:[
                 {type:1,name:'Refund Only'},
                 {type:2,name:'Return & Refund'},
+                {type:3,name:'Return'},
             ]
         };
     },
@@ -188,12 +190,12 @@ export default {
 .good-detail{
     margin-bottom: 20px;
     .good-detail-header{
+        line-height: 40px;
         font-size:26px;
         color: #333;
         background-color: #fff;
-        padding:30px 30px;
+        padding:10px 30px;
         border-bottom: 1px solid #F2F3F5;
-        overflow: hidden;
     }
     .good-detail-content{
         background-color: #fff;
