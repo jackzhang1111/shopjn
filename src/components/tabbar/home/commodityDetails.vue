@@ -63,21 +63,29 @@
                 </van-cell-group>
 
                 <div class="good-comment" @click="$router.push({name:'商品详情评价',query:{skuid:detailmData.skuId}})" ref="goodComment">
-                    <div class="comment-top">
-                        <span class="p1">Reviews</span>
-                        <span class="p2">{{detailmData.starNumber}}</span>
-                        <van-rate v-model="detailmData.starNumber" void-color="#FA5300"  color="#FA5300"/>
+                    <div v-if="detailmData.evaContent">
+                        <div class="comment-top">
+                            <span class="p1">Reviews</span>
+                            <span class="p2">{{detailmData.starNumber}}</span>
+                            <van-rate v-model="detailmData.starNumber" void-color="#FA5300"  color="#FA5300"/>
+                        </div>
+                        <div class="comment-describe">
+                            <span> {{detailmData.nickName}}:{{detailmData.evaContent}}</span>
+                        </div>
+                        <div class="comment-specifications">
+                            <span>
+                                {{detailmData.proUnit}}
+                            </span>
+                        </div>
+                        <div class="comment-arrow">
+                            <van-icon name="arrow" />
+                        </div>
                     </div>
-                    <div class="comment-describe">
-                        <span> {{detailmData.nickName}}:{{detailmData.evaContent}}</span>
-                    </div>
-                    <div class="comment-specifications">
-                        <span>
-                            {{detailmData.proUnit}}
-                        </span>
-                    </div>
-                    <div class="comment-arrow">
-                        <van-icon name="arrow" />
+                    <div v-else>
+                        <div class="comment-top">
+                            <span class="p1">Reviews</span>
+                            <span class="c-999">No reviews</span>
+                        </div>
                     </div>
                 </div>
                 <div ref="guige">
@@ -118,7 +126,7 @@
         </van-tabbar>        
         
         <transition name="updown">
-            <commodity-selection v-if="comStatus" @changeComStatus="changeComStatus" :selectionData="selectionData" :btnStatus="btnStatus" :btnName="btnName"></commodity-selection>
+            <commodity-selection v-show="comStatus" @changeComStatus="changeComStatus" :selectionData="selectionData" :btnStatus="btnStatus" :btnName="btnName"></commodity-selection>
         </transition>
 
 
@@ -422,7 +430,6 @@ export default {
     }
     .good-comment{
         width: 100%;
-        height: 201px;
         margin: 21px 0 0;
         position: relative;
         background-color: #fff;

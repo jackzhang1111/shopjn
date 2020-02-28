@@ -114,7 +114,7 @@ export default {
 
     },
     mounted() {
-        this.getData()
+        // this.getData()
     },
     watch: {
         selectionData:{
@@ -157,7 +157,7 @@ export default {
             })
             this.leftDataItem = this.dataList[0].tpproductskuattrvalue
             this.titleImg = this.leftDataItem[0].imgUrl
-            this.attrTitleEng = this.leftDataItem[0].attrTitleEng
+            this.attrTitleEng = this.leftDataItem[0].supplyTitle
             this.sectionPrice = this.dataList[0].sectionPrice
             this.currentKey = -1
         },
@@ -165,7 +165,7 @@ export default {
         cliLeft(index){
             this.leftDataItem = this.dataList[index].tpproductskuattrvalue
             this.titleImg = this.leftDataItem[0].imgUrl
-            this.attrTitleEng = this.leftDataItem[0].attrTitleEng
+            this.attrTitleEng = this.leftDataItem[0].supplyTitle
             this.sectionPrice = this.dataList[index].sectionPrice
             this.currentKey = -1
         },
@@ -274,6 +274,8 @@ export default {
         //点击变色
         son(key){
             this.currentKey =  key
+            this.attrTitleEng = this.leftDataItem[key].supplyTitle
+            setTimeout(()=>{this.sectionPrice = this.leftDataItem[key].skuPrice},100)
         },
         //根据商品skuid与商品数量获取优惠价
         getproductskunumpricelist(data){

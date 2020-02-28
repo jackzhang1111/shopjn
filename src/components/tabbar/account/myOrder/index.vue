@@ -54,6 +54,7 @@ import {orderlistApi,orderlaunchpayApi,completeorderApi} from '@/api/myOrder/ind
 import actionSheetPassword from '@/multiplexing/actionSheetPassword'
 import actionSheetPaymen from '@/multiplexing/actionSheetPaymen'
 import actionSheetSucess from '@/multiplexing/actionSheetSucess'
+import {Toast} from 'vant'
 export default {
     props: {
 
@@ -172,8 +173,33 @@ export default {
             orderlaunchpayApi(data).then(res => {
                 if(res.code == 0){
                     this.showsucess()
+                }else if(res.code == 1){
+                    Toast('Parameter “requestModel” cannot be empty.')
+                }else if(res.code == 2){
+                    Toast('Parameter Method of Payment cannot not be empty.')
+                }else if(res.code == 3){
+                    Toast('The payment password cannot be empty if you choose Pay by Balance.')
+                }else if(res.code == 4){
+                    Toast('Parameter”orderList” cannot not be empty.')
+                }else if(res.code == 5){
+                    Toast('Parameter Order ID must be larger than 0.')
                 }else if(res.code == 21){
-                    this.$router.push({name:'设置支付密码'})
+                    Toast('Set the payment password first.')
+                    setTimeout(()=>{this.$router.push({name:'设置支付密码'})},1000)
+                }else if(res.code == 22){
+                    Toast('Incorrect password!')
+                }else if(res.code == 23){
+                     Toast("Your balance isn't enough to pay.")
+                }else if(res.code == 31){
+                    Toast('The submitted order list cannot be empty.')
+                }else if(res.code == 32){
+                    Toast('The existing order isn’t belong to the current user and cannot be operated.')
+                }else if(res.code == 33){
+                    Toast('The existing order is paid and cannot be repaid.')
+                }else if(res.code == 34){
+                    Toast('The submitted order list involves Unpaid order.')
+                }else if(res.code == 35){
+                    Toast('The submitted order list involves unsuccessful payment order. ')
                 }
             })
         },
@@ -251,6 +277,27 @@ export default {
                 if(res.code == 0){
                     this.showPassWord(false)
                     this.refreshOrder()
+                }else if(res.code == 1){
+                    Toast('Parameter “requestModel” cannot be empty.')
+                }else if(res.code == 2){
+                    Toast('Parameter Order ID must be larger than 0.')
+                }else if(res.code == 3){
+                    Toast('The payment password cannot be empty if you choose Pay by Balance.')
+                }else if(res.code == 21){
+                    Toast('Set the payment password first.')
+                    setTimeout(()=>{this.$router.push({name:'设置支付密码'})},1000)
+                }else if(res.code == 22){
+                    Toast('Incorrect password!')
+                }else if(res.code == 23){
+                    Toast('The order is nonexistent.')
+                }else if(res.code == 24){
+                    Toast('The order isn’t belong to the current user and cannot be operated.')
+                }else if(res.code == 25){
+                    Toast('The order is Unpaid. Receiving confirmation isn’t allowed.')
+                }else if(res.code == 26){
+                    Toast('The order is finished. Do not reconfirm the receiving.')
+                }else if(res.code == 27){
+                    Toast('The order isn’t Unreceived. Receiving confirmation isn’t allowed.')
                 }
             })
         }

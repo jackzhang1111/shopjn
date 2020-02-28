@@ -32,7 +32,7 @@
                         <span v-if="detail.applyReturnAndRefund == 1">Return & Refund</span>
                     </div>
                 </div>
-                <div style="height:15px;"></div>
+                <div class="order-place"></div>
             </div>
             <div v-if="dfkData.orderStatusApp != 1">
                 <div class="dfh-footer-top" v-if="dfkData.detailListFlag" @click="lookTotal">
@@ -328,6 +328,9 @@ export default {
                 }
             }
         }
+        .order-place{
+            height: 30px;
+        }
     }
     .total{
         background-color: #fff;
@@ -341,13 +344,16 @@ export default {
     }
     
     .good-detail-footer{
-        height: 100px;
+        // height: 100px;
         border-top: 1px solid #F2F3F5;
         font-size: 30px;
         color: #666;
         background-color: #fff;
+        overflow: hidden;
+        // padding: 30px 0 10px;
         .lan{
-            height: 100%;
+            overflow: hidden;
+            padding: 30px 0 10px;
         }
         .btn-qzf{
             // width:150px;
@@ -356,10 +362,10 @@ export default {
             border-radius:30px;
             line-height: 60px;
             text-align: center;
-            position: relative;
-            top:50%;
-            transform: translateY(-50%);
-            margin-right:20px;
+            // position: relative;
+            // top:50%;
+            // transform: translateY(-50%);
+            margin:0 20px 20px 0;
             padding: 0 30px;
         }
         .btn-qxdd,.btn-xgdz{
@@ -369,10 +375,10 @@ export default {
             border-radius:30px;
             line-height: 60px;
             text-align: center;
-            position: relative;
-            top:50%;
-            transform: translateY(-50%);
-            margin-right:20px;
+            // position: relative;
+            // top:50%;
+            // transform: translateY(-50%);
+            margin:0 20px 20px 0;
             padding: 0 30px;
         }
     }

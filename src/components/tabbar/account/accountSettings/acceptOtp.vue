@@ -31,6 +31,7 @@
 <script>
 import settingsHeader from './itemComponents/settingsHeader'
 import {msglistApi} from '@/api/login/index.js'
+import {Toast} from 'vant'
 export default {
     props: {
 

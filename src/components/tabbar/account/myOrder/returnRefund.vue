@@ -169,6 +169,30 @@ export default {
             returnorderApi(data).then(res => {
                 if(res.code == 0){
                     this.$router.go(this.go)
+                }else if(res.code == 1){
+                    Toast('Parameter “requestModel” cannot be empty.')
+                }else if(res.code == 2){
+                    Toast('Parameter Order ID must be larger than 0.')
+                }else if(res.code == 3){
+                    Toast('The source of Return & Refund order cannot be empty.')
+                }else if(res.code == 4){
+                    Toast('Choose the reason for Return & Refund.')
+                }else if(res.code == 11){
+                    Toast('Parameter “detailList” cannot be empty.')
+                }else if(res.code == 12){
+                    Toast('Parameter Product Qty of Return & Refund must be larger than 0.')
+                }else if(res.code == 21){
+                    Toast('The order is nonexistent.')
+                }else if(res.code == 22){
+                    Toast('The order isn’t belong to the current user and cannot be operated.')
+                }else if(res.code == 23){
+                    Toast('FBM order does not support Return & Refund.')
+                }else if(res.code == 24){
+                    Toast('The order is Unpaid. Refund isn’t allowed.')
+                }else if(res.code == 25){
+                    Toast('There is no available product can be applied for return & refund in this order.')
+                }else if(res.code == 26){
+                    Toast('The product Qty of return&refund you applied for exceeds the available product Qty of return&refund.')
                 }
             })
         }

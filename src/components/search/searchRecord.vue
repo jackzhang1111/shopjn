@@ -28,7 +28,7 @@
         <div class="sousuo" v-else>
             <ul>
                 <li v-for="product in searGoodList" :key="product.productId" @click="toGoodsOne(product.productName)">
-                    <span>{{product.productName}}</span>
+                    <span class="search-good-name">{{product.productName}}</span>
                     <span class="icon">
                         <img src="@/assets/img/search/enter@3x.png" alt="">
                     </span>
@@ -226,6 +226,13 @@ export default {
                     
                 }
             }
+        }
+        .search-good-name{
+            overflow: hidden;
+            text-overflow:ellipsis;
+            white-space: nowrap;
+            display: inline-block;
+            width: 90%;
         }
     }
     .van-overlay{

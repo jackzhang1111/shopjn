@@ -144,6 +144,20 @@ export default {
             revokebackorderApi({orderId:id}).then(res => {
                 if(res.code == 0){
                     this.backorderinfo(id)
+                }else if(res.code == 1){
+                    Toast('Parameter “requestModel” cannot be empty.')
+                }else if(res.code == 2){
+                    Toast('The after-sale order ID must be larger than 0.')
+                }else if(res.code == 21){
+                    Toast('The after-sale order is nonexistent.')
+                }else if(res.code == 22){
+                    Toast('The after-sale order isn’t belong to the current user and cannot be operated.')
+                }else if(res.code == 23){
+                    Toast('The after-sale order is approved and cannot be canceled.')
+                }else if(res.code == 24){
+                    Toast('The after-sale order is refused and cannot be canceled.')
+                }else if(res.code == 25){
+                    Toast('The after-sale order is canceled. Do not cancel again.')
                 }
             })
         },

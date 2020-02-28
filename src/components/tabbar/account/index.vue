@@ -25,7 +25,7 @@
                     <span class="t1" @click="jumpRouter('我的足迹')">Pageviews</span>
                     <span class="num">{{zujiTotal}}</span>
                 </van-col>
-                 <van-col span="8">
+                 <van-col span="8" @click="jumpRouter('账户明细')">
                     <span class="t1">Balance</span>
                     <span class="num">{{jn}}{{walletMoney ? walletMoney:0}}</span>
                 </van-col>
@@ -366,8 +366,8 @@ export default {
                 }
             }
             .icon-style{
-                width: 43px;
-                height: 43px;
+                // width: 40px;
+                height: 40px;
                 margin-bottom: 3px;
             }
            /deep/ .van-hairline--top-bottom{
@@ -397,8 +397,8 @@ export default {
                 }
             }
             .icon-left{
-                width: 33px;
-                height: 29px;
+                // width: 33px;
+                // height: 33px;
                 position: absolute;
                 left:23px;
                 top:36px;

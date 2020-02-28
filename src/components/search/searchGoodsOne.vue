@@ -48,7 +48,7 @@
             </scroll>
         </div>
         <div v-else>
-            <no-sear-good :imgSrc="nosear1" describe="抱歉，暂无相关产品"></no-sear-good>
+            <no-sear-good :imgSrc="nosear1" describe="Sorry, no products"></no-sear-good>
         </div>
     </div>
 </template>

@@ -171,7 +171,7 @@ export default {
             status:[
                 {type:0,name:'Pending Payment'},
                 {type:1,name:'Pending Delivery'},
-                {type:2,name:'Sent by Seller'},
+                {type:2,name:'Pending Receiving'},
                 {type:3,name:'Finish'},
                 {type:4,name:'Closed'},
                 {type:5,name:'Refused'},

@@ -24,7 +24,7 @@
                 <van-icon name="arrow" class="arrow c-999"/>
             </div>
             <div class="cell">
-                <span>客服电话211-2626622</span>
+                <span>Customer service:211-2626622</span>
                 <van-icon name="arrow" class="arrow c-999"/>
             </div>
         </div>

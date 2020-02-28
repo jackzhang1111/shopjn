@@ -64,8 +64,8 @@ export default {
         position: absolute;
         left:20px;
         top:39px;
-        width: 142px;
-        height: 32px;
+        // width: 142px;
+        // height: 32px;
         img{
             width: 100%;
             height: 100%;

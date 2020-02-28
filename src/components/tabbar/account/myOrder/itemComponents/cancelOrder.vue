@@ -26,6 +26,7 @@
 
 <script>
 import {revokeorderApi} from '@/api/myOrder/index'
+import {Toast} from 'vant'
 export default {
     props: {
         orderId:{
@@ -96,8 +97,20 @@ export default {
                 if(res.code == 0){
                     this.closeCancel()
                     this.$emit('refreshOrder')
-                }else{
-                    Toast('Failed')
+                }else if(res.code == 1){
+                    Toast('Parameter “requestModel” cannot be empty.')
+                }else if(res.code == 2){
+                    Toast('Parameter Order ID must be larger than 0.')
+                }else if(res.code == 21){
+                    Toast('The order is nonexistent.')
+                }else if(res.code == 22){
+                    Toast('The order isn’t belong to the current user and cannot be operated.')
+                }else if(res.code == 23){
+                    Toast('The order is paid online. It isn’t Unpaid and cannot be canceled.')
+                }else if(res.code == 24){
+                    Toast('The method of payment is Pay by Cash.It is confirmed on background and cannot')
+                }else if(res.code == 25){
+                    Toast('The order is canceled. Do not cancel repeatedly.')
                 }
             })
         },

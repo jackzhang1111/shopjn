@@ -126,6 +126,12 @@ export default {
                     this.detailObj = res.Data.order
                     this.dataList = this.detailObj.detailList
                     this.headerTitle = res.Data.order.saleOrderPayStatus == 0 ? 'Return':'Refund'
+                }else if(res.code == 1){
+                    Toast('Parameter “requestModel” cannot be empty.')
+                }else if(res.code == 2){
+                    Toast('Parameter “logisticsOrderId” must be larger than 0.')
+                }else if(res.code == 4){
+                    Toast('You are not allowed to check the order or the order is nonexistent.')
                 }
             })
         },
@@ -134,10 +140,34 @@ export default {
             data.reason = data.reason == 'Choose one' ? '': data.reason
             refundorderbylogisticsApi(data).then(res => {
                 if(res.code == 0){
-                    Toast('提交成功')
+                    Toast('Success')
                     setTimeout(()=>{
                         this.$router.go(-1)
                     },1000)
+                }else if(res.code == 1){
+                    Toast('Parameter “requestModel” cannot be empty.')
+                }else if(res.code == 2){
+                     Toast('Logistics ID must be larger than 0.')
+                }else if(res.code == 3){
+                    Toast('The source of refund order cannot be empty.')
+                }else if(res.code == 4){
+                    Toast('Choose the reason for refund.')
+                }else if(res.code == 11){
+                    Toast('Parameter “detailList” cannot be empty.')
+                }else if(res.code == 12){
+                    Toast('Parameter Qty of Refund Products must be larger than 0.')
+                }else if(res.code == 21){
+                    Toast('The order is nonexistent.')
+                }else if(res.code == 22){
+                    Toast('The order isn’t belong to the current user and cannot be operated.')
+                }else if(res.code == 23){
+                    Toast('The parcel isn’t Unreceived. Refund isn’t allowed.')
+                }else if(res.code == 24){
+                    Toast('The order is Unpaid. Refund isn’t allowed.')
+                }else if(res.code == 25){
+                    Toast('The parcel has been applied for Refund. Do not apply for Refund repeatedly.')
+                }else if(res.code == 26){
+                    Toast('The available Qty of refund product is changed.Please reconfirm the refund order.')
                 }
             })
         },

@@ -3,7 +3,7 @@
     <div class="no-shopping">
         <div class="no-shopping-content">
             <div class="tips">
-                <span class="c-orange text">！很抱歉，您尚未达到在TOSPINO上撰写评论的最低资格要求。</span>
+                <span class="c-orange text">Sorry, you’re not qualified enough to give a review on Tospino.</span>
             </div>
         </div>
         <footer-exhibition></footer-exhibition>
