@@ -120,6 +120,8 @@ export default {
                 orderId:this.id,
                 remark:this.remark
             }
+            Toast('Choose reasons for canceling order')
+            if(!this.remark) return
             this.revokeorder(data)
         }
     },

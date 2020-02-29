@@ -30,7 +30,7 @@
                         <div class="good-price">
                             <span class="price-p1">{{jn}}{{dataitem.discountPrice ? dataitem.discountPrice : dataitem.salePrice}}</span>
                             <!-- <span class="price-p2" v-if="dataitem.discountPrice">{{dataitem.salePrice}}</span> -->
-                            <van-stepper class="price-quantity" v-model="dataitem.shopNumber" :min="dataitem.numIntervalStart" :max="dataitem.canSalesNum" @change="changeStepper" />
+                            <van-stepper class="price-quantity" v-model="dataitem.shopNumber" :min="dataitem.numIntervalStart" :max="dataitem.canSalesNum" @change="changeStepper(dataitem)" />
                             <span class="price-batch">MOQ{{dataitem.numIntervalStart}}Pcs</span>
                         </div>
                     </div>
@@ -74,13 +74,17 @@
             <div class="settlement">
                 <span class="settlement-text" v-if="showMange">
                     <van-checkbox v-model="checked" icon-size="24px" class="checkbox" checked-color="#F83600" @change="cliAllcheck"></van-checkbox>
-                    <span class="btn" @click="settlementBtn" :style="{background : (totlaNum>0 ? '#FA5300':'#999')}">Checkout({{totlaNum}})</span>
-                    <span class="p3">{{jn}}{{totlaMoney}}</span>
-                    <span class="p2">Total:</span>
-                    <span class="p1">Select All</span>
+                    <span class="c-999">Select All</span>
+                    <div class="fl-right">
+                        <span class="p2">Total:</span>
+                        <span class="p3">{{jn}}{{totlaMoney}}</span>
+                        <span class="btn" @click="settlementBtn" :style="{background : (totlaNum>0 ? '#FA5300':'#999')}">Checkout({{totlaNum}})</span>
+                    </div>
+                    
+                    
                 </span>
                 <span class="settlement-text" v-else>
-                    <van-checkbox v-model="checked" icon-size="24px" class="checkbox" checked-color="#F83600" @change="cliAllcheck"></van-checkbox>
+                    <van-checkbox v-model="checked" icon-size="24px" class="checkbox2" checked-color="#F83600" @change="cliAllcheck"></van-checkbox>
                     <span class="btn1" @click="delOrder">Delete</span>
                     <span class="btn2" @click="adduserfavor">Move to Collection</span>
                     <span class="p1">Select All</span>
@@ -105,7 +109,7 @@
 
 <script>
 import footerExhibition from '@/multiplexing/footerExhibition'
-import {shopcartlistApi,deleteshopcartApi,emptycartApi,getproductskunumpricelistApi} from '@/api/shoppingCart/index'
+import {shopcartlistApi,deleteshopcartApi,emptycartApi,getproductskunumpricelistApi,addshopcartApi} from '@/api/shoppingCart/index'
 import {guessyoulikeApi} from '@/api/search/index'
 import { Toast,Dialog } from 'vant';
 import {mapState,mapActions} from 'vuex'
@@ -148,7 +152,7 @@ export default {
             return this.shopList.length>0
         },
         shoplength(){
-            return this.shopList.length
+            return this.shopcarTotal
         },
         ...mapState({
             selectionShopCar:state=>state.selectionShopCar
@@ -350,8 +354,12 @@ export default {
             this.getproductskunumpricelist(arr2)
         },
         //更改数量
-        changeStepper(){
+        changeStepper(itemdetail){
             let arr = []
+            let addshopcartObj = {
+                shopcrtId:itemdetail.shopcrtId,
+                shopNumber:itemdetail.shopNumber
+            }
             this.dataList.forEach(ele => {
                 ele.list.forEach(item => {
                     if(item.checkStatus){
@@ -363,6 +371,7 @@ export default {
                     }
                 })
             })
+            this.addshopcart([addshopcartObj])
             this.zongji()
         },
         //删除订单
@@ -393,7 +402,7 @@ export default {
         },
         //清空失效商品
         emptycart(){
-            emptycartApi().then(res => {
+            emptycartApi({name:'no'}).then(res => {
                 if(res.code == 0){
                     this.shopcartlist(this.formData)
                     this.guessyoulike()
@@ -446,7 +455,15 @@ export default {
                     })
                 }
             })
-        }
+        },
+        //添加购物车
+        addshopcart(data){
+            addshopcartApi(data).then(res => {
+                if(res.code == 0){
+                    
+                }
+            })
+        },
     },
     components: {
         footerExhibition
@@ -631,46 +648,39 @@ export default {
     }
     .settlement{
         width: 100%;
-        height: 120px;
         background-color:#fff;
         position:fixed;
         bottom:98px;
         z-index:5;
-        line-height: 120px;
         border-top:2px solid #DCDCDC;
         border-bottom:2px solid #DCDCDC;
+        overflow: hidden;
+        padding: 30px 0;
         .checkbox{
             display: inline-block;
-            margin:39px 0 0 30px;
+            margin:20px 0 -10px 30px;
+        }
+        .checkbox2{
+            display: inline-block;
+            margin:8px 0 -10px 30px;
         }
         .settlement-text{
-            position: absolute;
             display: inline-block;
             width: 100%;
-            height: 100%;;
-            top:0px;
-            left:0px;
+            box-sizing: border-box;
             font-size: 32px;
-            .p2,.p3{
-                float: right;
-            }
-            .p1{
-                position: absolute;
-                left:103px;
-                color: #999;
-            }
+            padding-right:30px;
             .p3{
                 margin-left:18px;
             }
             .btn{
-                float: right;
+                display: inline-block;
                 padding: 0 20px;
                 height:90px;
                 border-radius:45px;
                 color:rgba(255,255,255,1);
                 line-height:90px;
                 text-align: center;
-                margin:16px 30px 0 18px;
             }
             .btn2{
                 padding: 0 10px;

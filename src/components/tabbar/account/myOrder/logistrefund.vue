@@ -208,15 +208,16 @@ export default {
 
 <style scoped lang="less">
 .refund{
+    min-height: 100vh;
     .cell{
-        height: 88px;
-        line-height: 88px;
-        padding: 0 30px;
+        line-height: 40px;
+        padding: 20px 30px;
         background-color: #fff;
         color: #333;
         position: relative;
         font-size: 26px;
         margin-bottom: 20px;
+        overflow: hidden;
         .arrow{
             position: absolute;
             right:30px;
@@ -225,15 +226,16 @@ export default {
             
         }
         .text{
-            position: absolute;
-            right:60px;
+            float: right;
+            width: 350px;
+            text-align: right;
+            margin-right:30px;
         }
         .text-tk{
             position: absolute;
             right:30px;
         }
         .input-xt{
-            width: 350px;
             margin-left:40px;
             height: 40px;
             border: 0;

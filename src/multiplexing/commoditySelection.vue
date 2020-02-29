@@ -212,7 +212,16 @@ export default {
             arr.forEach(ele => {
                 ele.tpproductskuattrvalue.forEach(item => {
                     if(item.shopNumber > 0){
-                        data.push(item)
+                        let obj = {
+                            businessId:this.selectionObj.businessId,
+                            priceId:item.priceId,
+                            shopNumber:item.shopNumber,
+                            skuId:item.skuId,
+                            status:0,
+                            supplyId:item.supplyId,
+                            warehouseId:item.warehouseId
+                        }
+                        data.push(obj)
                     }
                 })
             })
@@ -323,7 +332,7 @@ export default {
     .selection-title{
         width: 100%;
         height: 201px;
-        border-bottom: 2px solid red;
+        border-bottom: 2px solid #DCDCDC;
         .selection-img{
             width: 200px;
             height: 200px;
@@ -379,6 +388,7 @@ export default {
                 line-height: 120px;
                 text-align: center;
                 font-size: 22px;
+                border-bottom:1px solid #dcdcdc;
                 /deep/ .van-sidebar-item__text{
                     line-height: 40px;
                 }

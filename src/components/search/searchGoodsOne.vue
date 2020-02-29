@@ -5,7 +5,7 @@
         <div v-if="noSearchStatus">
             <van-dropdown-menu active-color="#DB9000">
                 <van-dropdown-item v-model="value1" :options="option1" class="scj" @close="saleSort('zh',value1)"></van-dropdown-item>
-                <van-dropdown-item v-model="value2" :options="option2"  class="scj scj-none" @open="saleSort('xl')" @close="saleSort('xl')"/>
+                <van-dropdown-item v-model="value2" :options="option2"  class="scj" @close="saleSort('xl')"/>
                 <van-dropdown-item v-model="value3" :options="option3"  class="scj" @close="saleSort('jg',value3)"/>
                 <van-icon name="apps-o" class="apps-o" @click="viewModel"/>
             </van-dropdown-menu>
@@ -273,15 +273,6 @@ export default {
                 }
             }
         }
-        /deep/ .van-dropdown-menu__item{
-            &:nth-child(2){
-                span{
-                    &::after{
-                        display: none;
-                    }
-                }
-            }
-        }
     }
     .apps-o{
         position: relative;
@@ -296,9 +287,6 @@ export default {
             line-height: 50px;
             font-size: 24px;
         }
-    }
-    .scj-none{
-        display: none;
     }
     .footprint-goods{
         margin-bottom: 20px;

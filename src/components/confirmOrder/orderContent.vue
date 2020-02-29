@@ -537,24 +537,20 @@ export default {
         }
         .good-detail-content{
             width: 100%;
-            height: 210px;
             background-color: #fff;
             box-sizing: border-box;
-            padding: 0 30px;
-            position: relative;
+            padding: 30px;
             .good-detail-img{
                 width: 150px;
                 height: 150px;
-                position: relative;
-                top:30px;
-                left:0px;
-                display: inline-block;
+                float: left;
+                margin-right:20px;
                 .img-nochange{
                     position: absolute;
                     left:0;
                     top:0;
-                    width: 100%;
-                    height: 100%;
+                    width: 150px;
+                    height: 150px;
                     background-color: rgba(0,0,0,0.5);
                     color: #fff;
                     font-size: 30px;
@@ -569,19 +565,13 @@ export default {
             }
             .good-detail-title{
                 display: inline-block;
-                position: absolute;
                 width: 336px;
-                top:30px;
-                left:200px;
-                display: -webkit-box;
-                -webkit-box-orient: vertical;
-                -webkit-line-clamp: 2;
-                overflow: hidden;
                 .name{
                     display: inline-block;
                     margin-bottom: 24px;
                     color: #333;
-                    font-size: 22px
+                    font-size: 22px;
+                    line-height: 26px;
                 }
                 .guige{
                     color: #666;
@@ -664,7 +654,7 @@ export default {
                 z-index: 1;
             }
             .van-swipe-cell{
-                height: 210px;
+                min-height: 210px;
                 z-index: 5;
                 /deep/ .van-swipe-cell__wrapper{
                     height: 100%;
