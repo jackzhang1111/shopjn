@@ -10,11 +10,14 @@
                                 <div class="tab-con" v-for="(account,index) in dataList" :key="index">
                                     <div class="con-p1">
                                         <span>{{account.listNo}}</span>
-                                        <span>{{account.paidTime}}</span>
+                                        <span class="fl-right">{{account.paidTime}}</span>
                                     </div>
                                     <div class="con-p2">
                                         <span>{{orderStatus(account.accountMode,'accountList')}}</span>
                                         <span>{{jn}}{{account.amount}}</span>
+                                    </div>
+                                    <div class="con-p4" v-if="account.giveMoney > 0 && account.accountType==1">
+                                        <span>Get {{jn}}{{account.giveMoney}} for free.</span>
                                     </div>
                                     <div class="con-p3">
                                         <span>Serial No:</span>
@@ -196,6 +199,7 @@ export default {
                 padding: 30px;
                 background-color: #fff;
                 margin-bottom: 20px;
+                overflow: hidden;
                 .con-p1{
                     span{
                         &:nth-child(1){
@@ -208,7 +212,8 @@ export default {
                     }
                 }
                 .con-p2{
-                    margin:23px 0;
+                    margin:20px 0;
+                    height: 40px;
                     span{
                         &:nth-child(1){
                             font-size:26px;
@@ -237,6 +242,11 @@ export default {
                             font-size:24px;
                         }
                     }
+                }
+                .con-p4{
+                    text-align: right;
+                    margin-bottom: 10px;
+                    height: 30px;
                 }
             }
         }

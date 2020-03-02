@@ -20,7 +20,7 @@
                     <div class="p3">
                         {{detail.currencySignWebsite}}{{detail.priceWebsite}}
                     </div>
-                    <div class="p4 through">
+                    <div class="p4 through" v-if="detail.originPriceWebsite">
                         {{detail.currencySignWebsite}}{{detail.originPriceWebsite}}
                     </div>
                     <div class="p4">
@@ -53,7 +53,7 @@
                     <div class="lan" v-if="dfkData.orderStatusApp == 0">
                         <div class="btn-qzf fl-right c-orange" @click="payMoney(dfkData)">Pay Now</div>
                         <div class="btn-qxdd fl-right" @click="cancelOrder(dfkData.orderId)">Cancel Order</div>
-                        <div class="btn-xgdz fl-right" @click="toEditAddress">Change Address</div>
+                        <div class="btn-xgdz fl-right" @click="toEditAddress" v-if="false">Change Address</div>
                     </div>
                     <!-- 待收货按钮栏 -->
                     <div class="lan" v-if="dfkData.orderStatusApp == 2 && dfkData.canComplete == 1" @click="receiGood(dfkData)">

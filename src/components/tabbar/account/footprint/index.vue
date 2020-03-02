@@ -255,7 +255,11 @@ export default {
                     item.isfavorites = 1
                 }
             })
-        }
+        },
+        //跳转商品详情
+        toDetail(skuid){
+            this.$router.push({name:'商品详情',query:{skuId:skuid}})
+        },
 
     },
     components: {   

@@ -72,7 +72,7 @@ mainAxios.interceptors.response.use(function (response) {
         let data = response.data
         if(data.code < 0){
             if(data.code == -1){
-                data.msg = "Token cannot be null"
+                data.msg = "Please login again"
                 setTimeout(()=>{main.$router.replace({name: '登录'})},1000)
             }else if(data.code == -2){
                 data.msg = "No account information! Please login again."
@@ -118,7 +118,7 @@ parkAxios.interceptors.response.use(function (response) {
         let data = response.data
         if(data.code < 0){
             if(data.code == -1){
-                data.msg = "Token cannot be null"
+                data.msg = "Please login again"
                 setTimeout(()=>{main.$router.replace({name: '登录'})},1000)
             }else if(data.code == -2){
                 data.msg = "No account information! Please login again."

@@ -38,7 +38,7 @@ export default {
             payTypeList:[
                 {
                     type: 201,
-                    name: "余额支付"
+                    name: "Balance"
                 }
             ],
             list:[],

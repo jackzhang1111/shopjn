@@ -34,10 +34,10 @@
             <div class="p3-header">Product Info</div>
             <div class="good-detail">
                 <div class="good-detail-content" v-for="data in dataList" :key="data.detailId">
-                    <div class="good-detail-img" @click="jumpRouter('商品详情')">
+                    <div class="good-detail-img" @click="toDetail(data.skuId)">
                         <img :src="$webUrl+data.skuImg">
                     </div>
-                    <div class="good-detail-title" @click="jumpRouter('商品详情')">
+                    <div class="good-detail-title" @click="toDetail(data.skuId)">
                         <span class="name">{{data.skuName}}</span>
                         <div class="guige">
                             {{data.skuValuesTitleEng}}
@@ -116,7 +116,7 @@
         <div class="good-detail-footer">
             <!-- 待付款按钮栏 -->
             <div class="btn-qzf fl-right c-orange" @click="showPay" v-if="detailObj.orderStatusApp == 0">Pay Now</div>
-            <div class="btn-xgdz fl-right" @click="toEditAddress" v-if="detailObj.orderStatusApp == 0">Change Address</div>
+            <!-- <div class="btn-xgdz fl-right" @click="toEditAddress" v-if="detailObj.orderStatusApp == 0">Change Address</div> -->
             <div class="btn-xgdz fl-right" v-if="detailObj.orderStatusApp == 2 || detailObj.orderStatusApp == 3" @click="toLogistics(detailObj.orderId)">Check Logistics</div>
             <!-- <div class="btn-qzf fl-right c-orange" v-if="detailObj.orderStatusApp == 3">Review</div> -->
             <!-- <div class="btn-qzf fl-right c-orange" v-if="detailObj.orderStatusApp == 4">Delete</div> -->
@@ -209,9 +209,6 @@ export default {
     },
     methods: {
         ...mapActions(['setorderdetaillist']),
-        jumpRouter(name){
-            this.$router.push({name})
-        },
         orderinfo(){
             this.formData.order_id = this.$route.query.id
             orderinfoApi(this.formData).then(res => {
@@ -307,7 +304,11 @@ export default {
             clipboard.on('error', function() {
                 Toast('Failed! Please choose manual copy!')
             });
-        }
+        },
+        //跳转商品详情
+        toDetail(skuid){
+            this.$router.push({name:'商品详情',query:{skuId:skuid}})
+        },
     },
     components: {
         cancelOrder,

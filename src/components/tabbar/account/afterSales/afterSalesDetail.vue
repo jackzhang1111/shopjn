@@ -32,25 +32,29 @@
         <div class="address-p4">
             <div class="p4-middle">
                 <div class="middle-p1">
-                    <span class="c-999">Reason for refunding:</span>
-                    <span class="margin-l-40 c-333">{{detailData.reason}}</span>
+                    <span class="c-999 t-left">Reason for refunding:</span>
+                    <span class="t-right c-333">{{detailData.reason}}</span>
                 </div>
                 <div class="middle-p2">
-                    <span class="c-999">Refund No:</span>
-                    <span class="margin-l-40 c-333">{{detailData.orderSn}}</span>
+                    <span class="c-999 t-left">Refund No:</span>
+                    <span class="t-right c-333">{{detailData.orderSn}}</span>
                 </div>
                 <div class="middle-p1">
-                    <span class="c-999">No:</span>
-                    <span class="margin-l-40 c-333" id="orderSn">{{detailData.saleOrderSn}}</span>
+                    <span class="c-999 t-left">No:</span>
+                    <span class="t-right c-333" id="orderSn">{{detailData.saleOrderSn}}</span>
                     <span class="fl-right c-orange" ref="copy" data-clipboard-action="copy" data-clipboard-target="#orderSn" @click="copyLink">Copy</span>
                 </div>
                 <div class="middle-p1">
-                    <span class="c-999">Starts from:</span>
-                    <span class="margin-l-40 c-333">{{detailData.orderAddtimeWebsite}}</span>
+                    <span class="c-999 t-left">Starts from:</span>
+                    <span class="t-right c-333">{{detailData.orderAddtimeWebsite}}</span>
                 </div>
                 <div class="middle-p1">
-                    <span class="c-999">Total refund:</span>
-                    <span class="margin-l-40 c-orange">{{detailData.currencySignWebsite}}{{detailData.orderAmountWebsite}}</span>
+                    <span class="c-999 t-left">Freight:</span>
+                    <span class="t-right c-orange">{{detailData.currencySignWebsite}}{{detailData.orderFareWebsite}}</span>
+                </div>
+                <div class="middle-p1">
+                    <span class="c-999 t-left">Total refund:</span>
+                    <span class="t-right c-orange">{{detailData.currencySignWebsite}}{{detailData.orderAmountWebsite}}</span>
                 </div>
             </div>
         </div>
@@ -226,6 +230,15 @@ export default {
             font-size: 20px;
             color: #666;
             line-height:45px;
+            .t-left{
+                display: inline-block;
+                width: 260px;
+                vertical-align: top;
+            }
+            .t-right{
+                display: inline-block;
+                max-width: 350px;
+            }
         }
     }
     .address-p5{
@@ -378,8 +391,5 @@ export default {
             line-height: 40px;
         }
     }
-}
-.margin-l-40{
-    margin-left:40px
 }
 </style>

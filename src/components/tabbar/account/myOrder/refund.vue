@@ -26,6 +26,10 @@
                         </div>
                     </div>
                     <div class="tkje">
+                        <span class="t1">Freight:</span>
+                        <span class="fl-right t2">{{data.currencySignWebsite}}{{detailObj.orderFareWebsite}}</span>
+                    </div>
+                    <div class="tkje">
                         <span class="t1">Refund:</span>
                         <span class="fl-right t2">{{data.currencySignWebsite}}{{data.totalPriceWebsite}}</span>
                     </div>
@@ -320,6 +324,8 @@ export default {
         }
         .tkje{
             margin-left:170px;
+            height: 40px;
+            line-height: 40px;
             .t1{
                 color: #999;
                 font-size: 22px;

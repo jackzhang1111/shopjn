@@ -109,6 +109,8 @@ export default {
             getverificationcodeApi(data).then(res => {
                 if(res.code == 0){
                    this.$router.push({name:'重置支付密码'})
+                }else if(res.code == -110){
+                    Toast('Verification code is incorrect！')
                 }
             })
         }

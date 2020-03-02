@@ -423,6 +423,10 @@ export default {
                     }
                 })
             })
+            if(arr.length == 0){
+                Toast('Please choose the products you need to collect.')
+                return
+            }
             this.adduserfavorites(arr)
         },
         //加入收藏夹

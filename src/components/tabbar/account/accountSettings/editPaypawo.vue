@@ -5,17 +5,17 @@
         <div class="edit-paypawo-content">
             <div class="m-b-19">
                 <div class="cell">
-                    <input :type="inputType3" class="input-xt" placeholder="Enter payment password" v-model="formData.oldPwd">
+                    <input :type="inputType3" class="input-xt" placeholder="Enter payment password" v-model="formData.oldPwd" @input="inputFun" :maxlength="6">
                     <van-icon name="eye-o" class="pas-icon" v-if="eyeStuats3" @click="eyeStuats3 = !eyeStuats3"/>
                     <van-icon name="closed-eye"  class="pas-icon" v-else @click="eyeStuats3 = !eyeStuats3"/>
                 </div>
                 <div class="cell">
-                    <input :type="inputType" class="input-xt" placeholder="Enter new password" v-model="formData.userPwd">
+                    <input :type="inputType" class="input-xt" placeholder="Enter new password" v-model="formData.userPwd" @input="inputFun1" :maxlength="6">
                     <van-icon name="eye-o" class="pas-icon" v-if="eyeStuats" @click="eyeStuats = !eyeStuats"/>
                     <van-icon name="closed-eye"  class="pas-icon" v-else @click="eyeStuats = !eyeStuats"/>
                 </div>
                 <div class="cell">
-                    <input :type="inputType2" class="input-xt" placeholder="Re-enter the new password" v-model="formData.userPwd2">
+                    <input :type="inputType2" class="input-xt" placeholder="Re-enter the new password" v-model="formData.userPwd2" @input="inputFun2" :maxlength="6">
                     <van-icon name="eye-o" class="pas-icon" v-if="eyeStuats2" @click="eyeStuats2 = !eyeStuats2"/>
                     <van-icon name="closed-eye"  class="pas-icon" v-else @click="eyeStuats2 = !eyeStuats2"/>
                 </div>
@@ -85,6 +85,15 @@ export default {
         //保存
         submit(){
             this.updateuserpaypassword(this.formData)
+        },
+        inputFun(e){
+            this.formData.oldPwd=e.target.value.replace(/[^\d]/g,'');
+        },
+        inputFun1(e){
+            this.formData.userPwd=e.target.value.replace(/[^\d]/g,'');
+        },
+        inputFun2(e){
+            this.formData.userPwd2=e.target.value.replace(/[^\d]/g,'');
         }
     },
     components: {

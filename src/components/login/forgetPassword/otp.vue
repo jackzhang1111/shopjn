@@ -101,6 +101,8 @@ export default {
             getverificationcodeApi(data).then(res => {
                 if(res.code == 0){
                     this.$router.push({name:'修改密码',query:{phone:this.jiaoyan.msg_phone,verCode:this.verCode}})
+                }else if(res.code == -110){
+                    Toast('Verification code is incorrect！')
                 }
             })
         }
