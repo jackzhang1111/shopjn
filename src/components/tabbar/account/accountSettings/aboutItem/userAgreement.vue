@@ -1,7 +1,7 @@
 <template>
 <!-- 用户协议 -->
     <div>
-        <div class="title">User Agreement </div>
+        <div class="title" v-if="showTitle">User Agreement </div>
         <p>
             <span class='jiacu'>
                 I.Confirmation and Acceptance of the Terms of Service
@@ -103,7 +103,10 @@
 <script>
 export default {
     props: {
-
+        showTitle:{
+            type:Boolean,
+            default:true
+        }
     },
     data() {
         return {

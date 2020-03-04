@@ -17,7 +17,10 @@
                             <van-col span="7" v-for="product in rightGoods.productCategory" :key="product.categoryId">
                                 <div class="sanji" @click="toSearOne(product.categoryId)">
                                     <img :src="$webUrl+product.categoryImg">
-                                    <span class="name">{{product.classNameEng}}</span>
+                                    <div class="parent">
+                                        <span class="name">{{product.classNameEng}}</span>
+                                    </div>
+                                    
                                 </div>
                             </van-col>
                         </van-row>
@@ -142,16 +145,22 @@ export default {
                     width: 160px;
                     height: 140px;
                 }
-                .name{
-                    display: inline-block;
-                    text-align: center;
+                .parent{
                     width: 100%;
                     height: 50px;
-                    line-height: 50px;
                     background-color: #fff;
-                    color: #333333;
-                    font-size: 20px;
+                    display:flex;
+                    text-align: center;
+                    .name{
+                        display:flex;
+                        width: 100%;
+                        align-items:center;/*垂直居中*/
+                        justify-content: center;/*水平居中*/
+                        color: #333333;
+                        font-size: 20px;
+                    }
                 }
+                
             }
         }
     }

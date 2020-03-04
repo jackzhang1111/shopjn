@@ -88,13 +88,14 @@ export default {
     watch: {
         goodName:{
             handler:function(newVal, oldVal){
-                this.lishiShow = newVal=='' ? true : false
+                this.lishiShow = newVal ?  false : true
             },
         },
         searName:{
             handler:function(newVal, oldVal){
-                this.lishiShow = newVal=='' ? true : false
+                this.lishiShow = newVal ?  false : true
                 this.goodName = newVal
+                if(newVal == undefined) return
                 this.searchGood(newVal)
             },
         }

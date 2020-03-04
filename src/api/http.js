@@ -12,7 +12,7 @@ const mainAxios = axios.create({
 });
 
 const parkAxios = axios.create({
-    timeout: 10000,
+    timeout: 20000,
     headers: {
         'Content-Type':'application/json;charset=utf-8'
     },

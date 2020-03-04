@@ -1,7 +1,7 @@
 <template>
 <!-- 平台介绍 -->
     <div class="introduce">
-        <div class="title">ABOUT TOSPINO APP</div>
+        <div class="title" v-if="showTitle">ABOUT TOSPINO APP</div>
         <p>
             <br>Severing as a cross-border online shopping mall, TOSPINO APP focuses on B2B e-commercial trading and providing global wholesale and purchasing services of multiple products to retailers by intelligent, high-effective online businesses.
             <br>With an export experience lasting for 10 years, it has developed multiple professional trading channels. It collected excellent brands and outstanding products all over China through a more comprehensive supply chain. Its categories are more integrated while prices are far better for businessmen. To perfect user experiences, TOSPINO takes mobile internet as its useful and effective trading tool. That means users can purchase any quantity of products online, anywhere and anytime. What’s more, they can choose different payments when order goods, including pay by Balance, Paypal, or Cash.
@@ -27,7 +27,10 @@
 <script>
 export default {
     props: {
-
+        showTitle:{
+            type:Boolean,
+            default:true
+        }
     },
     data() {
         return {

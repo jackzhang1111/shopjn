@@ -118,13 +118,14 @@ export default {
         this.searName = this.$route.query.seraname
         this.refreshOrder()
     },
-    beforeRouteLeave(to, from, next){
-        if(to.name == '首页'){
-            this.isgo = false
-        }else{
-            this.isgo = true
-        }
-        next()
+    beforeRouteEnter (to, from, next) {
+        next( vm => {
+            if(from.name == '首页'){
+                vm.isgo = false
+            }else{
+                vm.isgo = true
+            }
+        })
     },
     
     watch: {
@@ -153,13 +154,12 @@ export default {
         },
         //输入框获得焦点时触发
         onfocus(){
+            this.$store.state.serchName = this.searName
             if(this.isgo){
                 this.$router.go(-1)
             }else{
                 this.$router.push({name:'历史记录'})
             }
-            
-            this.$store.state.serchName = this.searName
         },
         //输入框内容变化时触发
         getInputVal(value){

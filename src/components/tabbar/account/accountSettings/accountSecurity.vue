@@ -48,7 +48,11 @@ export default {
         return {
             title:'Account and Security',
             isBace:true,
-            userinfoShop:null
+            userinfoShop:{
+                nickName:'',
+                mobile:'',
+                email:'',
+            }
         };
     },
     computed: {
@@ -61,7 +65,6 @@ export default {
         if(localStorage.userinfoShop){
             this.userinfoShop = JSON.parse(localStorage.userinfoShop)
         }
-        console.log(this.userinfoShop,'this.userinfoShop');
     },
     watch: {
 

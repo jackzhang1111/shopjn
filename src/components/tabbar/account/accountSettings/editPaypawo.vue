@@ -84,6 +84,14 @@ export default {
         },
         //保存
         submit(){
+            if(this.formData.oldPwd.length < 6 || this.formData.userPwd.length < 6 ||this.formData.userPwd2.length < 6){
+                Toast('All passwords should contain 6 figures.')
+                return
+            }
+            if(this.formData.userPwd.length != this.formData.userPwd2.length){
+                Toast('The entered password isn’t consistent with the one confirmed.')
+                return
+            }
             this.updateuserpaypassword(this.formData)
         },
         inputFun(e){

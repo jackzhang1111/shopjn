@@ -1,7 +1,7 @@
 <template>
 <!-- 帮助中心 -->
     <div class="help-center">
-        <div class="title">Tospino’s Help Center</div>
+        <div class="title" v-if="showTitle">Tospino’s Help Center</div>
         <p>
             <br><span class='jiacu'>1.My Order</span>
             <br><span class='jiacu'>①Change/Cancel the Order</span>
@@ -115,7 +115,10 @@
 <script>
 export default {
     props: {
-
+        showTitle:{
+            type:Boolean,
+            default:true
+        }
     },
     data() {
         return {

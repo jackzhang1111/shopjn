@@ -6,20 +6,21 @@
             <div class="item-title">Account Info</div>
             <div class="create-user">
                 <van-cell-group>
-                    <van-field v-model="formData.nickName" placeholder="User's name"/>
+                    <van-field v-model="formData.nickName" placeholder="User's name" :maxlength="20"/>
                     <div class="iphone-option">
-                        <select name=""> 
-                            <option value="0">+233</option> 
+                        <select ref="mobilecode"> 
+                            <option value="233">+233</option> 
+                            <option value="86">+86</option> 
                         </select> 
                     </div>
-                    <van-field v-model="formData.mobile" placeholder="Enter your phone number"  class="zyyw aaa"/>
-                    <van-field v-model="formData.smsCode" placeholder="Enter verification code" class="register-otp">
+                    <van-field v-model="formData.phone" placeholder="Enter your phone number"  class="zyyw aaa" type="number" :maxlength="10"/>
+                    <van-field v-model="formData.smsCode" placeholder="Enter verification code" class="register-otp" :maxlength="6">
                         <div slot="button" class="daojishi" @click="getCode" v-show="countTrue">{{countdown}}</div>
                         <div slot="button" class="daojishi" v-show="!countTrue">{{count}}S</div>
                     </van-field>
                     <van-field v-model="formData.email" placeholder="Enter your email(optional fields)" class="zyyw"/>
-                    <van-field v-model="formData.userPwd" clearable :right-icon="eyeName" placeholder="Set a password(6-20 characters)" @click-right-icon="eyeStatus = !eyeStatus" class="password" :type="fieldType" />
-                    <van-field v-model="formData.userPwd2" placeholder="Confirm your password" type="password" class="zyyw"/>
+                    <van-field v-model="formData.userPwd" clearable :right-icon="eyeName" placeholder="Set a password(6-20 characters)" @click-right-icon="eyeStatus = !eyeStatus" class="password" :type="fieldType" :maxlength="20"/>
+                    <van-field v-model="formData.userPwd2" clearable :right-icon="eyeName1" placeholder="Confirm your password" class="zyyw" :maxlength="20" @click-right-icon="eyeStatus1 = !eyeStatus1" :type="fieldType1"/>
                 </van-cell-group>
             </div>
             <div class="item-title">Company Info</div>
@@ -99,9 +100,9 @@
                 <input type="checkbox" class="checkbox" v-model="xieyi">
                 <span>
                     <span>I have read and agree to the</span>
-                    <span class="c-orange">Terms of Use</span>
+                    <span class="c-orange"  @click="userStatus=true">Terms of Use</span>
                     <span>and</span>
-                    <span class="c-orange">Privacy Policy.</span>
+                    <span class="c-orange" @click="zhengce=true">Privacy Policy.</span>
                 </span>
             </div>
             <div class="confirm-btn" @click="toRevise">
@@ -121,6 +122,35 @@
                 <div class="txt2">You have successfully registered.</div>
             </div>
         </van-popup>
+
+        <zhezhao v-if="zhengce">
+            <div class="tanchuang">
+                <div class="tanchuang-header">
+                    <span>Privacy Policy</span>
+                    <div class="fl-right">
+                        <van-icon name="cross" @click="zhengce=false"/>
+                    </div>
+                </div>
+                <div class="tanchuang-content">
+                    <yinsi :showTitle="false"></yinsi>
+                </div>
+            </div>
+        </zhezhao>
+
+        <zhezhao v-if="userStatus">
+            <div class="tanchuang">
+                <div class="tanchuang-header">
+                    <span>User Agreement</span>
+                    <div class="fl-right">
+                        <van-icon name="cross" @click="userStatus=false"/>
+                    </div>
+                </div>
+                <div class="tanchuang-content">
+                    <user-agreement :showTitle="false"></user-agreement>
+                </div>
+            </div>
+        </zhezhao>
+
     </div>
 </template>
 
@@ -132,6 +162,9 @@ import uploadOne from '@/multiplexing/uploadOne'
 import choiceList from '@/multiplexing/choiceList.vue'
 import {msglistApi} from '@/api/login/index.js'
 import {Toast} from 'vant'
+import zhezhao from '@/multiplexing/zhezhao'
+import yinsi from '@/components/tabbar/account/accountSettings/aboutItem/privacyPolicy.vue'
+import userAgreement from '@/components/tabbar/account/accountSettings/aboutItem/userAgreement.vue'
 export default {
     props: {
 
@@ -147,14 +180,18 @@ export default {
             show:false,
             show2:false,
             eyeStatus:false,
+            eyeStatus1:false,
             choiceShow:true,
             isBace:true,
             registDisabled:true,
             eyeName:'closed-eye',
+            eyeName1:'closed-eye',
             fieldType:'password',
+            fieldType1:'password',
             fileList:[],
             formData:{
                 nickName:'',//用户名称
+                phone:'',
                 mobile:'',//用户手机号码
                 mobileCode:'233',//用户手机号码所在国家的编号
                 smsCode:'',//验证码
@@ -178,7 +215,7 @@ export default {
                     required: true,
                     messages: "Enter account"
                 },
-                mobile:{
+                phone:{
                     required: true,
                     messages: "Enter phone number"
                 },
@@ -240,8 +277,10 @@ export default {
                 msgphone:'',
                 types:'1',
                 areaCode:'233'
-            }
-        };
+            },
+            zhengce:false,
+            userStatus:false
+        }
     },
     computed: {
         disabledSubmit() {
@@ -259,18 +298,44 @@ export default {
             handler:function(newVal, oldVal){
                 this.eyeStatus ? this.eyeName = 'eye-o':this.eyeName = 'closed-eye'
                 this.fieldType =  this.eyeStatus ? 'text' : 'password'
-                console.log(newVal,'newVal')
+            },
+        },
+        eyeStatus1:{
+            handler:function(newVal, oldVal){
+                this.eyeStatus1 ? this.eyeName1 = 'eye-o':this.eyeName1 = 'closed-eye'
+                this.fieldType1 =  this.eyeStatus1 ? 'text' : 'password'
             },
         },
     },
     methods: {
         toRevise(){
             if(!this.disabledSubmit) return
+            var emReg = /\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/ //正则表达式
+            if(this.formData.email == ''){
+                
+            }else if(!emReg.test(this.formData.email)){
+                Toast("The email form isn’t correct.")
+                return
+            }
+            if(this.formData.userPwd.length < 6){
+                Toast("Set a password(6-20 characters)!")
+                return
+            }
+            if(this.formData.userPwd != this.formData.userPwd2){
+                Toast("The entered password isn’t consistent with the one confirmed.")
+                return
+            }
+            this.formData.mobileCode = this.$refs.mobilecode.value
+            var phoneReg = /^[1-9]\d*$/;
+            if(!phoneReg.test(this.formData.phone)){
+                this.formData.mobile = this.formData.phone.substring(1)
+            }else{
+                this.formData.mobile = this.formData.phone
+            }
             this.userregister()
         },
         getCode(){
-            console.log(this.formData,'this.formData');
-            if(this.formData.mobile == ''){
+            if(this.formData.phone == ''){
                 Toast('Enter phone number')
                 return
             }
@@ -288,7 +353,12 @@ export default {
                     }
                 }, 1000)
             }
-            
+            var phoneReg = /^[1-9]\d*$/;
+            if(!phoneReg.test(this.formData.phone)){
+                this.formData.mobile = this.formData.phone.substring(1)
+            }else{
+                this.formData.mobile = this.formData.phone
+            }
             this.yzmData.msgphone = this.formData.mobile
             this.msglist(this.yzmData)
         } ,
@@ -369,7 +439,7 @@ export default {
         userregister(){
             userregisterApi(this.formData).then(res => {
                 if(res.code == 0){
-                    localStorage.mobile = res.user.mobile
+                    localStorage.phone = res.user.phone
                     this.show2 = true
                     setTimeout(()=>{
                         this.$router.push({name:'登录'})
@@ -393,7 +463,10 @@ export default {
     components: {
         navar,
         uploadOne,
-        choiceList
+        choiceList,
+        zhezhao,
+        yinsi,
+        userAgreement
     },
 };
 </script>
@@ -608,6 +681,29 @@ export default {
                 margin-left:120px;
                 
             }
+        }
+    }
+    .tanchuang{
+        height: 80%;
+        margin: 80px 30px;
+        background-color: #fff;
+        .tanchuang-header{
+            height: 109px;
+            line-height: 109px;
+            font-size:36px;
+            text-align: center;
+            color: #333;
+            font-weight:bold;
+            padding: 0 40px;
+            border-bottom: 1px solid #C9C9C9;
+            div{
+                display: inline-block;
+            }
+        }
+        .tanchuang-content{
+            max-height: 85%;
+            overflow: auto;
+            padding-top: 29px;
         }
     }
 }

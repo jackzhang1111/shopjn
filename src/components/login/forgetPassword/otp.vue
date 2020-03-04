@@ -85,7 +85,14 @@ export default {
             this.msglist(this.yzmData)
         },
         //验证码
-        msglist(data){
+        msglist(date){
+            let data = Object.assign({},date)
+            var phoneReg = /^[1-9]\d*$/;
+            if(!phoneReg.test(data.msgphone)){
+                data.msgphone = data.msgphone.substring(1)
+            }else{
+                data.msgphone = data.msgphone
+            }
             msglistApi(data).then(res => {
                 if(res.code == 0){
                     
@@ -97,7 +104,14 @@ export default {
             })
         },
         //校验验证码是否正确的接口
-        getverificationcode(data){
+        getverificationcode(date){
+            let data = Object.assign({},date)
+            var phoneReg = /^[1-9]\d*$/;
+            if(!phoneReg.test(data.msg_phone)){
+                data.msg_phone = data.msg_phone.substring(1)
+            }else{
+                data.msg_phone = data.msg_phone
+            }
             getverificationcodeApi(data).then(res => {
                 if(res.code == 0){
                     this.$router.push({name:'修改密码',query:{phone:this.jiaoyan.msg_phone,verCode:this.verCode}})

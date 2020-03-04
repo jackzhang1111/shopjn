@@ -10,7 +10,7 @@
                 <select name=""> 
                     <option value="0">+233</option> 
                 </select> 
-                <input type="text" class="name-input" placeholder="Enter your user name" v-model="userData.username">
+                <input type="text" class="name-input" placeholder="Enter your user name" v-model="userData.username1">
             </div>
         </div>
         <div class="pass-word">
@@ -94,9 +94,10 @@ export default {
             userData:{
                 username:'',
                 password:'',
+                username1:'',
             },
             rules:{
-                username:{
+                username1:{
                     required: true,
                     messages: "Enter login username"
                 },
@@ -119,7 +120,7 @@ export default {
     },
     mounted() {
         if(localStorage.mobile){
-            this.userData.username = localStorage.mobile
+            this.userData.username1 = localStorage.mobile
         }
         window.addEventListener("keyup",this.keyupEnter,false);
     },
@@ -141,6 +142,13 @@ export default {
         //登录按钮
         logIn(){
             if(this.disabledSubmit){
+                var phoneReg = /^[1-9]\d*$/;
+                if(!phoneReg.test(this.userData.username1)){
+                    this.userData.username = this.userData.username1.substring(1)
+                }else{
+                    this.userData.username = this.userData.username1
+                }
+
                 loginApi(this.userData).then(res => {
                     if(res.code == 0){
                         localStorage.token = res.token

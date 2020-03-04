@@ -116,14 +116,12 @@ export default {
         },
         //下拉刷新
         _pulldown() {
-            return
             setTimeout(()=>{
                 this.refreshOrder()
             },500)
         },
         //上拉加载
         _pullup() {
-            return
             if(!this.pullup) return
             //不知道为什么触发两次,使用关门狗拦截
             if(this.guanmengou){

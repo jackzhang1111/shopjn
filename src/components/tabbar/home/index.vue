@@ -509,7 +509,7 @@ export default {
                         font-size: 20px;
                         color: #333333;
                         margin-top:9px;
-                        height: 50px;
+                        height: 40px;
                     }
                     .good-price1{
                         display: inline-block;
@@ -657,7 +657,7 @@ export default {
                     }
                     .good-name{
                         padding: 0 12px;
-                        height: 48px;
+                        height: 29px;
                         display: -webkit-box;
                         -webkit-box-orient: vertical;
                         -webkit-line-clamp: 2;

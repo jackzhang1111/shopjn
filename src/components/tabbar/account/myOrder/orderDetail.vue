@@ -47,7 +47,7 @@
                         <div class="p3">
                             {{data.currencySignWebsite}}{{data.priceWebsite}}
                         </div>
-                        <div class="p4 through">
+                        <div class="p4 through" v-if="data.originPriceWebsite">
                             {{data.currencySignWebsite}}{{data.originPriceWebsite}}
                         </div>
                         <div class="p4">

@@ -8,9 +8,8 @@
                 </div>
                 <div class="p1">
                     <span>{{attrTitleEng}}</span>
-                </div>
-                <div class="p2">
-                    <span>{{jn}}{{sectionPrice}}</span>
+                    <span>tsinCode:{{tsinCode}}</span>
+                    <span class="c-orange">{{jn}}{{sectionPrice}}</span>
                 </div>
                 <van-icon name="cross" class="cross" @click="closeModal"/>
             </div>
@@ -94,6 +93,7 @@ export default {
             money:0,
             leijia:0,
             currentKey:-1,
+            tsinCode:''
         };
     },
     computed: {
@@ -158,6 +158,7 @@ export default {
             this.leftDataItem = this.dataList[0].tpproductskuattrvalue
             this.titleImg = this.leftDataItem[0].imgUrl
             this.attrTitleEng = this.leftDataItem[0].supplyTitle
+            this.tsinCode = this.leftDataItem[0].tsinCode
             this.sectionPrice = this.dataList[0].sectionPrice
             this.currentKey = -1
         },
@@ -166,6 +167,7 @@ export default {
             this.leftDataItem = this.dataList[index].tpproductskuattrvalue
             this.titleImg = this.leftDataItem[0].imgUrl
             this.attrTitleEng = this.leftDataItem[0].supplyTitle
+            this.tsinCode = this.leftDataItem[0].tsinCode
             this.sectionPrice = this.dataList[index].sectionPrice
             this.currentKey = -1
         },
@@ -284,6 +286,7 @@ export default {
         son(key){
             this.currentKey =  key
             this.attrTitleEng = this.leftDataItem[key].supplyTitle
+            this.tsinCode = this.leftDataItem[key].tsinCode
             setTimeout(()=>{this.sectionPrice = this.leftDataItem[key].skuPrice},100)
         },
         //根据商品skuid与商品数量获取优惠价
@@ -348,20 +351,13 @@ export default {
             top:29px;
             color: #010101;
             font-size: 26px;
-            line-height: 30px;
+            line-height: 40px;
             span{
                 display: -webkit-box;
                 -webkit-box-orient: vertical;
                 -webkit-line-clamp: 2;
                 overflow: hidden;
             }
-        }
-        .p2{
-            position: absolute;
-            top:111px;
-            left:259px;
-            color: #FA5300;
-
         }
         .cross{
             position: absolute;

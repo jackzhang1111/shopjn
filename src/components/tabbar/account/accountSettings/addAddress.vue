@@ -3,10 +3,10 @@
         <div v-show = choiceShow>
             <settings-header :title="title" title2="Save" @rightBtn="rightBtn"></settings-header>
         <div class="cell">
-            <input type="search" :class="{'c-333':isBace}" class="input-xt" placeholder="Receiver" v-model="form.shr">
+            <input type="search" :class="{'c-333':isBace}" class="input-xt" placeholder="Receiver" v-model="form.shr" :maxlength="20">
         </div>
         <div class="cell">
-            <input type="search" :class="{'c-333':isBace}" class="input-xt" placeholder="Phone Number" v-model="form.sjhm">
+            <input type="search" :class="{'c-333':isBace}" class="input-xt" placeholder="Phone Number" v-model="form.sjhm" :maxlength="11">
             <span class="hm c-999">+233</span>
             <van-icon name="arrow" class="arrow c-999"/>
         </div>
@@ -127,7 +127,20 @@ export default {
             this.$refs.choiceList.formData.parent_id = obj.parent_id
             this.$refs.choiceList.basearealist(obj)            
         },
+        //点击保存
         rightBtn(){
+            if(this.form.message == ''){
+                Toast('Fill in the details address.')
+                return
+            }
+            if(this.form.shr == ''){
+                Toast('Fill in the receiver.')
+                return
+            }
+            if(this.form.sjhm == ''){
+                Toast('Enter phone number')
+                return
+            }
             this.axiosAddress()
         },
         //判断是否编辑状态
