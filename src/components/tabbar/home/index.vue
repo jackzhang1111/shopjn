@@ -149,7 +149,7 @@
                                 </div>
                                 <div class="price">
                                     <span class="price1">{{jn}}{{searchgoodDao.discountPrice ?searchgoodDao.discountPrice : searchgoodDao.salePrice}}</span>
-                                    <span class="price2" v-if="searchgoodDao.discountPrice">{{searchgoodDao.salePrice}}</span>
+                                    <span class="price2" v-if="searchgoodDao.discountPrice">{{jn}}{{searchgoodDao.salePrice}}</span>
                                     <!-- <span class="poin">...</span> -->
                                 </div>
                             </div>

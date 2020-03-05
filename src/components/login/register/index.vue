@@ -13,7 +13,7 @@
                             <option value="86">+86</option> 
                         </select> 
                     </div>
-                    <van-field v-model="formData.phone" placeholder="Enter your phone number"  class="zyyw aaa" type="number" :maxlength="10"/>
+                    <van-field v-model="formData.phone" placeholder="Enter your phone number"  class="zyyw aaa" type="number" :maxlength="11"/>
                     <van-field v-model="formData.smsCode" placeholder="Enter verification code" class="register-otp" :maxlength="6">
                         <div slot="button" class="daojishi" @click="getCode" v-show="countTrue">{{countdown}}</div>
                         <div slot="button" class="daojishi" v-show="!countTrue">{{count}}S</div>
@@ -23,7 +23,7 @@
                     <van-field v-model="formData.userPwd2" clearable :right-icon="eyeName1" placeholder="Confirm your password" class="zyyw" :maxlength="20" @click-right-icon="eyeStatus1 = !eyeStatus1" :type="fieldType1"/>
                 </van-cell-group>
             </div>
-            <div class="item-title">Company Info</div>
+            <div class="item-title">Company Info(optional fields)</div>
             <div class="create-user">
                 <van-cell-group class="m-10-b border-0">
                     <van-field v-model="formData.companyName" placeholder="Company's name"/>
@@ -59,7 +59,7 @@
 
                 
             </div>
-            <div class="item-title">Shot&Upload</div>
+            <div class="item-title">Shot&Upload(optional fields)</div>
             <div class="create-user">
                 <div class="uploader">
                     <van-row type="flex" justify="space-between">
@@ -231,18 +231,6 @@ export default {
                     required: true,
                     messages: "Confirm the password"
                 },
-                companyName:{
-                    required: true,
-                    messages: "Enter company name"
-                },
-                mainBusiness:{
-                    required: true,
-                    messages: "Choose your major business"
-                },
-                companyAreaId:{
-                    required: true,
-                    messages: "Choose company address"
-                }
             },
             form:{
                 lev1:null,
@@ -360,6 +348,7 @@ export default {
                 this.formData.mobile = this.formData.phone
             }
             this.yzmData.msgphone = this.formData.mobile
+            this.yzmData.areaCode = this.$refs.mobilecode.value
             this.msglist(this.yzmData)
         } ,
         getfilePath(path,imgName){
@@ -492,7 +481,7 @@ export default {
         height: 52px;
         position: absolute;
         top:115px;
-        left:15px;
+        right:70px;
         z-index: 2;
     }
     .create-user{
@@ -590,15 +579,17 @@ export default {
     }
     .item-title{
         background-color: #666666;
-        width:280px;
+        // width:280px;
+        display: inline-block;
         height:60px;
         color: #fff;
         font-size: 36px;
         text-align: center;
         line-height: 60px;
         margin: 39px 0 20px 30px;
+        padding: 0 30px;
         &:nth-child(2){
-            margin-top:0
+            margin-top:10px
         }
     }
     .to-login{
@@ -678,7 +669,7 @@ export default {
     .aaa{
         /deep/ .van-cell__value{
             .van-field__body{
-                margin-left:120px;
+                // margin-left:120px;
                 
             }
         }

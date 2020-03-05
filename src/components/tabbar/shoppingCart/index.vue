@@ -29,7 +29,7 @@
                         </div> -->
                         <div class="good-price">
                             <span class="price-p1">{{jn}}{{dataitem.discountPrice ? dataitem.discountPrice : dataitem.salePrice}}</span>
-                            <!-- <span class="price-p2" v-if="dataitem.discountPrice">{{dataitem.salePrice}}</span> -->
+                            <span class="price-p2" v-if="dataitem.discountPrice">{{dataitem.salePrice}}</span>
                             <van-stepper class="price-quantity" v-model="dataitem.shopNumber" :min="dataitem.numIntervalStart" :max="dataitem.canSalesNum" @change="changeStepper(dataitem)" />
                             <span class="price-batch">MOQ{{dataitem.numIntervalStart}}Pcs</span>
                         </div>
@@ -605,11 +605,21 @@ export default {
                     line-height: 36px;
                     position: absolute;
                     right:0;
+                    top:40px;
                     /deep/ .van-stepper__input{
                         width: 76px
                     }
                 }
-                .price-batch,.price-batch-right{
+                .price-batch{
+                    width: 162px;
+                    height: 24px;
+                    display: inline-block;
+                    position: absolute;
+                    top:85px;
+                    left:270px;
+                    font-size: 24px
+                }
+                .price-batch-right{
                     width: 162px;
                     height: 24px;
                     display: inline-block;

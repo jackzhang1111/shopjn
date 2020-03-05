@@ -114,6 +114,10 @@ export default {
             display: flex;
             justify-content: center;
             align-items: center;
+            // border-left:15px solid red;
+        }
+        .van-sidebar-item--select{
+            border-left:15px solid red;
         }
     }
     .classify-right{

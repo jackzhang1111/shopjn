@@ -8,7 +8,7 @@
                 </div>
                 <div class="p1">
                     <span>{{attrTitleEng}}</span>
-                    <span>tsinCode:{{tsinCode}}</span>
+                    <span>TSIN:{{tsinCode}}</span>
                     <span class="c-orange">{{jn}}{{sectionPrice}}</span>
                 </div>
                 <van-icon name="cross" class="cross" @click="closeModal"/>
@@ -391,7 +391,7 @@ export default {
             }
             /deep/ .van-sidebar-item--select{
                 background-color: #F2F3F5;
-                
+                border-left:15px solid red;
             }
         }
         .selection-right{

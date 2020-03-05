@@ -10,7 +10,7 @@
                 <select name=""> 
                     <option value="0">+233</option> 
                 </select> 
-                <input type="text" class="name-input" placeholder="Enter your user name" v-model="userData.username1">
+                <input type="text" class="name-input" placeholder="Enter your username" v-model="userData.username1">
             </div>
         </div>
         <div class="pass-word">
@@ -206,7 +206,7 @@ export default {
             margin-left:20px;
         }
         .name-input{
-            width: 380px;
+            width: 300px;
             border: 0;
         }
     }

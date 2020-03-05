@@ -38,10 +38,10 @@
                     </div>
                     <div class="miaoshu">
                         <span class="p4">{{detailmData.supplyTitle}}</span>
-                        <span>
+                        <!-- <span>
                             <img src="@/assets/img/tabbar/home/commodityDetails/share-02@2x.png" class="fenxiang">
                             <span class="fenxiang-txt">Share</span>
-                        </span>
+                        </span> -->
                     </div>
                     <div class="supplement" v-if="false">
                         <span class="t1">物流</span>
@@ -420,10 +420,10 @@ export default {
                     position: absolute;
                     display: inline-block;
                     width: 2px;
-                    height: 50px;
+                    height: 70px;
                     background-color: #DCDCDC;
-                    top:3px;
-                    left:60px;
+                    top:-15px;
+                    left:80px;
                 }
             }
         }
