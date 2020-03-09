@@ -178,8 +178,13 @@ export default {
         operationNumber(type,data){
             let arr = []
             if(type=='jian'){
-                if(data.shopNumber == 0 || data.shopNumber<=data.numIntervalStart) return
-                data.shopNumber--
+                if(data.shopNumber == 0) {
+                    return
+                }else if(data.shopNumber <= data.numIntervalStart){
+                    data.shopNumber = 0
+                }else{
+                    data.shopNumber--
+                }
             }else{
                 if(data.shopNumber<data.numIntervalStart){
                     data.shopNumber = data.numIntervalStart

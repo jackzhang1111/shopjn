@@ -266,7 +266,8 @@ export default {
         showsucess(){
             this.$refs.sucess.showAction = true
             setTimeout(()=>{
-                this.$router.push({name:'我的订单',query:{active:2}})
+                this.$router.push({name:'我的订单'})
+                sessionStorage.setItem("activeIndex", 2);
             },1000)
         },
         //弹出密码框
@@ -357,7 +358,8 @@ export default {
                 if(res.code == 0){
                     //支付方式为货到付款,直接跳转到我的订单(待发货)
                     if(this.zffs == 1){
-                        this.$router.push({name:'我的订单',query:{active:2}})
+                        this.$router.push({name:'我的订单'})
+                        sessionStorage.setItem("activeIndex", 2);
                     }else{
                         //弹出支付弹框
                         this.showpaymen()

@@ -7,7 +7,7 @@
                 <span class="dqmr" v-if="data.isDefault == 1">Default</span>
             </div>
             <div class="content-p2">
-                <span>Shipping Address:{{data.addreCitys}} {{data.userAddress}}</span>
+                <span class="break-word">Shipping Address:{{data.addreCitys}} {{data.userAddress}}</span>
             </div>
             <div class="content-p3">
                 <span>Zip Code:{{data.areaCode}}</span>
@@ -129,6 +129,9 @@ export default {
             line-height:36px;
             color: #333;
             margin-bottom: 20px;
+            .break-word{
+                word-wrap:break-word
+            }
         }
         .content-btns{
             position: relative;

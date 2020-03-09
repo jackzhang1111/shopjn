@@ -68,6 +68,7 @@ export function gethttpimgurlApi(params) {
     return park({
         url:'/h5login/gethttpimgurl',
         method: 'POST',
-        data:params
+        data:params,
+        loading:'jianadizhi'
     })
 }

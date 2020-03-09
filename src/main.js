@@ -10,7 +10,7 @@ import 'vant/lib/index.css'
 import '@/assets/css/common.less'
 import '@/assets/css/animation.less'
 import './assets/font/font_501137_8uegssallpv/iconfont.css'
-import {isDisabled,formValidate,strTrim,objTrim,priceReg,objDeepCopy,deepnull} from '@/common/utils.js'
+import {isDisabled,formValidate,strTrim,objTrim,priceReg,objDeepCopy,deepnull,MyLocalStorage} from '@/common/utils.js'
 import store from './store'
 import * as mycomponents from '@/common/mycomponents.js'
 import VueScroller from "vue-scroller"
@@ -42,7 +42,8 @@ Vue.prototype.$fn = {
   strTrim,
   objTrim,
   priceReg,
-  deepnull
+  deepnull,
+  MyLocalStorage
 }
 
 

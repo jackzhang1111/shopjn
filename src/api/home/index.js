@@ -13,6 +13,7 @@ export function HomePagebottomApi(params) {
     return park({
         url:`/apphomepage/HomePagebottom`,
         method: 'POST',
-        data:params
+        data:params,
+        loading:'shouyedibu'
     })
 }

@@ -2,7 +2,7 @@
 <!-- 首页 -->
     <div class="home">
         <search-header></search-header>
-        <scroll class="bscroll-wrapper" ref="wrapper" :data="recordGroup" :pullup="pullup" @pullup="_pullup" :scrollX="true">
+        <scroll class="bscroll-wrapper" ref="wrapper" :data="recordGroup" :pullup="pullup" @pullup="_pullup" :pulldown="pulldown" @pulldown="_pulldown" :scrollX="true">
             <div>
                 <div class="commodity-swipe">
                     <van-swipe @change="onChange">
@@ -209,6 +209,7 @@ export default {
             leng:1,
             recordGroup:[],
             pullup:true,
+            pulldown:true,
             guanmengou:true,
             codeUrl: '',
             topBananerList:[
@@ -226,7 +227,21 @@ export default {
 
     },
     mounted() {
-        this.homePage()
+        this.$fn.MyLocalStorage.Cache.get('homeObj')
+        if(localStorage.homeObj){
+            this.homeObj = this.$fn.MyLocalStorage.Cache.get('homeObj')
+            this.globalProList = this.homeObj['producteFineBrand'].slice(3)
+            this.brandLogo1.brandLogo = this.homeObj['producteFineBrand'][0].brandLogo
+            this.brandLogo1.brandId = this.homeObj['producteFineBrand'][0].brandId
+            this.brandLogo2.brandLogo = this.homeObj['producteFineBrand'][1].brandLogo
+            this.brandLogo2.brandId = this.homeObj['producteFineBrand'][1].brandId
+            this.brandLogo3.brandLogo = this.homeObj['producteFineBrand'][2].brandLogo
+            this.brandLogo3.brandId = this.homeObj['producteFineBrand'][2].brandId
+            this.fineSaleList1 = this.homeObj['productFineSale'].slice(0,3)
+            this.fineSaleList2 = this.homeObj['productFineSale'].slice(3)
+        }else{
+            this.homePage()
+        }
         this.refreshOrder()
         this.leng = this.topBananerList.length
     },
@@ -251,6 +266,9 @@ export default {
                     this.brandLogo3.brandId = this.homeObj['producteFineBrand'][2].brandId
                     this.fineSaleList1 = this.homeObj['productFineSale'].slice(0,3)
                     this.fineSaleList2 = this.homeObj['productFineSale'].slice(3)
+
+                    let time = 1000*60*60*24*2 //2天
+                    this.$fn.MyLocalStorage.Cache.put('homeObj',this.homeObj,time)
                 }
             })
         },
@@ -297,6 +315,13 @@ export default {
             }
             setTimeout(()=>{
                 this.guanmengou = true
+            },500)
+        },
+        //下拉刷新
+        _pulldown() {
+            setTimeout(()=>{
+                this.homePage()
+                this.refreshOrder()
             },500)
         },
         //刷新页面

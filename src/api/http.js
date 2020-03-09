@@ -52,6 +52,14 @@ parkAxios.interceptors.request.use(function (config) {
         duration:10000
       });
     config.transformRequest = [function (data) {
+        if(config.loading == 'shouyedibu'){
+            //首页底部
+            if(config.data.page == 1 && config.data.categoryId == 0){
+                Toast.clear();
+            }
+        }else if(config.loading == 'jianadizhi'){
+            Toast.clear();
+        }
         // 在请求之前对data传参进行格式转换
         data = JSON.stringify(data)
         return data

@@ -92,6 +92,10 @@ export default {
                 Toast('The entered password isn’t consistent with the one confirmed.')
                 return
             }
+            if(this.formData.userPwd == this.formData.oldPwd){
+                Toast('New password cannot be the same as the previous one. ')
+                return
+            }
             this.updateuserpaypassword(this.formData)
         },
         inputFun(e){
