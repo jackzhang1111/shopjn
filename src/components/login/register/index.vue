@@ -433,6 +433,12 @@ export default {
                     setTimeout(()=>{
                         this.$router.push({name:'登录'})
                     },2000)
+                }else if(res.code == -110){
+                    Toast('Incorrect verification code.')
+                }else if(res.code == -25){
+                    Toast('The phone number was registered.')
+                }else{
+                    Toast('error')
                 }
             })
         },
@@ -441,8 +447,18 @@ export default {
             msglistApi(data).then(res => {
                 if(res.code == 0){
                     
-                }else if(res.code == 1){
-                    Toast('A phone number cannot send over 20 messages a day')
+                }else if(res.code == 2){
+                    Toast('Failed sending')
+                }else if(res.code == -130){
+                    Toast('The phone number isn’t registered.')
+                }else if(res.code == -131){
+                    Toast('The phone number was frozen by system.')
+                }else if(res.code == -132){
+                    Toast('The phone number was deleted by system.')
+                }else if(res.code == -133){
+                    Toast('The phone number is still being approved')
+                }else if(res.code == -134){
+                    Toast('The phone number didn’t get the approval')
                 }else{
                     Toast('error')
                 }

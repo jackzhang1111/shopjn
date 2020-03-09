@@ -174,7 +174,7 @@ export default {
                 this.$refs.choiceList.addreData.lev2.name = this.form.lev2
                 this.$refs.choiceList.addreData.lev3.name = this.form.lev3
                 this.$refs.choiceList.addreData.lev4.name = this.form.lev4
-                this.title = '编辑收货地址'
+                this.title = 'Edit Shipping Address'
             }
         },
         axiosAddress(){

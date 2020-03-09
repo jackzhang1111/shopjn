@@ -29,7 +29,7 @@
                         </div> -->
                         <div class="good-price">
                             <span class="price-p1">{{jn}}{{dataitem.discountPrice ? dataitem.discountPrice : dataitem.salePrice}}</span>
-                            <span class="price-p2" v-if="dataitem.discountPrice">{{dataitem.salePrice}}</span>
+                            <span class="price-p2" v-if="dataitem.discountPrice">{{jn}}{{dataitem.salePrice}}</span>
                             <van-stepper class="price-quantity" v-model="dataitem.shopNumber" :min="dataitem.numIntervalStart" :max="dataitem.canSalesNum" @change="changeStepper(dataitem)" />
                             <span class="price-batch">MOQ{{dataitem.numIntervalStart}}Pcs</span>
                         </div>

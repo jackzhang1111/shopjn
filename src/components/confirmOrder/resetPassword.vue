@@ -7,7 +7,7 @@
             <div class="pass-word"> 
                 <span class="margin-l-30">New Password:</span>
                 <div class="input-con">
-                    <input :type="inputType" class="name-input bgc-moren" placeholder="password must cntain 6-20" v-model="formData.userPwd">
+                    <input :type="inputType" class="name-input bgc-moren" placeholder="password must cntain 6-20" v-model="formData.userPwd" @input="inputFun1" :maxlength="6">
                     <van-icon :name="eyeName" class="fl-right" @click="eyeStatus = !eyeStatus" size="18px"/>
                 </div>
                 <div class="line"></div>
@@ -15,7 +15,8 @@
             <div class="re-enter"> 
                 <span class="margin-l-30">Re-enter:</span>
                 <div class="input-con">
-                    <input :type="inputType2" class="name-input bgc-moren" placeholder="Re-enter the new password" v-model="formData.userPwd2">
+                    <input :type="inputType2" class="name-input bgc-moren" placeholder="Re-enter the new password" v-model="formData.userPwd2" @input="inputFun2" :maxlength="6">
+                    <van-icon :name="eyeName1" class="fl-right" @click="eyeStatus1 = !eyeStatus1" size="18px"/>
                 </div>
                  <div class="line"></div>
             </div>
@@ -37,7 +38,9 @@ export default {
     data() {
         return {
             eyeStatus:false,
+            eyeStatus1:false,
             eyeName:'closed-eye',
+            eyeName1:'closed-eye',
             inputType:'password',
             inputType2:'password',
             formData:{
@@ -62,14 +65,24 @@ export default {
                 this.eyeStatus ? this.inputType = 'text':this.inputType = 'password'
             },
         },
+        eyeStatus1:{
+            handler:function(newVal, oldVal){
+                this.eyeStatus1 ? this.eyeName1 = 'eye-o':this.eyeName1 = 'closed-eye'
+                this.eyeStatus1 ? this.inputType2 = 'text':this.inputType2 = 'password'
+            },
+        },
     },
     methods: {
         confirm(){
-            if(this.formData.userPwd != this.formData.userPwd2){
-                Toast('Inconsistent passwords')
-            }else{
-                this.setuserpaypassword(this.formData)
+            if(this.formData.userPwd.length < 6 ||this.formData.userPwd2.length < 6){
+                Toast('所有密码都请输入6位数字')
+                return
             }
+            if(this.formData.userPwd != this.formData.userPwd2){
+                Toast('密码与确认密码不一致')
+                return
+            }
+             this.setuserpaypassword(this.formData)
         },
         //设置支付密码
         setuserpaypassword(data){
@@ -78,6 +91,12 @@ export default {
                     this.$router.push({name:'支付密码设置成功'})
                 }
             })
+        },
+        inputFun1(e){
+            this.formData.userPwd=e.target.value.replace(/[^\d]/g,'');
+        },
+        inputFun2(e){
+            this.formData.userPwd2=e.target.value.replace(/[^\d]/g,'');
         }
     },
     components: {
@@ -113,7 +132,7 @@ export default {
             padding: 0 30px;
             .load-btn{
                 height:100%;
-                background-color: #999;
+                background:rgba(250,83,0,1);
                 font-size: 40px;
             }
         }

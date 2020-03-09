@@ -8,7 +8,7 @@
             <div class="pass-word"> 
                 <span class="margin-l-30">New password</span>
                 <div class="input-con">
-                    <input :type="inputType" class="name-input bgc-moren" placeholder="Enter a password(6-20 characters)" v-model="reviseData.userPwd">
+                    <input :type="inputType" class="name-input bgc-moren" placeholder="Enter a password(6-20 characters)" v-model="reviseData.userPwd" :maxlength="20" @input="inputFun">
                     <van-icon :name="eyeName" class="eye" @click="eyeStatus = !eyeStatus" size="18px"/>
                 </div>
                 <div class="line"></div>
@@ -16,7 +16,8 @@
             <div class="re-enter"> 
                 <span class="margin-l-30">Re-enter</span>
                 <div class="input-con">
-                    <input type="password" class="name-input bgc-moren" placeholder="Enter the password again" v-model="reviseData.userPwd2">
+                    <input :type="inputType2" class="name-input bgc-moren" placeholder="Enter the password again" v-model="reviseData.userPwd2" :maxlength="20" @input="inputFun1">
+                    <van-icon :name="eyeName1" class="fl-right" @click="eyeStatus1 = !eyeStatus1" size="18px"/>
                 </div>
                  <div class="line"></div>
             </div>
@@ -44,7 +45,9 @@ export default {
     data() {
         return {
             eyeStatus:false,
+            eyeStatus1:false,
             eyeName:'closed-eye',
+            eyeName1:'closed-eye',
             reviseData:{
                 msg_phone:'',
                 msg_types:'2',
@@ -52,7 +55,8 @@ export default {
                 userPwd:'',
                 userPwd2:''
             },
-            inputType:'password'
+            inputType:'password',
+            inputType2:'password'
         };
     },
     computed: {
@@ -74,14 +78,25 @@ export default {
                 this.eyeStatus ? this.inputType = 'text' : this.inputType = 'password'
             },
         },
+        eyeStatus1:{
+            handler:function(newVal, oldVal){
+                this.eyeStatus1 ? this.eyeName1 = 'eye-o':this.eyeName1 = 'closed-eye'
+                this.eyeStatus1 ? this.inputType2 = 'text':this.inputType2 = 'password'
+            },
+        },
     },
     methods: {
         confirm(){
-            if(this.reviseData.userPwd != this.reviseData.userPwd2){
-                Toast('Inconsistent passwords')
-            }else{
-                this.setretrievepassword(this.reviseData)
+            if(!this.disabledSubmit) return
+            if(this.reviseData.userPwd.length < 6 ||this.reviseData.userPwd2.length < 6){
+                Toast('All passwords should contain 6 figures.')
+                return
             }
+            if(this.reviseData.userPwd != this.reviseData.userPwd2){
+                Toast('The entered password isn’t consistent with the one confirmed.')
+                return
+            }
+            this.setretrievepassword(this.reviseData)
         },
         //找回登录密码支付密码
         setretrievepassword(data){
@@ -90,7 +105,13 @@ export default {
                     this.$router.push({name:'修改密码成功'})
                 }
             })
-        }
+        },
+        inputFun(e){
+            this.reviseData.userPwd=e.target.value.replace(/\s+/g, "");
+        },
+        inputFun1(e){
+            this.reviseData.userPwd2=e.target.value.replace(/\s+/g, "");
+        },
     },
     components: {
         navar
