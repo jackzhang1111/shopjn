@@ -26,7 +26,7 @@
                 <div class="wuliu-num">
                     <span>Tracking No:</span>
                     <span id="orderSn">{{expressNo}}</span> 
-                    <span class="c-orange fl-right" ref="copy" data-clipboard-action="copy" data-clipboard-target="#orderSn" @click="copyLink">复制</span>
+                    <span class="c-orange fl-right" ref="copy" data-clipboard-action="copy" data-clipboard-target="#orderSn" @click="copyLink">copy</span>
                 </div>
             </div>
 

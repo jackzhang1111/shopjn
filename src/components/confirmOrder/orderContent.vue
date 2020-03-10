@@ -482,6 +482,7 @@ export default {
         .shouhuoxq-bottom{
             display: inline-block;
             width: 627px;
+            word-wrap: break-word;
         }
         .arrow{
             position: absolute;

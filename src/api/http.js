@@ -129,13 +129,16 @@ parkAxios.interceptors.response.use(function (response) {
                 data.msg = "Please login again"
                 Toast(data.msg);
                 setTimeout(()=>{main.$router.replace({name: '登录'})},1000)
+                if(localStorage.token) {localStorage.removeItem('token')}
             }else if(data.code == -2){
                 data.msg = "No account information! Please login again."
                 setTimeout(()=>{main.$router.replace({name: '登录'})},1000)
+                if(localStorage.token) {localStorage.removeItem('token')}
                 Toast(data.msg);
             }else if(data.code == -3){
                 data.msg = "The login is invalid. Please login again."
                 setTimeout(()=>{main.$router.replace({name: '登录'})},1000)
+                if(localStorage.token) {localStorage.removeItem('token')}
                 Toast(data.msg);
             }else if(data.code == -4){
                 data.msg = "Non-existent account/incorrect password"

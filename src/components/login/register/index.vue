@@ -327,20 +327,6 @@ export default {
                 Toast('Enter phone number')
                 return
             }
-            const TIME_COUNT = 60;
-            if (!this.timer) {
-                this.count = TIME_COUNT;
-                this.countTrue = false;
-                this.timer = setInterval(() => {
-                    if (this.count > 0 && this.count <= TIME_COUNT) {
-                        this.count--;
-                    } else {
-                        this.countTrue = true;
-                        clearInterval(this.timer);
-                        this.timer = null;
-                    }
-                }, 1000)
-            }
             var phoneReg = /^[1-9]\d*$/;
             if(!phoneReg.test(this.formData.phone)){
                 this.formData.mobile = this.formData.phone.substring(1)
@@ -446,7 +432,20 @@ export default {
         msglist(data){
             msglistApi(data).then(res => {
                 if(res.code == 0){
-                    
+                    const TIME_COUNT = 60;
+                    if (!this.timer) {
+                        this.count = TIME_COUNT;
+                        this.countTrue = false;
+                        this.timer = setInterval(() => {
+                            if (this.count > 0 && this.count <= TIME_COUNT) {
+                                this.count--;
+                            } else {
+                                this.countTrue = true;
+                                clearInterval(this.timer);
+                                this.timer = null;
+                            }
+                        }, 1000)
+                    }
                 }else if(res.code == 2){
                     Toast('Failed sending')
                 }else if(res.code == -130){

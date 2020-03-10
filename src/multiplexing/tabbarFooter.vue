@@ -4,19 +4,19 @@
         <van-tabbar class="icons" v-model="active" active-color="#F83600" inactive-color="#010101" route>
             <!-- <span>自定义</span> -->
             <!-- <img slot="icon" slot-scope="props" :src="props.active ? icon.active : icon.inactive"> -->
-            <van-tabbar-item route to="/control/home">
+            <van-tabbar-item route to="/control/home" replace>
                 <span>Home</span>
                 <img slot="icon" slot-scope="props" :src="props.active ? icon.home1 : icon.home" class="icon-style">
             </van-tabbar-item>
-             <van-tabbar-item route to="/control/classify">
+             <van-tabbar-item route to="/control/classify" replace>
                 <span>Category</span>
                 <img slot="icon" slot-scope="props" :src="props.active ? icon.sort1 : icon.sort" class="icon-style">
             </van-tabbar-item>
-            <van-tabbar-item route to="/control/shoppingCart">
+            <van-tabbar-item route to="/control/shoppingCart" :replace="isreplace">
                 <span>Cart</span>
                 <img slot="icon" slot-scope="props" :src="props.active ? icon.cart1 : icon.cart" class="icon-style">
             </van-tabbar-item>
-            <van-tabbar-item route to="/control/account"> 
+            <van-tabbar-item route to="/control/account" :replace="isreplace"> 
                 <span>My</span>
                 <img slot="icon" slot-scope="props" :src="props.active ? icon.mine1 : icon.mine" class="icon-style">
             </van-tabbar-item>
@@ -49,8 +49,8 @@ export default {
                 mine1,
                 sort,
                 sort1
-            }
-            
+            },
+            isreplace:false,
         };
     },
     computed: {
@@ -60,7 +60,7 @@ export default {
 
     },
     mounted() {
-
+        this.isreplace = localStorage.token ? true : false
     },
     watch: {
 

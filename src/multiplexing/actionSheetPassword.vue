@@ -7,7 +7,6 @@
                 :value="value"
                 :focused="showKeyboard"
                 @focus="showKeyboard = true"
-                :mask="false"
                 />
                 <span class="c-orange" @click='toparrwordOtp'>Forgot Password?</span>
                 <!-- 数字键盘 -->

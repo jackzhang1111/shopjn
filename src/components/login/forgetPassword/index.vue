@@ -6,7 +6,7 @@
             <p>Enter your email or phone number</p>
             <div class="otp">
                 <div class="input-con">
-                    <input type="number" class="name-input" placeholder="Enter your phone number" v-model="formData.msgphone">
+                    <input type="text" class="name-input" placeholder="Enter your phone number" v-model="formData.msgphone" :maxlength="11" @input="inputFun1">
                 </div>
                 
             </div>
@@ -39,6 +39,9 @@ export default {
         next(){
             if(!this.disabledSubmit) return
             this.$router.push({name:'验证码',query:{msgphone:this.formData.msgphone}})
+        },
+        inputFun1(e){
+            this.formData.msgphone=e.target.value.replace(/[^\d]/g,'');
         }
     },
     computed:{

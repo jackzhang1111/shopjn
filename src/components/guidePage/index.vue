@@ -24,7 +24,7 @@ export default {
 	},
 	mounted(){
 		setTimeout(()=>{
-			this.$router.push({name:'首页'})
+			this.$router.replace({name:'首页'})
 		},3000)
 	}
 }
