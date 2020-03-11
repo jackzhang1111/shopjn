@@ -53,6 +53,7 @@
                         <div class="btn-qd" @click="buyProduct" :style="{backgroundColor:btnbgc}">Buy Now</div>
                     </div>
                 </div>
+                <div class="ios-place" v-if="jixing=='ios'"></div>
             </div>
         </div>
         
@@ -93,7 +94,8 @@ export default {
             money:0,
             leijia:0,
             currentKey:-1,
-            tsinCode:''
+            tsinCode:'',
+            jixing:null
         };
     },
     computed: {
@@ -114,7 +116,18 @@ export default {
 
     },
     mounted() {
-        // this.getData()
+        function checkSystem() {
+            var u = window.navigator.userAgent, app = window.navigator.appVersion;
+            var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Linux') > -1; //g
+            var isIOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+            if (isAndroid) {
+                return 'android'
+            }
+            if (isIOS) {
+                return 'ios';
+            }
+        }
+        this.jixing = checkSystem()
     },
     watch: {
         selectionData:{
@@ -492,6 +505,11 @@ export default {
         .btn-qd{
             color: #fff;
         }
+    }
+    .ios-place{
+        width: 100%;
+        float: left;
+        height: 240px;
     }
     .active{
         background: #969292;
