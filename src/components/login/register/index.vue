@@ -423,6 +423,10 @@ export default {
                     Toast('Incorrect verification code.')
                 }else if(res.code == -25){
                     Toast('The phone number was registered.')
+                }else if(res.code == -26){
+                    Toast('The phone number is frozen. Please contact customer service.')
+                }else if(res.code == -27){
+                    Toast('The phone number is deleted. Please contact customer service.')
                 }else{
                     Toast('error')
                 }
@@ -432,7 +436,7 @@ export default {
         msglist(data){
             msglistApi(data).then(res => {
                 if(res.code == 0){
-                    const TIME_COUNT = 60;
+                    const TIME_COUNT = 120;
                     if (!this.timer) {
                         this.count = TIME_COUNT;
                         this.countTrue = false;

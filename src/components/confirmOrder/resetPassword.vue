@@ -75,11 +75,11 @@ export default {
     methods: {
         confirm(){
             if(this.formData.userPwd.length < 6 ||this.formData.userPwd2.length < 6){
-                Toast('所有密码都请输入6位数字')
+                Toast('All passwords should contain 6 figures.')
                 return
             }
             if(this.formData.userPwd != this.formData.userPwd2){
-                Toast('密码与确认密码不一致')
+                Toast('The entered password isn’t consistent with the one confirmed.')
                 return
             }
              this.setuserpaypassword(this.formData)

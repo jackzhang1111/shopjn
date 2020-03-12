@@ -19,6 +19,7 @@
                 </van-sidebar>
                 <div class="selection-right"  v-for="(rightData,index) in leftDataItem" :key="index" :class="{active: currentKey === index}" @click="son(index)">
                     <div class="selection-right-item" @click="getIndex(index)">
+                        <div class="shouwan" v-if="!rightData.canSalesNum">Out of Stock</div>
                         <div class="selection-right-p1">
                             <span class="ggms">{{rightData.attrTitleEng}}</span>
                             <div class="jsq">
@@ -36,7 +37,7 @@
                         </div>
                         <div class="selection-right-p2">
                             <span>{{jn}}{{rightData.skuPrice}}</span>
-                            <span class="fl-right">In Stock:{{rightData.canSalesNum}}</span>
+                            <span class="fl-right">In Stock:{{rightData.canSalesNum ? rightData.canSalesNum : 0}}</span>
                         </div>
                     </div>
                 </div>
@@ -199,12 +200,16 @@ export default {
                     data.shopNumber--
                 }
             }else{
-                if(data.shopNumber<data.numIntervalStart){
-                    data.shopNumber = data.numIntervalStart
-                }else if(data.shopNumber >= data.canSalesNum){
-                    return
+                if(data.canSalesNum > 0){
+                    if(data.shopNumber<data.numIntervalStart){
+                        data.shopNumber = data.numIntervalStart
+                    }else if(data.shopNumber >= data.canSalesNum){
+                        return
+                    }else{
+                        data.shopNumber++
+                    }
                 }else{
-                    data.shopNumber++
+                    return
                 }
             }
             this.dataList.forEach(ele => {
@@ -420,6 +425,22 @@ export default {
             overflow-y: auto;
             .selection-right-item{
                 padding: 50px 30px 19px 17px;
+                .shouwan{
+                    position: absolute;
+                    left:0;
+                    top:0;
+                    width: 100%;
+                    height: 100%;
+                    background-color: rgba(0,0,0,0.5);
+                    color: #fff;
+                    font-size: 30px;
+                    line-height: 40px;
+                    text-align: center;
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-around;
+                    flex-direction: column;
+                }
                 .selection-right-p1{
                     overflow: hidden;
                     .ggms{

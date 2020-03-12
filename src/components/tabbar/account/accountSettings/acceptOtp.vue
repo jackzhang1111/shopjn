@@ -72,7 +72,7 @@ export default {
         msglist(data){
             msglistApi(data).then(res => {
                 if(res.code == 0){
-                    const TIME_COUNT = 60;
+                    const TIME_COUNT = 120;
                     if (!this.timer) {
                         this.count = TIME_COUNT;
                         this.countTrue = false;

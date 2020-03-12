@@ -103,6 +103,12 @@ export default {
             setretrievepasswordApi(data).then(res => {
                 if(res.code == 0){
                     this.$router.push({name:'修改密码成功'})
+                }else if(res.code == -26){
+                    Toast('The phone number is frozen. Please contact customer service.')
+                }else if(res.code == -27){
+                    Toast('The phone number is deleted. Please contact customer service.')
+                }else if(res.code == -28){
+                    Toast("The phone isn't registered.")
                 }
             })
         },

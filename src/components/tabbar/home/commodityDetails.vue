@@ -13,10 +13,10 @@
             </van-tabs>
         </div>
         <div class="commodity-tab-place"></div>
-        <scroll class="bscroll-wrapper" ref="wrapper" :data="recordGroup">
+        <scroll class="bscroll-wrapper" ref="wrapper" :data="recordGroup" v-show="showData">
             <div class="bscroll-con">
                 <div class="commodity-swipe">
-                    <van-swipe @change="onChange">
+                    <van-swipe @change="onChange" v-if="showData">
                         <van-swipe-item v-for="banner in detailmData.productImgList" :key="banner.imgId">
                             <div class="w1">
                                 <img :src="$webUrl+banner.imgUrl">
@@ -145,6 +145,7 @@ import commoditySelection from '@/multiplexing/commoditySelection'
 import {productdetailApi} from '@/api/home/commodityDetails'
 import {adduserbrowhistoryApi,adduserfavoritesApi} from '@/api/favorites/index.js'
 import kefu from '@/multiplexing/kefu.vue'
+import {Toast} from 'vant'
 export default {
     props: {
 
@@ -171,7 +172,8 @@ export default {
             btnName:'',
             productParamList:[],
             productParamList2:[],
-            shousuoStatus:false
+            shousuoStatus:false,
+            showData:false
         };
     },
     computed: {
@@ -198,6 +200,7 @@ export default {
         productdetail(id){
             productdetailApi({skuid:id}).then(res => {
                 if(res.code == 0){
+                    Toast.loading({loadingType: 'spinner', message: 'loading...',});
                     this.detailmData = res.Data
                     this.leng = res.Data.productImgList.length
                     this.selectionData = res.Data
@@ -216,6 +219,10 @@ export default {
                     if(res.Data.productParamList.length > 5){
                         this.shousuoStatus = true
                     }
+                    setTimeout(()=>{
+                        this.showData = true
+                        Toast.clear();
+                    },1000)
                 }
             })
         },
@@ -234,9 +241,7 @@ export default {
         },
         //增加用户浏览记录数据
         adduserbrowhistory(id){
-            adduserbrowhistoryApi({skuid:id}).then(res => {
-
-            })
+            adduserbrowhistoryApi({skuid:id}).then(res => {})
         },
         //点击tab标签
         changeTab(index){

@@ -81,6 +81,7 @@ import {loginApi} from '@/api/login/index';
 import {accReg,passReg} from '@/common/reg.js'
 import zhezhao from '@/multiplexing/zhezhao'
 import yinsi from '@/components/tabbar/account/accountSettings/aboutItem/privacyPolicy.vue'
+import {Toast} from 'vant'
 export default {
     props: {
 
@@ -154,6 +155,14 @@ export default {
                         localStorage.token = res.token
                         localStorage.userinfoShop = JSON.stringify(res.user) 
                         this.$router.push({name:'首页'})
+                    }else if(res.code == -4){
+                        Toast('Password error')
+                    }else if(res.code == -26){
+                        Toast('The phone number is frozen. Please contact customer service.')
+                    }else if(res.code == -27){
+                        Toast('The phone number is deleted. Please contact customer service.')
+                    }else if(res.code == -28){
+                        Toast("The phone isn't registered.")
                     }
                 })
             }

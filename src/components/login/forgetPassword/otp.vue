@@ -14,7 +14,7 @@
             <div class="otp">
                 <div class="otp-txt">OTP:</div>
                 <div class="input-con">
-                    <input type="number" class="name-input" placeholder="Please enter the OTP" v-model="verCode">
+                    <input type="text" class="name-input" placeholder="OTP" v-model="verCode" @input="inputFun1" :maxlength="6">
                 </div>
                 <div class="count-down">
                     <div  class="count-down-btn" @click="getCode" v-show="countTrue">{{countdown}}</div>
@@ -81,7 +81,7 @@ export default {
             }
             msglistApi(data).then(res => {
                 if(res.code == 0){
-                    const TIME_COUNT = 60;
+                    const TIME_COUNT = 120;
                     if (!this.timer) {
                         this.count = TIME_COUNT;
                         this.countTrue = false;
@@ -125,12 +125,15 @@ export default {
             }
             getverificationcodeApi(data).then(res => {
                 if(res.code == 0){
-                    this.$router.push({name:'修改密码',query:{phone:this.jiaoyan.msg_phone,verCode:this.verCode}})
+                    this.$router.push({name:'修改密码',query:{phone:data.msg_phone,verCode:this.verCode}})
                 }else if(res.code == -110){
                     Toast('Verification code is incorrect！')
                 }
             })
-        }
+        },
+        inputFun1(e){
+            this.verCode=e.target.value.replace(/[^\d]/g,'');
+        },
     },
     components: {
         navar

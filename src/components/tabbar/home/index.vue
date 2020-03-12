@@ -135,6 +135,7 @@
                     <div class="footer-exhibition">
                         <div  class="exhibition-con">
                             <div class="exhibition-left" v-for="(searchgoodDao,index) in searchgoodDaolist" :key="index">
+                                <div class="shouwan" v-if="!searchgoodDao.canSalesNum">Out of Stock</div>
                                 <img :src="$webUrl + searchgoodDao.imgUrl" @click="toDetail(searchgoodDao.skuId)">
                                 <div class="produced">
                                     <span class="icon" v-if="searchgoodDao.locationUrl">
@@ -824,6 +825,23 @@ export default {
                 float: left;
                 background-color: #fff;
                 margin-bottom: 10px;
+                position: relative;
+                .shouwan{
+                    position: absolute;
+                    left:0;
+                    top:0;
+                    width: 100%;
+                    height: 100%;
+                    background-color: rgba(0,0,0,0.5);
+                    color: #fff;
+                    font-size: 30px;
+                    line-height: 40px;
+                    text-align: center;
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-around;
+                    flex-direction: column;
+                }
                 .miaoshu{
                     line-height: 27px;
                     font-size: 18px;

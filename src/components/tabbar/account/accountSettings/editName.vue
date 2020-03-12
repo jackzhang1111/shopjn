@@ -1,8 +1,8 @@
 <template>
 <!-- 修改昵称 -->
     <div class="edit-name">
-        <settings-header title="编辑资料" title2="完成"></settings-header>
-        <div class="head">
+        <settings-header title="Edit Information" title2="OK" @rightBtn="rightBtn"></settings-header>
+        <div class="head" v-if="false">
             <div class="head-con">
                 <div class="head-img">
                     <img src="@/assets/img/tabbar/my/account/touxiang@2x.png">
@@ -12,12 +12,13 @@
         </div>
         <div>
             <div class="cell">
-                <span class="input-name">昵称</span>
-                <input type="search" class="input-xt" placeholder="请输入您的昵称" v-model="sjhm">
+                <span class="input-name">Nickname</span>
+                <input type="text" class="input-xt" placeholder="Enter Your Nickname" v-model="userinfoShop.nickName" :maxlength="100">
             </div>
             <div class="cell">
-                <span class="input-name">会员ID</span>
-                <input type="search" class="input-xt" placeholder="请输入您的昵称" v-model="num">
+                <span class="input-name">userId</span>
+                <!-- <input type="text" class="input-xt" placeholder="请输入您的昵称" v-model="userinfoShop.userId" disabled> -->
+                <span class="c-999">{{userinfoShop.userId}}</span>
             </div>
         </div>
     </div>
@@ -25,14 +26,18 @@
 
 <script>
 import settingsHeader from './itemComponents/settingsHeader'
+import {updateusernichengApi,getuserinfoApi} from '@/api/accountSettings/index'
+import {Toast} from 'vant'
 export default {
     props: {
 
     },
     data() {
         return {
-            sjhm:'',
-            num:123
+            userinfoShop:{
+                userId:'',
+                nickName:''
+            }
         };
     },
     computed: {
@@ -42,13 +47,39 @@ export default {
 
     },
     mounted() {
-
+        if(localStorage.userinfoShop){
+            this.userinfoShop = JSON.parse(localStorage.userinfoShop)
+        }
     },
     watch: {
 
     },
     methods: {
-
+        rightBtn(){
+            this.updateusernicheng({nicheng:this.userinfoShop.nickName})
+        },
+        //修改昵称
+        updateusernicheng(data){
+            updateusernichengApi(data).then(res => {
+                if(res.code == 0){
+                    this.getuserinfo()
+                }else if(res.code == -40){
+                    Toast('Nickname can not be empty')
+                }
+            })
+        },
+        //获取用户信息
+        getuserinfo(){
+            getuserinfoApi().then(res => {
+                if(res.code == 0){
+                    localStorage.userinfoShop = JSON.stringify(res.user) 
+                    Toast('Success')
+                    setTimeout(()=>{
+                        this.$router.go(-1)
+                    },1000)
+                }
+            })
+        }
     },
     components: {
         settingsHeader
@@ -81,7 +112,6 @@ export default {
         line-height: 88px;
         padding: 0 30px;
         background-color: #fff;
-        color: #999;
         position: relative;
         font-size: 26px;
         border-bottom: 1px solid #F2F3F5;
@@ -95,7 +125,7 @@ export default {
             background-color: #fff;
         }
         .input-name{
-            width: 140px;
+            width: 180px;
             display: inline-block;
             font-size:28px;
             color: #333;

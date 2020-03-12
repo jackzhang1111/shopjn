@@ -53,3 +53,21 @@ export function querydefaultObjectApi(params) {
         data:params
     })
 }
+
+//修改昵称
+export function updateusernichengApi(params) {
+    return park({
+        url:`/appusercenter/updateusernicheng`,
+        method: 'POST',
+        data:params
+    })
+}
+
+//获取用户信息
+export function getuserinfoApi(params) {
+    return park({
+        url:`/appusercenter/getuserinfo`,
+        method: 'POST',
+        data:params
+    })
+}

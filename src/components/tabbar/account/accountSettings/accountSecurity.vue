@@ -5,11 +5,10 @@
             <span class="header-t1">{{title}}</span>
             <van-icon name="chat-o" class="chat" size="17px" @click="jumpRouter('消息')"/>
         </div>
-        <div class="cell">
-            <!-- <div class="cell" @click="$router.push({name:'修改昵称'})"> -->
-            <span class="c-333">accountSecurity</span>
+        <div class="cell" @click="$router.push({name:'修改昵称'})">
+            <span class="c-333">Nickname</span>
             <span class="ziliao c-999">{{userinfoShop.nickName}}</span>
-            <!-- <van-icon name="arrow" class="arrow c-999"/> -->
+            <van-icon name="arrow" class="arrow c-999"/>
         </div>
         <div class="cell">
             <!-- <div class="cell" @click="$router.push({name:'修改手机号码'})"> -->
