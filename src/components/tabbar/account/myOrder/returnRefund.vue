@@ -28,7 +28,7 @@
             </div>
             <div class="cell" @click="showReason">
                 <span>Reason for refunding</span>
-                <span class="text" :class="{'c-999':formData.reason=='请选择'}">{{formData.reason}}</span>
+                <span class="text" :class="{'c-999':formData.reason=='Choose one'}">{{formData.reason}}</span>
                 <van-icon name="arrow" class="arrow c-999"/>
             </div>
             <div class="cell">
@@ -140,7 +140,7 @@ export default {
         },
         //提交
         submit(){
-            if(this.formData.reason == '请选择') {
+            if(this.formData.reason == 'Choose one') {
                 Toast('Choose reason for refund')
                 return
             }

@@ -6,7 +6,7 @@
             <input type="search" :class="{'c-333':isBace}" class="input-xt" placeholder="Receiver" v-model="form.shr" :maxlength="20">
         </div>
         <div class="cell">
-            <input type="search" :class="{'c-333':isBace}" class="input-xt" placeholder="Phone Number" v-model="form.sjhm" :maxlength="11">
+            <input type="search" :class="{'c-333':isBace}" class="input-xt" placeholder="Phone Number" v-model="form.sjhm" :maxlength="11"  @input="inputFun1">
             <span class="hm c-999">+233</span>
             <van-icon name="arrow" class="arrow c-999"/>
         </div>
@@ -232,7 +232,10 @@ export default {
                     },1000)
                 }
             })
-        }
+        },
+        inputFun1(e){
+            this.form.sjhm=e.target.value.replace(/[^\d]/g,'');
+        },
     },
     components: {
         settingsHeader,

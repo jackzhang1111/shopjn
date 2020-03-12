@@ -97,7 +97,7 @@
                     <span>{{detailObj.orderAddtimeWebsite}}</span>
                 </div>
                 <div class="middle-p1">
-                    <span> Time of Payment:</span>
+                    <span>Time of Payment:</span>
                     <span>{{detailObj.orderPaytimeWebsite}}</span>
                 </div>
                 <div class="middle-p1">

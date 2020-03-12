@@ -183,7 +183,7 @@ export default {
             this.showMange = !this.showMange
         },
         toXiangsi(item){
-            this.$router.push({name:'找相似商品',query:{skuName:item.skuName}})
+            this.$router.push({name:'找相似商品',query:{categoryId:item.categoryId}})
         },
         //获取滚动条距离底部距离
         menu() {

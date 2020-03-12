@@ -382,12 +382,12 @@ export default {
         margin-top: 14px;
         /deep/ .van-cell{
             height: 100px;
+            line-height: 80px;
             .van-cell__value{
                 border:0;
                 margin-left:45px;
                 /deep/ .van-field__body{
                     width: 95%;
-                    line-height: 80px;
                     .van-field__control{
                         font-size: 30px;
                     }
@@ -397,11 +397,9 @@ export default {
                 }
             }
             .icon-left{
-                // width: 33px;
-                // height: 33px;
                 position: absolute;
                 left:23px;
-                top:36px;
+                top:20px;
             }
         }
     }

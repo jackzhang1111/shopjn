@@ -145,7 +145,7 @@
                                 </div>
                                 <div class="clamp-2 miaoshu">{{searchgoodDao.supplyTitle}}</div>
                                 <div class="score">
-                                    <van-rate v-model="value" readonly  color="#FA5300"/>
+                                    <van-rate v-model="searchgoodDao.starNumber" readonly  color="#FA5300"/>
                                     <!-- <span>477</span> -->
                                 </div>
                                 <div class="price">
@@ -179,7 +179,6 @@ export default {
     data() {
         return {
             active:0,
-            value:2,
             homeObj:{},
             globalProList:[],
             fineSaleList1:[],

@@ -195,17 +195,18 @@ export default {
         .wuliu{
             margin-bottom: 14px;
             .wuliu-title{
-                height: 82px;
                 background-color: #fff;
-                line-height: 82px;
+                line-height: 50px;
                 padding: 0 40px;
                 .t1{
+                    display: block;
                     font-size:32px;
                     font-weight:bold;
                     color: #333;
                     margin-right:36px;
                 }
                 .t2{
+                    display: block;
                     font-size:20px;
                     color: #333;
                     font-weight:bold;
