@@ -110,7 +110,6 @@ export default {
             this.form.lev2 = this.choiceForm.lev2.name
             this.form.lev3 = this.choiceForm.lev3.name
             this.form.lev4 = this.choiceForm.lev4.name
-            console.log(this.choiceForm);
         },
         //是否显示选择地址组件
         choiceStatus(status){

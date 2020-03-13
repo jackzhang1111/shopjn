@@ -79,9 +79,7 @@ export default {
             // this.$router.push({name:'搜索商品1'})
         },
         //输入框内容变化时触发
-        getInputVal(value){
-            // console.log(value);
-        },
+        getInputVal(value){},
         //收藏夹列表
         selectuserfavorites(data){
             selectuserfavoritesApi(data).then(res => {

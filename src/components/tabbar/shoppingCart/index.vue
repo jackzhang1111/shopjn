@@ -193,7 +193,7 @@ export default {
             let dibujuli = pingmu+footerHeight
             let cha = componentsHeight - dibujuli
             this.scroll = document.documentElement.scrollTop || document.body.scrollTop;
-
+            
 
             if(this.pullUp && this.scroll>=cha){
                 if(this.kanmengou){
@@ -482,7 +482,7 @@ export default {
         height: 88px;
         background-color: #f2f3f5;
         text-align: center;
-        position: absolute;
+        position: fixed;
         z-index: 1;
         .header-t1{ 
             display: inline-block;

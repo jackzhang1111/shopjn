@@ -167,9 +167,7 @@ export default {
             }
         },
         //输入框内容变化时触发
-        getInputVal(value){
-            console.log(value);
-        },
+        getInputVal(value){},
         //点击搜索按钮
         onSearch(){
             

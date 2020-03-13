@@ -89,11 +89,8 @@ export default {
             // this.$router.push({name:'搜索商品1'})
         },
         //输入框内容变化时触发
-        getInputVal(value){
-            // console.log(value);
-        },
+        getInputVal(value){},
         // getData(){
-        //     console.log(123);
         //     this.dataObj = Object.assign({},this.dataObj,this.goodsObj)
         //     if(!this.dataObj.list) return
         //     this.dataList = this.dataObj.list

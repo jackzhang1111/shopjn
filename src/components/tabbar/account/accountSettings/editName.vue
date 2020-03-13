@@ -64,7 +64,7 @@ export default {
                 if(res.code == 0){
                     this.getuserinfo()
                 }else if(res.code == -40){
-                    Toast('Nickname can not be empty')
+                    Toast('The nickname cannot be empty.')
                 }
             })
         },

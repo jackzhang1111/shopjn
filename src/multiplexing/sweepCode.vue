@@ -39,7 +39,6 @@ export default {
             var filter = [8,9,10];
             scan=new plus.barcode.Barcode('panel',filter,{frameColor:'#00FF00',scanbarColor:'#00FF00'});
             scan.onmarked = onmarked;
-            console.log(2);
             that.startScan()
             function onmarked(type, result) {
                 var text = '未知: ';

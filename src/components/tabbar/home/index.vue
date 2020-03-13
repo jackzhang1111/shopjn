@@ -152,6 +152,7 @@
                                     <span class="price1">{{jn}}{{searchgoodDao.discountPrice ?searchgoodDao.discountPrice : searchgoodDao.salePrice}}</span>
                                     <span class="price2" v-if="searchgoodDao.discountPrice">{{jn}}{{searchgoodDao.salePrice}}</span>
                                     <!-- <span class="poin">...</span> -->
+                                    <div class="sales-num c-orange">Sales : {{searchgoodDao.skuSalesNum ? searchgoodDao.skuSalesNum : 0}}pcs</div>
                                 </div>
                             </div>
                         </div>
@@ -890,7 +891,10 @@ export default {
                         right: 0;
                     }
                 }
-            
+                .sales-num{
+                    font-size: 24px;
+                    margin-top: 10px;
+                }
             }
         }
     }

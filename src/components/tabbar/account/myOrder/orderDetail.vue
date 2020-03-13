@@ -261,7 +261,6 @@ export default {
             if(!item.detailId){
                 this.dataList.forEach(ele => {
                     if(ele.canReturn == 1){
-                        console.log(123);
                         let obj = {detailId:ele.detailId}
                         arr.push(obj)
                         this.setorderdetaillist(arr)

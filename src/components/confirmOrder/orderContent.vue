@@ -35,13 +35,13 @@
                         <template slot="right">
                             <van-button square type="danger" text="Delete" @click="delItem(product,index)"/>
                         </template>
-                        <div class="good-detail-img" @click="jumpRouter('商品详情')">
+                        <div class="good-detail-img">
                             <img :src="$webUrl+product.skuImg">
                             <div class="img-nochange" v-if="product.stockEnough==0 || product.canSell == 0 || product.freightCode != 0">
                                 {{product.stockEnough==0 ? 'Out of Stock': product.canSell == 0 ? "Unsaleable": product.freightCode == 1 ? 'Out of delivery area!':'Overweight!' }}
                             </div>
                         </div>
-                        <div class="good-detail-title" @click="jumpRouter('商品详情')">
+                        <div class="good-detail-title">
                             <span class="name">{{product.skuName}}</span>
                             <div class="guige">
                                 {{product.skuValuesTitleEng}}
@@ -196,7 +196,8 @@ export default {
             let arr = this.$store.state.selectionShopCar
             arr.forEach(shopCar => {
                 let shopCarObj = {
-                    shopcrtId:shopCar.shopcrtId
+                    shopcrtId:shopCar.shopcrtId,
+                    skuId:shopCar.skuId
                 } 
                 this.shopcrtList.push(shopCarObj)
             })
@@ -242,7 +243,6 @@ export default {
             //提交订单
             this.batchmakeorder(this.orderData)
         },
-
         //编译状态
         orderStatus(type,list){
             let name = ''
@@ -253,8 +253,6 @@ export default {
             })
             return name
         },
-
-        confirm(){},
         jumpRouter(name){
             this.$router.push({name})
         },
@@ -266,7 +264,7 @@ export default {
         showsucess(){
             this.$refs.sucess.showAction = true
             setTimeout(()=>{
-                this.$router.push({name:'我的订单'})
+                this.$router.replace({name:'我的订单'})
                 sessionStorage.setItem("activeIndex", 2);
             },1000)
         },
@@ -327,11 +325,22 @@ export default {
         },
         //删除某个商品
         delItem(good,goodindex){
-            this.orderData.orderList.forEach(ele => {
-                ele.detailList.splice(goodindex,1)
+            this.orderData.orderList.forEach((ele,eleIndex) => {
+                ele.detailList.forEach(item => {
+                    if(item.skuId == good.skuId){
+                        ele.detailList.splice(goodindex,1)
+                        this.shopcrtList.forEach((shopcrt,shopcrtIndex) => {
+                            if(shopcrt.skuId == item.skuId){
+                                this.shopcrtList.splice(shopcrtIndex,1)
+                            }
+                        })
+                        if(ele.detailList.length == 0){
+                            this.orderData.orderList.splice(eleIndex,1)
+                        }
+                    }
+                })
             })
             this.changeNumber()
-            
         },
         //订单详情
         getconfirmorder(data){
@@ -359,7 +368,7 @@ export default {
                 if(res.code == 0){
                     //支付方式为货到付款,直接跳转到我的订单(待发货)
                     if(this.zffs == 1){
-                        this.$router.push({name:'我的订单'})
+                        this.$router.replace({name:'我的订单'})
                         sessionStorage.setItem("activeIndex", 2);
                     }else{
                         //弹出支付弹框

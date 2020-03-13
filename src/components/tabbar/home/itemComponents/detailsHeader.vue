@@ -31,9 +31,7 @@ export default {
 
     },
     methods: {
-        onSearch(){
-            console.log(123456);
-        }
+        onSearch(){}
     },
     components: {
 

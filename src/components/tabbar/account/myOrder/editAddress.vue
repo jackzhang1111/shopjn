@@ -72,7 +72,6 @@ export default {
     },
     methods: {
         aaa(){
-            console.log(555);
             // this.$toast('提示内容提示内容提示内容提示内容提示内容提示内容提示内容提示内容提示内容提示内容提示内容提示内容提示内容提示内容提示内容提示内容提示内容提示内容   ');
         },
         toOrderDetail(){

@@ -80,7 +80,6 @@ export default {
         //实时获取输入值
         onInput(key) {
             this.value = (this.value + key).slice(0, 6);
-            console.log(this.value,'this.value');
         },
         //删除一个
         onDelete() {
