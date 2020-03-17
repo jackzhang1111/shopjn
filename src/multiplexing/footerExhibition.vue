@@ -16,7 +16,7 @@
                     <span class="icon">
                         <img :src="$webUrl+good.locationUrl" v-if="good.locationUrl">
                     </span>
-                    <span class="produced-font">{{good.locationName ? good.locationName:''}}</span>
+                    <span class="produced-font">{{good.locationNameEng ? good.locationNameEng:''}}</span>
                 </div>
                 <div class="produced-title">
                     <span>{{good.supplyTitle}}</span>

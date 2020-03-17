@@ -23,7 +23,7 @@
         <div class="img-list" v-show="!viewOne">
             <div v-for="(good,index) in twoDataList" :key="index">
                 <van-checkbox v-model="good.checked" icon-size="15px" class="img-checkbox" checked-color="#FA5300" v-if="showFooter" ></van-checkbox>
-                <img :src="$webUrl+good.locationUrl">
+                <img :src="$webUrl+good.imgUrl">
             </div>
         </div>
         <!-- 你可能还喜欢,推荐商品页 -->

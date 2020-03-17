@@ -348,7 +348,7 @@ export default {
     }
     .miaoshu{
         position: relative;
-        margin-bottom: 19px;
+        margin: 10px 0 ;
         .fenxiang{
             position: absolute;
             top:-50px;
@@ -612,7 +612,7 @@ export default {
         display: inline-block;
         font-size:18px;
         color: #333333;
-        margin: 12px 0 20px;
+        margin: 12px 0;
     }
     .p4{
         display: inline-block;

@@ -11,7 +11,7 @@
                     <img src="@/assets/img/confirmOrder/logistics@2x.png">
                 </div>
                 <span>{{orderStatus(detailObj.deliverType,'deliverTypes')}}</span>
-                <div class="fl-right" v-if="detailObj.orderStatusApp == 2 || detailObj.orderStatusApp == 3" @click="toLogistics(detailObj.orderId)">
+                <div class="fl-right" v-if="detailObj.hasLogistics == 1" @click="toLogistics(detailObj.orderId)">
                     <van-icon name="arrow" size="21" class="arrow-icon"/>
                 </div>
             </div>
