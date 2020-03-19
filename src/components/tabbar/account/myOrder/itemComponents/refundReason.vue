@@ -49,7 +49,7 @@ export default {
                     text:'Packaging/goods damaged or stained.'
                 },
                 {
-                    text:'Buyer has sent me the wrong goods.'
+                    text:'The seller has sent me the wrong goods.'
                 }
             ]
         };

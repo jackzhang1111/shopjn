@@ -203,7 +203,7 @@ export default {
                     Toast.loading({loadingType: 'spinner', message: 'loading...',});
                     this.detailmData = res.Data
                     this.leng = res.Data.productImgList.length
-                    this.selectionData = res.Data
+                    this.selectionData = res
                     this.detailmData.salePriceFlag = true
                     if(this.detailmData.discountPrice == null){
                         this.detailmData.discountPrice = this.detailmData.salePrice
@@ -574,23 +574,25 @@ export default {
         .add-shopping-cat{
             width: 230px;
             height: 84px;
-            background-color: #FFC4A6;
+            background-color: #FA5300;
             position: absolute;
             left:268px;
             top:8px;
-            color: #FA5300;
+            color: #fff;
             font-size: 30px;
+            border-radius:39px;
         }
         .spend{
             width: 230px;
             height: 84px;
-            background-color: #FA5300;
+            background-color:#FAB600;
             position: absolute;
             right:14px;
             top:8px;
-            color: #FEFEFE;
+            color: #fff;
             font-size: 30px;
             border:0;
+            border-radius:39px;
         }
     }
     .w1{

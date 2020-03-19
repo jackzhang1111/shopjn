@@ -76,7 +76,7 @@
 
             <div class="yunfei b-t-1">
                 <span class="p1">Freight</span>
-                <span class="p2">{{order.currencySignWebsite}}{{order.orderFareWebsite==0 ? 'Free Shipping':order.orderFareWebsite}}</span>
+                <span class="p2">{{order.orderFareWebsite==0 ?'': order.currencySignWebsite}}{{order.orderFareWebsite==0 ? 'Free Shipping':order.orderFareWebsite}}</span>
             </div>
             <div class="payment b-t-1">
                 <span>Transporation</span>
@@ -320,6 +320,11 @@ export default {
         },
         //input失焦事件
         blur(item){
+            if(item.detailNum <= item.minStartNum) {
+                Toast('Not less than MOQ'+item.minStartNum)
+                item.detailNum = item.minStartNum
+                return
+            }
             item.detailNum = Math.ceil(item.detailNum)
             this.changeNumber()
         },
