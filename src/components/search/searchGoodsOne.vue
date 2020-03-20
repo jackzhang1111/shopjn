@@ -14,9 +14,10 @@
             <scroll class="bscroll-wrapper" ref="wrapper" :data="recordGroup" :pulldown="pulldown" :pullup="pullup" @pulldown="_pulldown" @pullup="_pullup">
                 <div v-show="goodsShow1" class="footprint-goods">
                     <div class="footprint-goods-content" v-for="good in dataList" :key="good.skuId" @click="toProduDetail(good.skuId)">
+                        <div class="shouwan" v-if="!good.canSalesNum" @click.stop>Out of Stock</div>
                         <div>
                             <div class="good-img">
-                                <img :src='$webUrl+good.imgUrl' :alt="good">
+                                <img :src='$webUrl+good.imgUrl'>
                             </div>
                             <div class="good-desc">
                                 <div class="p1 clamp-2">{{good.supplyTitle}}</div>
@@ -346,6 +347,23 @@ export default {
                     color: #666;
                     text-decoration:line-through;
                 }
+            }
+            .shouwan{
+                position: absolute;
+                left:0;
+                top:0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0,0,0,0.5);
+                color: #fff;
+                font-size: 30px;
+                line-height: 40px;
+                text-align: center;
+                display: flex;
+                align-items: center;
+                justify-content: space-around;
+                flex-direction: column;
+                z-index: 10;
             }
         }
     }

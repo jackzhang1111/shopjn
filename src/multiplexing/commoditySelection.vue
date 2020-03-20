@@ -89,8 +89,7 @@ export default {
             twodata:[],//参数2列表
             twoTitle:'',
             checkList:[],//选中参数id集合
-            currentKey:-1,
-            makeItem:{},
+            makeItem:{},//当前商品
             stock:0,//库存
             fileList:[{
                 url: '',
@@ -174,15 +173,10 @@ export default {
         getData(){
             this.selectionObj = Object.assign({},this.selectionObj,this.selectionData)
             let arr = []
+            let makeupList = []
             this.makeupdata = this.selectionObj.Makeupdata
             this.onedata = this.selectionObj.Onedata
-            this.onedata.forEach(item => {
-                item.ischeck = false
-            })
             this.twodata = this.selectionObj.Twodata
-            this.twodata.forEach(item => {
-                item.ischeck = false
-            })
             this.makeupdata.forEach(item => {
                 if(this.makeupdata.length > 1){
                     if(item.skuPrice > 0){
@@ -198,13 +192,31 @@ export default {
                 }else{
                     this.sectionPrice = item.skuPrice
                 }
+                if(item.canSalesNum > 0){
+                    makeupList.push(item.skuValues)
+                }
             })
-            this.titleImg = this.selectionObj.Data.productImgList[0].imgUrl
-            this.attrTitleEng = this.selectionObj.Data.supplyTitle
-            this.tsinCode = this.selectionObj.Data.tsinCode
             this.oneTitle = this.selectionObj.Onedata[0].attrTitleEng ? this.selectionObj.Onedata[0].attrTitleEng : ''
             this.twoTitle = this.selectionObj.Twodata[0] ? this.selectionObj.Twodata[0].attrTitleEng : ''
-            this.currentKey = -1
+
+            var makeOne = makeupList[0].split(',')
+            this.checkList = makeOne.map(Number)
+            this.twodata.forEach(item => {
+                item.ischeck = false
+                this.checkList.forEach(checkItem => {
+                    if(checkItem == item.valueId){
+                        item.ischeck = true
+                    }
+                })
+            })
+             this.onedata.forEach(item => {
+                item.ischeck = false
+                this.checkList.forEach(checkItem => {
+                    if(checkItem == item.valueId){
+                        item.ischeck = true
+                    }
+                })
+            })
         },
         //数量加减
         operation(type){
@@ -358,7 +370,7 @@ export default {
             if(this.selectionObj.Twodata.length == 0){
                 if(typeof(onefun(this.checkList,this.makeupdata)) == 'object'){
                     this.makeItem = Object.assign({},this.makeItem,onefun(this.checkList,this.makeupdata))
-                    this.goodNumber = 0
+                    this.goodNumber = this.makeItem.numIntervalStart
                     this.attrTitleEng =  this.makeItem.supplyTitle
                     this.titleImg = this.makeItem.imgUrl
                     this.tsinCode = this.makeItem.tsinCode
@@ -393,7 +405,7 @@ export default {
             }else{
                 if(typeof(we(this.checkList,this.makeupdata)) == 'object'){
                     this.makeItem = Object.assign({},this.makeItem,we(this.checkList,this.makeupdata))
-                    this.goodNumber = 0
+                    this.goodNumber = this.makeItem.numIntervalStart
                     this.attrTitleEng =  this.makeItem.supplyTitle
                     this.titleImg = this.makeItem.imgUrl
                     this.tsinCode = this.makeItem.tsinCode
@@ -459,8 +471,8 @@ export default {
             margin:40px 0 0 40px;
             .good-img{
                 /deep/ .van-image{
-                    width: 160px;
-                    height: 125px;
+                    width: 180px;
+                    height: 160px;
                 }
             }
         }
@@ -563,7 +575,8 @@ export default {
         }
         .stock{
             margin-top:20px;
-            color: #999;
+            color: #000;
+            font-size: 30px;
         }
     }
     .footer{
