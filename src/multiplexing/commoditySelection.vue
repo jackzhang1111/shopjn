@@ -142,9 +142,17 @@ export default {
                         this.setMakeItem()
                     }else{
                         this.tips = `Choose ${this.oneTitle} and ${this.twoTitle}`
+                        this.makeItem.canSalesNum = 0
+                        this.goodNumber = 0
                     }
                 }else{
-                    this.setMakeItem()
+                    if(this.checkList.length == 1){
+                        this.setMakeItem()
+                    }else{
+                        this.tips = `Choose ${this.oneTitle}`
+                        this.makeItem.canSalesNum = 0
+                        this.goodNumber = 0
+                    }
                 }
                 
             },
@@ -355,8 +363,8 @@ export default {
                     this.titleImg = this.makeItem.imgUrl
                     this.tsinCode = this.makeItem.tsinCode
                     this.sectionPrice = this.makeItem.skuPrice
-                    this.stock = this.makeItem.canSalesNum
-                    this.tips = ''
+                    this.stock = this.makeItem.canSalesNum ? this.makeItem.canSalesNum : 0
+                    this.tips = this.makeItem.canSalesNum ? '' : 'Out of Stock'
                 }else{
                     this.makeItem = {}
                     let arr = []
@@ -390,8 +398,8 @@ export default {
                     this.titleImg = this.makeItem.imgUrl
                     this.tsinCode = this.makeItem.tsinCode
                     this.sectionPrice = this.makeItem.skuPrice
-                    this.stock = this.makeItem.canSalesNum
-                    this.tips = ''
+                    this.stock = this.makeItem.canSalesNum ? this.makeItem.canSalesNum : 0
+                    this.tips = this.makeItem.canSalesNum ? '' : 'Out of Stock'
                 }else{
                     this.makeItem = {}
                     let arr = []

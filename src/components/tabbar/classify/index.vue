@@ -62,9 +62,13 @@ export default {
     mounted() { 
         if(localStorage.classifyData){
             this.classifyData = this.$fn.MyLocalStorage.Cache.get('classifyData')
-            this.leftList = this.classifyData.leftdataList
-            this.rightList = this.classifyData.righdataList
-            this.leftImgSrc = this.classifyData.leftdataList[0].categoryImg
+            if(!this.classifyData){
+                this.procategorylist()
+            }else{
+                this.leftList = this.classifyData.leftdataList
+                this.rightList = this.classifyData.righdataList
+                this.leftImgSrc = this.classifyData.leftdataList[0].categoryImg
+            }
         }else{
             this.procategorylist()
         }
@@ -80,7 +84,7 @@ export default {
                     this.rightList = res.righdataList
                     this.leftImgSrc = res.leftdataList[0].categoryImg
                     if(this.formData.parent_id == 0){
-                        let time = 1000*60*60*24*2 //2天
+                        let time = 60*60*24*2 //2天
                         this.$fn.MyLocalStorage.Cache.put('classifyData',res,time)
                     }
                 }
@@ -94,6 +98,10 @@ export default {
             procategorylistApi(this.formData).then(res => {
                 if(res.code == 0){
                     this.rightList = res.righdataList
+                    this.leftList = res.leftdataList
+                    this.classifyData.leftdataList = res.leftdataList
+                    let time = 60*60*24 //2天
+                    this.$fn.MyLocalStorage.Cache.put('classifyData',this.classifyData,time)
                 }
             })
         },

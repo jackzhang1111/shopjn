@@ -227,18 +227,21 @@ export default {
 
     },
     mounted() {
-        this.$fn.MyLocalStorage.Cache.get('homeObj')
         if(localStorage.homeObj){
             this.homeObj = this.$fn.MyLocalStorage.Cache.get('homeObj')
-            this.globalProList = this.homeObj['producteFineBrand'].slice(3)
-            this.brandLogo1.brandLogo = this.homeObj['producteFineBrand'][0].brandLogo
-            this.brandLogo1.brandId = this.homeObj['producteFineBrand'][0].brandId
-            this.brandLogo2.brandLogo = this.homeObj['producteFineBrand'][1].brandLogo
-            this.brandLogo2.brandId = this.homeObj['producteFineBrand'][1].brandId
-            this.brandLogo3.brandLogo = this.homeObj['producteFineBrand'][2].brandLogo
-            this.brandLogo3.brandId = this.homeObj['producteFineBrand'][2].brandId
-            this.fineSaleList1 = this.homeObj['productFineSale'].slice(0,3)
-            this.fineSaleList2 = this.homeObj['productFineSale'].slice(3)
+            if(!this.homeObj){
+                this.homePage()
+            }else{
+                this.globalProList = this.homeObj['producteFineBrand'].slice(3)
+                this.brandLogo1.brandLogo = this.homeObj['producteFineBrand'][0].brandLogo
+                this.brandLogo1.brandId = this.homeObj['producteFineBrand'][0].brandId
+                this.brandLogo2.brandLogo = this.homeObj['producteFineBrand'][1].brandLogo
+                this.brandLogo2.brandId = this.homeObj['producteFineBrand'][1].brandId
+                this.brandLogo3.brandLogo = this.homeObj['producteFineBrand'][2].brandLogo
+                this.brandLogo3.brandId = this.homeObj['producteFineBrand'][2].brandId
+                this.fineSaleList1 = this.homeObj['productFineSale'].slice(0,3)
+                this.fineSaleList2 = this.homeObj['productFineSale'].slice(3)
+            }
         }else{
             this.homePage()
         }
@@ -267,7 +270,7 @@ export default {
                     this.fineSaleList1 = this.homeObj['productFineSale'].slice(0,3)
                     this.fineSaleList2 = this.homeObj['productFineSale'].slice(3)
 
-                    let time = 1000*60*60*24*2 //2天
+                    let time = 60*60*24*2 //2天
                     this.$fn.MyLocalStorage.Cache.put('homeObj',this.homeObj,time)
                 }
             })

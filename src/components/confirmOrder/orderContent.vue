@@ -320,7 +320,7 @@ export default {
         },
         //input失焦事件
         blur(item){
-            if(item.detailNum <= item.minStartNum) {
+            if(item.detailNum < item.minStartNum) {
                 Toast('Not less than MOQ'+item.minStartNum)
                 item.detailNum = item.minStartNum
                 return
