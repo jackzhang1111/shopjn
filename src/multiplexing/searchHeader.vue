@@ -62,10 +62,10 @@ export default {
     z-index: 1;
     .logo{
         position: absolute;
-        left:20px;
-        top:39px;
-        // width: 142px;
-        // height: 32px;
+        left:40px;
+        top:20px;
+        width: 75px;
+        height: 50px;
         img{
             width: 100%;
             height: 100%;
@@ -73,9 +73,9 @@ export default {
     }
     .search{
         position: absolute;
-        left:168px;
-        top:25px;
-        width: 432px;
+        left:145px;
+        top:20px;
+        width: 450px;
         height: 58px;
         overflow: hidden;
         /deep/ .van-search{
@@ -98,7 +98,7 @@ export default {
     .icons{
         position: absolute;
         left:623px;
-        top:38px;
+        top:30px;
         .img1{
             width: 35px;
             height: 35px;

@@ -330,6 +330,10 @@ export default {
         },
         //删除某个商品
         delItem(good,goodindex){
+            if(this.orderData.orderList.length == 1 && this.orderData.orderList[0].detailList.length == 1){
+                Toast('Cannot delete all commodities.')
+                return
+            }
             this.orderData.orderList.forEach((ele,eleIndex) => {
                 ele.detailList.forEach(item => {
                     if(item.skuId == good.skuId){

@@ -99,17 +99,32 @@ export default {
     },
     computed: {
         btnbgc(){
-            let bgc = this.goodNumber>0 ? '#FA5300' : '#999'
+            let bgc = ''
+            if(this.goodNumber >0 && this.tips == ''){
+                bgc = '#FA5300'
+            }else{
+                bgc = '#999'
+            }
             return bgc
         },
         btnbuy(){
-            let bgc = this.goodNumber>0 ? '#FAB600' : '#999'
+            let bgc = ''
+            if(this.goodNumber >0 && this.tips == ''){
+                bgc = '#FAB600'
+            }else{
+                bgc = '#999'
+            }
             return bgc
         },
         btncolor(){
             let obj = {
                 color: '#fff',
-                bgc: this.goodNumber>0 ? '#FA5300' : '#999'
+                bgc: ''
+            }
+            if(this.goodNumber >0 && this.tips == ''){
+                obj.bgc = '#FA5300'
+            }else{
+                obj.bgc = '#999'
             }
             return obj
         }
@@ -269,7 +284,7 @@ export default {
         },
         //点击确定收入购物车
         buyshoppingCar(){
-            if(this.goodNumber == 0) return
+            if(this.goodNumber == 0 || this.tips != '') return
             this.addshopcart()
         },
         //添加购物车
@@ -299,7 +314,7 @@ export default {
                 this.buyshoppingCar()
                 return
             }
-            if(this.goodNumber == 0) return
+            if(this.goodNumber == 0 || this.tips != '') return
             let data = [{
                 skuId:this.makeItem.skuId,
                 detailNum:this.goodNumber
@@ -370,13 +385,17 @@ export default {
             if(this.selectionObj.Twodata.length == 0){
                 if(typeof(onefun(this.checkList,this.makeupdata)) == 'object'){
                     this.makeItem = Object.assign({},this.makeItem,onefun(this.checkList,this.makeupdata))
-                    this.goodNumber = this.makeItem.numIntervalStart
+                    this.goodNumber = this.makeItem.canSalesNum ? this.makeItem.numIntervalStart : 0
                     this.attrTitleEng =  this.makeItem.supplyTitle
                     this.titleImg = this.makeItem.imgUrl
                     this.tsinCode = this.makeItem.tsinCode
                     this.sectionPrice = this.makeItem.skuPrice
                     this.stock = this.makeItem.canSalesNum ? this.makeItem.canSalesNum : 0
-                    this.tips = this.makeItem.canSalesNum ? '' : 'Out of Stock'
+                    if(this.goodNumber > this.makeItem.canSalesNum || !this.makeItem.canSalesNum){
+                        this.tips = 'Out of Stock'
+                    }else{
+                        this.tips = ''
+                    }
                 }else{
                     this.makeItem = {}
                     let arr = []
@@ -405,13 +424,17 @@ export default {
             }else{
                 if(typeof(we(this.checkList,this.makeupdata)) == 'object'){
                     this.makeItem = Object.assign({},this.makeItem,we(this.checkList,this.makeupdata))
-                    this.goodNumber = this.makeItem.numIntervalStart
+                    this.goodNumber = this.makeItem.canSalesNum ? this.makeItem.numIntervalStart : 0
                     this.attrTitleEng =  this.makeItem.supplyTitle
                     this.titleImg = this.makeItem.imgUrl
                     this.tsinCode = this.makeItem.tsinCode
                     this.sectionPrice = this.makeItem.skuPrice
                     this.stock = this.makeItem.canSalesNum ? this.makeItem.canSalesNum : 0
-                    this.tips = this.makeItem.canSalesNum ? '' : 'Out of Stock'
+                    if(this.goodNumber > this.makeItem.canSalesNum || !this.makeItem.canSalesNum){
+                        this.tips = 'Out of Stock'
+                    }else{
+                        this.tips = ''
+                    }
                 }else{
                     this.makeItem = {}
                     let arr = []

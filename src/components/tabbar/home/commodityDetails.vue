@@ -229,6 +229,7 @@ export default {
         //猜你喜欢点击了商品
         clickPro(skuid){
             this.productdetail(skuid)
+            this.$refs.wrapper.scrollTo(0,0,500)
         },
         //弹出规格框
         //第一个参数:弹窗状态,第二个参数:弹窗按钮类型,弹窗按钮名字

@@ -4,11 +4,11 @@
         <search-header></search-header>
         <scroll class="bscroll-wrapper" ref="wrapper" :data="recordGroup" :pullup="pullup" @pullup="_pullup" :pulldown="pulldown" @pulldown="_pulldown" :scrollX="true">
             <div>
-                <div class="commodity-swipe">
-                    <van-swipe @change="onChange">
-                        <van-swipe-item v-for="(banner,index) in topBananerList" :key="index">
+                <div class="commodity-swipe" v-if="topBananerList.length>0">
+                    <van-swipe @change="onChange" :stop-propagation="false" :autoplay="2000">
+                        <van-swipe-item v-for="(banner,index) in topBananerList" :key="index" @click="swipeClick(banner)">
                             <div class="w1">
-                                <img :src="banner.imgsrc">
+                                <img :src="$webUrl+banner.advertImg">
                             </div>
                         </van-swipe-item>
                         <div class="custom-indicator" slot="indicator">
@@ -92,7 +92,7 @@
                     </div>
                 </div>
                 <div class="banner">
-                    <img src="@/assets/img/login/quick-Decontamination5.jpg">
+                    <img :src="$webUrl+banner1.advertImg">
                 </div>
                 <div class="exhibition">
                     <div class="flash-sale-2">
@@ -106,7 +106,7 @@
                     </div>
                 </div>
                 <div class="banner">
-                    <img src="@/assets/img/login/quick-Decontamination7.jpg" >
+                    <img :src="$webUrl+banner2.advertImg" >
                 </div>
                 <div class="good-popular box">
                     <div class="flash-sale-1">
@@ -122,7 +122,7 @@
                     
                 </div>
                 <div class="banner">
-                    <img src="@/assets/img/login/quick-Decontamination6.jpg" >
+                    <img :src="$webUrl+banner3.advertImg" >
                 </div>
                 <div class="good-sort">
                     <van-tabs v-model="active" title-active-color="#FA5300" title-inactive-color="#000" @change="changeTab(bottomTabs,$event)">
@@ -166,12 +166,7 @@
 <script>
 
 import searchHeader from '@/multiplexing/searchHeader'
-import {homePageApi,HomePagebottomApi} from '@/api/home/index.js'
-import quickDecontamination1 from '@/assets/img/login/quick-Decontamination1.jpg'
-import quickDecontamination2 from '@/assets/img/login/quick-Decontamination2.jpg'
-import quickDecontamination3 from '@/assets/img/login/quick-Decontamination3.jpg'
-import quickDecontamination4 from '@/assets/img/login/quick-Decontamination4.jpg'
-var scan = null;
+import {homePageApi,HomePagebottomApi,homeAdvertPictureApi} from '@/api/home/index.js'
 export default {
     props: {
 
@@ -212,12 +207,16 @@ export default {
             pulldown:true,
             guanmengou:true,
             codeUrl: '',
-            topBananerList:[
-                {name:'quickDecontamination1',imgsrc:quickDecontamination1},
-                {name:'quickDecontamination2',imgsrc:quickDecontamination2},
-                {name:'quickDecontamination3',imgsrc:quickDecontamination3},
-                {name:'quickDecontamination4',imgsrc:quickDecontamination4}
-            ]
+            topBananerList:[],
+            banner1:{
+                advertImg:''
+            },
+            banner2:{
+                advertImg:''
+            },
+            banner3:{
+                advertImg:''
+            }
         };
     },
     computed: {
@@ -246,7 +245,7 @@ export default {
             this.homePage()
         }
         this.refreshOrder()
-        this.leng = this.topBananerList.length
+        this.homeAdvertPicture()
     },
     watch: {
 
@@ -346,7 +345,22 @@ export default {
                 this.$router.push({name:'搜索商品1',query:{brandId:id}})
             }
         },
-        
+        //首页广告
+        homeAdvertPicture(){
+            homeAdvertPictureApi().then(res => {
+                if(res.code == 0){
+                    this.topBananerList = res.Data.slideShow
+                    this.leng = this.topBananerList.length
+                    this.banner1 = res.Data.newHouse[0]
+                    this.banner2 = res.Data.newHouse[1]
+                    this.banner3 = res.Data.newHouse[2]
+                }
+            })
+        },
+        //点击轮播图
+        swipeClick(el){
+            window.location.href = el.linkUrl
+        }
     },
     components: {
         searchHeader,

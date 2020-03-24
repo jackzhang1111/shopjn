@@ -17,3 +17,12 @@ export function HomePagebottomApi(params) {
         loading:'shouyedibu'
     })
 }
+
+//首页广告
+export function homeAdvertPictureApi(params) {
+    return park({
+        url:`/apphomepage/HomeAdvertPicture`,
+        method: 'POST',
+        data:params,
+    })
+}

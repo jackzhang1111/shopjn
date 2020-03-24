@@ -207,7 +207,7 @@ export default {
             align-items: center;
             justify-content: space-around;
             flex-direction: column;
-            z-index: 10;
+            z-index: 1;
         }
     }
     
