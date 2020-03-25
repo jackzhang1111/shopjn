@@ -122,7 +122,7 @@ export default {
     },
     beforeRouteEnter (to, from, next) {
         next( vm => {
-            if(from.name == '首页'){
+            if(from.name == '首页' || from.name =='分类'){
                 vm.isgo = false
             }else{
                 vm.isgo = true

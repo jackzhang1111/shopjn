@@ -159,7 +159,7 @@ export default {
         }
         .produced-title{
             padding-left:10px;
-            height: 75px;
+            height: 38px;
             display: -webkit-box;
             -webkit-box-orient: vertical;
             -webkit-line-clamp: 2;

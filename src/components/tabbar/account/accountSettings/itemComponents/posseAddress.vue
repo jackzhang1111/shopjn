@@ -3,7 +3,7 @@
         <div class="address-content" v-for="data in dataList" :key="data.addressId" @click="cliCard(data)">
             <div class="content-p1">
                 <span class="name">{{data.name}}</span>
-                <span class="phone">{{data.areaCode}} {{data.phoneNumber}}</span>
+                <span class="phone">{{data.phoneNumber}}</span>
                 <span class="dqmr" v-if="data.isDefault == 1">Default</span>
             </div>
             <div class="content-p2">

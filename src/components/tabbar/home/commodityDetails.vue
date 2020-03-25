@@ -28,13 +28,15 @@
                     </van-swipe>
                 </div>
                 <div class="good-content">
-                    <div class="prices">
-                        <span class="mark c-orange">{{jn}}</span>
-                        <span class="p1 c-orange">{{detailmData.discountPrice}}</span>
-                        <span class="p2 through" v-if="detailmData.salePriceFlag">{{jn}}{{detailmData.salePrice}}</span>
-                    </div>
-                    <div>
-                        <span class="p3">MOQ:{{detailmData.numIntervalStart}}Pcs</span>
+                    <div v-if="detailmData.quoteMethod == 1">
+                        <div class="prices">
+                            <span class="mark c-orange">{{jn}}</span>
+                            <span class="p1 c-orange">{{detailmData.discountPrice}}</span>
+                            <span class="p2 through" v-if="detailmData.salePriceFlag">{{jn}}{{detailmData.salePrice}}</span>
+                        </div>
+                        <div>
+                            <span class="p3">MOQ:{{detailmData.numIntervalStart}}Pcs</span>
+                        </div>
                     </div>
                     <div class="miaoshu">
                         <span class="p4">{{detailmData.supplyTitle}}</span>
@@ -42,6 +44,15 @@
                             <img src="@/assets/img/tabbar/home/commodityDetails/share-02@2x.png" class="fenxiang">
                             <span class="fenxiang-txt">Share</span>
                         </span> -->
+                    </div>
+                    <div class="qujianjia" v-if="detailmData.quoteMethod == 2">
+                        <div v-for="(spc,index) in spclist" :key="index" class="qujianjia-item">
+                            <div class="price">
+                                <span class="huobi">{{jn}}</span>
+                                <span>{{spc.price}}</span> 
+                            </div>
+                            <div class="piece">{{spc.pcs}}PCS</div>
+                        </div>
                     </div>
                     <div class="supplement" v-if="false">
                         <span class="t1">物流</span>
@@ -173,7 +184,8 @@ export default {
             productParamList:[],
             productParamList2:[],
             shousuoStatus:false,
-            showData:false
+            showData:false,
+            spclist:[]
         };
     },
     computed: {
@@ -213,7 +225,7 @@ export default {
                     this.showfooter = true //数据回调回来,显示猜你喜欢
                     this.Isfavorites = res.Data.isfavorites  //收藏状态
 
-
+                    this.spclist = res.spclist
                     this.productParamList = res.Data.productParamList.slice(0,5)
                     this.productParamList2 = res.Data.productParamList
                     if(res.Data.productParamList.length > 5){
@@ -364,6 +376,26 @@ export default {
             top: 0px;
             font-size: 20px;
             color:#999999;
+        }
+    }
+    .qujianjia{
+        display: flex;
+        flex-direction:row;
+        flex-wrap : wrap;
+        .qujianjia-item{
+            margin:0 140px 10px 0;
+            .huobi{
+                font-size: 16px;
+            }
+            .price{
+                font-size: 36px;
+                color: #FA5300;
+            }
+            .piece{
+                margin-top: 10px;
+                font-size: 18px;
+                color: #333;
+            }
         }
     }
     .supplement{

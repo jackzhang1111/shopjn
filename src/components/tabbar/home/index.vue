@@ -91,7 +91,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="banner">
+                <div class="banner" @click="swipeClick(banner1)">
                     <img :src="$webUrl+banner1.advertImg">
                 </div>
                 <div class="exhibition">
@@ -105,7 +105,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="banner">
+                <div class="banner" @click="swipeClick(banner2)">
                     <img :src="$webUrl+banner2.advertImg" >
                 </div>
                 <div class="good-popular box">
@@ -121,7 +121,7 @@
                     </div>
                     
                 </div>
-                <div class="banner">
+                <div class="banner" @click="swipeClick(banner3)">
                     <img :src="$webUrl+banner3.advertImg" >
                 </div>
                 <div class="good-sort">
@@ -351,14 +351,15 @@ export default {
                 if(res.code == 0){
                     this.topBananerList = res.Data.slideShow
                     this.leng = this.topBananerList.length
-                    this.banner1 = res.Data.newHouse[0]
-                    this.banner2 = res.Data.newHouse[1]
-                    this.banner3 = res.Data.newHouse[2]
+                    this.banner1 = res.Data.newHouse[0] ? res.Data.newHouse[0] : {advertImg:""}
+                    this.banner2 = res.Data.newHouse[1] ? res.Data.newHouse[1] : {advertImg:""}
+                    this.banner3 = res.Data.newHouse[2] ? res.Data.newHouse[2] : {advertImg:""}
                 }
             })
         },
         //点击轮播图
         swipeClick(el){
+            if(!el.linkUrl) return
             window.location.href = el.linkUrl
         }
     },

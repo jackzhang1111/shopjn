@@ -500,6 +500,7 @@ export default {
         width: 100%;
         background-color: #fff;
         margin-bottom: 20px;
+        overflow: hidden;
         .serial-number{
             width: 100%;
             // height: 72px;
