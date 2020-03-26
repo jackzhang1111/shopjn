@@ -85,6 +85,13 @@ export default {
     beforeDestroy(){
         this.$store.state.serchName = ''
     },
+    beforeRouteLeave(to, from, next) {
+        // 设置下一个路由的 meta
+        if(to.name == '搜索商品1'){
+            to.meta.isBack = true;
+        }
+        next()
+    },
     watch: {
         goodName:{
             handler:function(newVal, oldVal){

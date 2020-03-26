@@ -9,7 +9,7 @@
 					<div class="list" @click="$router.push({name:'消息详情',query:{announceId:data.announceId}})">
 						<img :src="$webUrl+data.announceImg"/>
 						<div class="text plr30">
-							<p>{{data.typeName}}</p>
+							<p>{{data.typeNameEng}}</p>
 							<span>{{data.announceTitle}}</span>
 						</div>
 					</div>

@@ -225,6 +225,13 @@ export default {
     created() {
 
     },
+    beforeRouteLeave(to, from, next) {
+        // 设置下一个路由的 meta
+        if(to.name == '搜索商品1'){
+            to.meta.isBack = true;
+        }
+        next()
+    },
     mounted() {
         if(localStorage.homeObj){
             this.homeObj = this.$fn.MyLocalStorage.Cache.get('homeObj')

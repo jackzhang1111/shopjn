@@ -11,7 +11,7 @@
 		<!-- 内容区 -->
 			<div class="main">
 				<img :src='$webUrl+detail.announceImg'/>
-				<div v-html="detail.announceContent"></div>
+				<div v-html="detail.announceContent" class="announceContent"></div>
 			</div>
 		</div>
   	</div>

@@ -474,7 +474,11 @@ export default new Router({
         {
           path: 'searchGoodsOne',
           name: '搜索商品1',
-          component: searchGoodsOne
+          component: searchGoodsOne,
+          meta:{
+            keepAlive:true,
+            isBack :true
+          }
         },
         {
           path: 'favorites/favoriteRecord',
@@ -557,7 +561,10 @@ export default new Router({
         {
           path: 'home',
           name: '首页',
-          component: home
+          component: home,
+          meta:{
+            keepAlive:true
+          }
         },
         {
           path:'classify',

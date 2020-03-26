@@ -120,6 +120,16 @@ export default {
         this.searName = this.$route.query.seraname
         this.refreshOrder()
     },
+    activated(){
+        if(this.$route.meta.isBack){
+            this.formData.seraname = this.$route.query.seraname ? this.$route.query.seraname : ''
+            this.formData.categoryId = this.$route.query.categoryId ? this.$route.query.categoryId : 0
+            this.formData.brandId = this.$route.query.brandId ? this.$route.query.brandId : 0
+            this.searName = this.$route.query.seraname
+            this.refreshOrder()
+            this.$refs.wrapper.scrollTo(0,0)
+        }
+    },
     beforeRouteEnter (to, from, next) {
         next( vm => {
             if(from.name == '首页' || from.name =='分类'){

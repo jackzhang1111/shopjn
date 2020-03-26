@@ -11,7 +11,7 @@
         <div class="head-con">
             <div class="head-img">
                 <img src="@/assets/img/tabbar/my/account/touxiang@2x.png"><br>
-                <span class="head-name">{{userinfoShop.userName?userinfoShop.userName:"设置您的个人昵称"}}</span><br>
+                <span class="head-name">{{userinfoShop.userName?userinfoShop.userName:"Set your nickname"}}</span><br>
                 <span class="head-id">Account:{{userinfoShop.userId}}</span>
             </div>
         </div>
