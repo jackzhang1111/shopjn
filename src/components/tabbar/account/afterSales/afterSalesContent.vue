@@ -63,7 +63,6 @@ export default {
             },
             dataList:[],
             totalCount:0,
-            noSearchStatus:true,
             statusList:[
                 {type:0,name:'Unapproved'},
                 {type:1,name:'Pending Pickup'},
@@ -111,7 +110,6 @@ export default {
                     this.recordGroup = this.dataList
 
                     if(this.dataList.length > 0){
-                        this.noSearchStatus = true
                         if(this.dataList.length >= this.totalCount){
                             this.pullup = false
                         }
@@ -121,9 +119,13 @@ export default {
                                 item.lengcha = item.detailList.length - 2
                                 item.arrowDown = true
                             })
+                        }else{
+                            this.dataList.forEach(item => {
+                                item.detailList2 = item.detailList
+                                item.lengcha = item.detailList.length
+                            })
                         }
                     }else{
-                        this.noSearchStatus = false
                         this.pulldown = false
                         this.pullup = false
                     }

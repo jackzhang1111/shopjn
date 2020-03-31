@@ -198,7 +198,9 @@ export default {
 
     },
     mounted() {
-        this.productdetail(this.$route.query.skuId)
+        setTimeout(()=>{
+            this.productdetail(this.$route.query.skuId)
+        },10)
         this.adduserbrowhistory(this.$route.query.skuId)
     },
     beforeRouteLeave(to, from, next) {
@@ -245,6 +247,11 @@ export default {
                         this.showData = true
                         Toast.clear();
                     },1000)
+                }else if(res.code == -326){
+                    Toast('Sold Out')
+                    setTimeout(()=>{
+                        this.$router.go(-1)
+                    },1000)
                 }
             })
         },
@@ -252,6 +259,7 @@ export default {
         clickPro(skuid){
             this.productdetail(skuid)
             this.$refs.wrapper.scrollTo(0,0,500)
+            this.active = 0
         },
         //弹出规格框
         //第一个参数:弹窗状态,第二个参数:弹窗按钮类型,弹窗按钮名字

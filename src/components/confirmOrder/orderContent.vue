@@ -85,7 +85,7 @@
                     <div class="gj-img">
                         <img :src="$webUrl+order.areaImg">
                     </div>
-                    <span>{{order.areaName}}</span>
+                    <span>{{order.areaNameEng}}</span>
                 </div>
             </div>
             <div class="heji b-t-1">

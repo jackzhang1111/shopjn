@@ -569,7 +569,10 @@ export default new Router({
         {
           path:'classify',
           name: '分类',
-          component: classify
+          component: classify,
+          meta:{
+            keepAlive:true
+          }
         },
         {
           path:'shoppingCart',
