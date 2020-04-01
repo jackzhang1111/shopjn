@@ -41,8 +41,9 @@ const state = {
 
     payPassword:'',//设置支付密码
 
-    orderdetailList:[]//订单多个商品退货退款
+    orderdetailList:[],//订单多个商品退货退款
     
+    classifyKeep:false, //分类是否缓存
 }
 const getters = {
     
@@ -66,6 +67,9 @@ const mutations = {
     },
     SETORDERDETAILLIST(state, arr=[]){
         return (state.orderdetailList = arr)
+    },
+    CLASSIFYKEEP(state,flag){
+        return state.classifyKeep = flag
     }
 }
 
@@ -97,6 +101,10 @@ const actions = {
     setorderdetaillist(context, arr=[]){
         return context.commit('SETORDERDETAILLIST', arr)
     },
+    //更改分类缓存状态
+    classifykeep(context,flag){
+        return context.commit('CLASSIFYKEEP', flag)
+    }
 }
 
 export default new Vuex.Store({

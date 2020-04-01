@@ -82,6 +82,7 @@ import {accReg,passReg} from '@/common/reg.js'
 import zhezhao from '@/multiplexing/zhezhao'
 import yinsi from '@/components/tabbar/account/accountSettings/aboutItem/privacyPolicy.vue'
 import {Toast} from 'vant'
+import {mapActions} from 'vuex'
 export default {
     props: {
 
@@ -140,6 +141,7 @@ export default {
         },
     },
     methods: {
+        ...mapActions(['classifykeep']),
         //登录按钮
         logIn(){
             if(this.disabledSubmit){
@@ -155,6 +157,7 @@ export default {
                         localStorage.token = res.token
                         localStorage.userinfoShop = JSON.stringify(res.user) 
                         this.$router.push({name:'首页'})
+                        this.classifykeep(true)
                     }else if(res.code == -4){
                         Toast('Password error')
                     }else if(res.code == -26){
