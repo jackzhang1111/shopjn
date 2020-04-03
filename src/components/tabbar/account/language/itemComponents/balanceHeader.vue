@@ -37,7 +37,7 @@ export default {
     },
     methods: {
         title2Click(){
-            this.$emit('aaa')
+            this.$emit('submit')
         }
     },
     components: {

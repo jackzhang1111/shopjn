@@ -72,3 +72,12 @@ export function gethttpimgurlApi(params) {
         loading:'jianadizhi'
     })
 }
+
+//获取站点的国家语言信息
+export function getcountryWebUrlApi(params) {
+    return park({
+        url:'/h5login/getcountryWebUrl',
+        method: 'POST',
+        data:params,
+    })
+}

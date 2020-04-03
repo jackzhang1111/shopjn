@@ -5,7 +5,7 @@
         <scroll class="bscroll-wrapper" ref="wrapper" :data="recordGroup" :pullup="pullup" @pullup="_pullup" :pulldown="pulldown" @pulldown="_pulldown" :scrollX="true">
             <div>
                 <div class="commodity-swipe" v-if="topBananerList.length>0">
-                    <van-swipe @change="onChange" :stop-propagation="false" :autoplay="2000">
+                    <van-swipe @change="onChange" :stop-propagation="false" :autoplay="2000" :initial-swipe="swipeIndex">
                         <van-swipe-item v-for="(banner,index) in topBananerList" :key="index" @click="swipeClick(banner)">
                             <div class="w1">
                                 <img :src="$webUrl+banner.advertImg">
@@ -157,7 +157,6 @@
                         </div>
                     </div>
                 </div>
-
             </div>
         </scroll>
     </div>
@@ -167,12 +166,14 @@
 
 import searchHeader from '@/multiplexing/searchHeader'
 import {homePageApi,HomePagebottomApi,homeAdvertPictureApi} from '@/api/home/index.js'
+import {getuserinfoApi} from '@/api/accountSettings/index'
 export default {
     props: {
 
     },
     data() {
         return {
+            swipeIndex:0,
             active:0,
             homeObj:{},
             globalProList:[],
@@ -223,7 +224,11 @@ export default {
 
     },
     created() {
-
+        if(this.$route.query.token){
+            localStorage.token = this.$route.query.token
+            this.getuserinfo()
+            console.log(123123);
+        }
     },
     beforeRouteLeave(to, from, next) {
         // 设置下一个路由的 meta
@@ -231,6 +236,9 @@ export default {
             to.meta.isBack = true;
         }
         next()
+    },
+    activated(){
+        console.log(this.swipeIndex,'aaa');
     },
     mounted() {
         if(localStorage.homeObj){
@@ -312,6 +320,9 @@ export default {
         //轮播
         onChange(index) {
             this.current = index;
+            setTimeout(()=>{
+                this.swipeIndex = index
+            },300)
         },
         //上拉加载
         _pullup(){
@@ -367,7 +378,15 @@ export default {
         //点击轮播图
         swipeClick(el){
             if(!el.linkUrl) return
-            window.location.href = el.linkUrl
+            window.location.href = el.linkUrlEng
+        },
+        //获取用户信息
+        getuserinfo(){
+            getuserinfoApi().then(res => {
+                if(res.code == 0){
+                    localStorage.userinfoShop = JSON.stringify(res.user) 
+                }
+            })
         }
     },
     components: {

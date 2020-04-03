@@ -8,17 +8,17 @@
         <!-- <a class="clearfix" @click="toguojia"> -->
         <div class="fl">Country/District</div>
         <div class="fr">
-          <img src="@/assets/img/goodsDetails/02@2x.png" alt class="nationFlagR" />
-          <span class="nation">Ghana</span>
-          <span>&gt;</span>
+          <img :src="nationalFlag" alt class="nationFlagR" />
+          <span class="nation">{{countryItem.country}}</span>
+          <!-- <span>&gt;</span> -->
         </div>
       </a>
     </div>
     <div class="options plr30">
-      <a class="clearfix">
+      <a class="clearfix" @click="toyuyan">
         <div class="fl">Language</div>
         <div class="fr">
-          <span class="nation">English</span>
+          <span class="nation">{{countryItem.language}}</span>
           <span>&gt;</span>
         </div>
       </a>
@@ -27,45 +27,79 @@
       <a class="clearfix">
         <div class="fl">Currency</div>
         <div class="fr">
-          <span class="nation">{{jn}}-GHS</span>
-          <span>&gt;</span>
+          <span class="nation">{{countryItem.currency}}</span>
+          <!-- <span>&gt;</span> -->
         </div>
       </a>
     </div>
-    <!--  -->
-    <div class="lead plr30" style="margin-top: 50px;">History</div>
-    <div class="options history plr30">
-      <a class="clearfix">
-        <div class="fl clearfix">
-          <img src="@/assets/img/goodsDetails/02@2x.png" alt class="nationFlagL" />
-          <div class="nationName">
-            <span>Ghana-English</span>
-            <span>Ghana-Tospino.com</span>
-          </div>
-        </div>
-        <div class="fr">
-          <!-- 选中状态用背景图来做  或者icon都行 -->
-          <div :class="isSelection?'pitchOn':'pitchOn2'" @click="isSelection = !isSelection"></div>
-        </div>
-      </a>
-    </div>
-
-    <button class="done" @click="$router.go(-1)">OK</button>
+    <button class="done" @click="done">OK</button>
   </div>
 </template> 
 
 <script>
 import balanceHeader from './itemComponents/balanceHeader'
+import {getcountryWebUrlApi} from '@/api/login/index'
+import china from '@/assets/img/goodsDetails/01@2x.png'
+import gana from '@/assets/img/goodsDetails/02@2x.png'
+import {Toast} from 'vant'
 export default {
-	name: "HelloWorld",
 	data() {
 		return {
-			isSelection:true
+      isSelection:true,
+      countryItem:{
+				country:'',
+				language:'',
+				currency:'',
+				webUrl:''
+			},
+			china:china,
+			gana:gana
 		};
+  },
+  mounted(){
+		this.getcountryWebUrl()
+  },
+  computed:{
+		nationalFlag(){
+			let flag = null
+			if(this.$route.query.type == 1){
+				flag = this.gana
+			}else{
+				flag = this.china
+			}
+			return flag
+		}
 	},
 	methods: {
-		toguojia(){
+		toyuyan(){
 			this.$router.push({name:'语言选择页'})
+    },
+    //获取站点的国家语言信息
+    getcountryWebUrl(){
+			getcountryWebUrlApi().then(res => {
+				if(res.code == 0){
+					try{
+						if(this.$route.query.type == 1){
+							this.countryItem = res.Data[1]
+						}else{
+							this.countryItem = res.Data[0]
+						}
+					}
+					catch(err){
+						this.countryItem = res.Data[1]
+					}
+					
+				}
+			})
+    },
+    //完成
+		done(){
+			if(this.$route.query.type == 0){
+        window.location.href = this.countryItem.webUrl + '#/control/home/?token='+localStorage.token
+			}else{
+				Toast('已经是中文')
+			}
+			
 		}
 	},
 	components:{
@@ -130,56 +164,11 @@ export default {
 		height: 48px;
 		vertical-align: middle;
       }
-      .nationFlagL {
-        display: inline-block;
-        width: 60px;
-        height: 36px;
-      }
       .nation {
         font-weight: bold;
         margin-right: 20px;
         margin-left: 20px;
       }
-      .nationName {
-        display: inline-block;
-        font-size: 20px;
-        font-family: PingFang SC;
-        font-weight: 500;
-        color: rgba(51, 51, 51, 1);
-        line-height: 27px;
-        text-align: left;
-        padding-top: 20px;
-        margin-left: 20px;
-        span {
-          display: block;
-          &:nth-of-type(1) {
-            font-size: 30px;
-          }
-        }
-      }
-      .pitchOn {
-        width: 40px;
-        height: 40px;
-		margin-top: 30px;
-		border:2px solid rgba(102,102,102,1);
-		border-radius:50%;
-		box-sizing: border-box;
-	  }
-	  .pitchOn2{
-		width: 40px;
-        height: 40px;
-		margin-top: 30px;
-		// border:2px solid rgba(102,102,102,1);
-		border-radius:50%;
-		background: url('~@/assets/img/goodsDetails/icon@2x.png') 100% 100%;
-	  }
-    }
-  }
-  .history {
-    margin-bottom: 0px;
-    border-top: 1px solid #dcdcdc;
-    &:nth-of-type(1) {
-      border-top: 0px solid #dcdcdc;
     }
   }
   .done {

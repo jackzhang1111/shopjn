@@ -2,7 +2,7 @@
 <!-- 首页搜索框 -->
     <div>
         <div class="search-header c-b-gray">
-            <div class="logo">
+            <div class="logo" @click="$router.push({name:'语言',query:{type:1}})">
                 <img src="@/assets/img/tabbar/home/logo@3x.png">
             </div>
             <div class="search">

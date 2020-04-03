@@ -1,13 +1,13 @@
 <template >
   <!-- 切换国家语言货币页面 -->
   <div class="toggle c-b-gray">
-    <balance-header title="国家/地区" title2="保存"></balance-header>
-    <div class="options history plr30" v-for="i in 5" :key="i">
+    <balance-header title="language" title2="submit" @submit="submit"></balance-header>
+    <div class="options history plr30" v-for="i in 1" :key="i">
       <a  class="clearfix">
         <div class="fl clearfix">
           <img src alt class="nationFlagL" />
           <div class="nationName">
-            <span>加纳</span>
+            <span>Chinese</span>
           </div>
         </div>
         <div class="fr">
@@ -25,10 +25,16 @@ export default {
 	name: "HelloWorld",
 	data() {
 		return {
-			isSelection:true
+			isSelection:true,
 		};
 	},
-	methods: {},
+	methods: {
+    submit(){
+			if(!this.isSelection){
+				this.$router.push({name:'语言',query:{type:0}})
+			}
+		}
+  },
 	components:{
 		balanceHeader
 	}
