@@ -5,7 +5,6 @@
     <div class="options history plr30" v-for="i in 1" :key="i">
       <a  class="clearfix">
         <div class="fl clearfix">
-          <img src alt class="nationFlagL" />
           <div class="nationName">
             <span>Chinese</span>
           </div>

@@ -10,25 +10,27 @@
             <span class="line-right"></span>
         </div>
         <div class="exhibition-con clearfix">
-            <div class="exhibition-left" @click="toProduDetail(good.skuId)" v-for="good in dataList" :key="good.skuId">
-                <img :src="$webUrl+good.imgUrl">
-                <div class="produced">
-                    <span class="icon">
-                        <img :src="$webUrl+good.locationUrl" v-if="good.locationUrl">
-                    </span>
-                    <span class="produced-font">{{good.locationNameEng ? good.locationNameEng:''}}</span>
-                </div>
-                <div class="produced-title">
-                    <span>{{good.supplyTitle}}</span>
-                </div>
-                <div class="score">
-                    <van-rate v-model="good.starNumber" readonly  color="#FA5300"/>
-                    <span>{{good.manNumber}}</span>
-                </div>
-                <div class="price">
-                    <span class="price1">{{jn}}{{good.discountPrice == null ? good.salePrice:good.discountPrice}}</span>
-                    <span class="price2" v-if="good.discountPrice != null">{{jn}}{{good.salePrice}}</span>
-                    <!-- <span class="poin">...</span> -->
+            <div v-for="good in dataList" :key="good.skuId">
+                <div v-if="good.canSalesNum > 0" class="exhibition-left" @click="toProduDetail(good.skuId)">
+                    <img :src="$webUrl+good.imgUrl">
+                    <div class="produced">
+                        <span class="icon">
+                            <img :src="$webUrl+good.locationUrl" v-if="good.locationUrl">
+                        </span>
+                        <span class="produced-font">{{good.locationNameEng ? good.locationNameEng:''}}</span>
+                    </div>
+                    <div class="produced-title">
+                        <span>{{good.supplyTitle}}</span>
+                    </div>
+                    <div class="score">
+                        <van-rate v-model="good.starNumber" readonly  color="#FA5300"/>
+                        <span>{{good.manNumber}}</span>
+                    </div>
+                    <div class="price">
+                        <span class="price1">{{jn}}{{good.discountPrice == null ? good.salePrice:good.discountPrice}}</span>
+                        <span class="price2" v-if="good.discountPrice != null">{{jn}}{{good.salePrice}}</span>
+                        <!-- <span class="poin">...</span> -->
+                    </div>
                 </div>
             </div>
         </div>

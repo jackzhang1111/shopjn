@@ -153,6 +153,7 @@
                                     <span class="price2" v-if="searchgoodDao.discountPrice">{{jn}}{{searchgoodDao.salePrice}}</span>
                                     <!-- <span class="poin">...</span> -->
                                 </div>
+                                <div>Sales:{{searchgoodDao.skuSalesNum}}PCS</div>
                             </div>
                         </div>
                     </div>
@@ -224,7 +225,7 @@ export default {
 
     },
     created() {
-        if(this.$route.query.token){
+        if(this.$route.query.token && this.$route.query.token != 'undefined'){
             localStorage.token = this.$route.query.token
             this.getuserinfo()
             console.log(123123);
@@ -236,9 +237,6 @@ export default {
             to.meta.isBack = true;
         }
         next()
-    },
-    activated(){
-        console.log(this.swipeIndex,'aaa');
     },
     mounted() {
         if(localStorage.homeObj){
@@ -917,6 +915,7 @@ export default {
                 }
                 .price{
                     position: relative;
+                    margin-bottom: 14px;
                     .price1{
                         font-size:28px;
                         color: #FA5300;
