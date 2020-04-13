@@ -57,7 +57,7 @@
                             </div>
                         </div>
                     </div>
-                    <div>Sales:{{detailmData.skuSalesNum}}PCS</div>
+                    <div>Sales:{{detailmData.skuSalesNum ? detailmData.skuSalesNum:0}}PCS</div>
                     <div class="supplement" v-if="false">
                         <span class="t1">物流</span>
                         <span class="t2">

@@ -135,7 +135,7 @@
                     <div class="footer-exhibition">
                         <div  class="exhibition-con">
                             <div class="exhibition-left" v-for="(searchgoodDao,index) in searchgoodDaolist" :key="index">
-                                <div class="shouwan" v-if="!searchgoodDao.canSalesNum">Out of Stock</div>
+                                <!-- <div class="shouwan" v-if="!searchgoodDao.canSalesNum">Out of Stock</div> -->
                                 <img :src="$webUrl + searchgoodDao.imgUrl" @click="toDetail(searchgoodDao.skuId)">
                                 <div class="produced">
                                     <span class="icon" v-if="searchgoodDao.locationUrl">
@@ -153,7 +153,7 @@
                                     <span class="price2" v-if="searchgoodDao.discountPrice">{{jn}}{{searchgoodDao.salePrice}}</span>
                                     <!-- <span class="poin">...</span> -->
                                 </div>
-                                <div>Sales:{{searchgoodDao.skuSalesNum}}PCS</div>
+                                <div>Sales:{{searchgoodDao.skuSalesNum ? searchgoodDao.skuSalesNum : 0}}PCS</div>
                             </div>
                         </div>
                     </div>

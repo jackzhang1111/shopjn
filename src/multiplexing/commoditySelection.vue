@@ -539,6 +539,8 @@ export default {
             flex-direction:row;
             justify-content:flex-start;
             flex-wrap: wrap;
+            max-height: 300px;
+            overflow: auto;
             .guige-items{
                 display: inline-block;
                 padding: 13px 50px;
@@ -639,7 +641,7 @@ export default {
     .ios-place{
         width: 100%;
         float: left;
-        height: 240px;
+        height: 180px;
     }
 }
 

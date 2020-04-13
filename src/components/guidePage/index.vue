@@ -2,12 +2,6 @@
 <!-- 引导页 -->
   <div class="guidePage">
       <div class="logo"></div>
-      <p class="title">Shopping made Easy</p>
-      <div class="con">
-        Convenient and Affordable prices, 
-        Timely delivery and easy access to 
-        world class products.
-      </div>
   </div>
 </template>
 
@@ -39,25 +33,9 @@ export default {
   text-align: center;
   .logo{
     width: 100vw;
-    height:996px;
-    background-image:url('~@/assets/img/guidePage/yindao.png');
+    height:100vh;
+    background-image:url('~@/assets/img/guidePage/yina.jpg');
     background-size: 100%;
-  }
-  .title{
-    font-size:44px;
-    font-family:Arial;
-    font-weight:bold;
-    color:rgba(250,83,0,1);
-    text-align: center;
-    margin: 39px 0 25px
-  }
-  .con{
-    display: inline-block;
-    width: 464px;
-    font-size:30px;
-    line-height:48px;
-    color: #333;
-    font-family:Arial;
   }
 }
 
