@@ -22,7 +22,7 @@
                                 <img :src="$webUrl+product.imgUrl" @click="toDetail(product.skuId)">
                             </div>
                             <div class="good-desc">
-                                <span class="p1 clamp-2">{{product.supplyTitle}}</span>
+                                <span class="p1 clamp-2" @click="toDetail(product.skuId)">{{product.supplyTitle}}</span>
                                 <span class="p2">Sales:{{product.skuSalesNum}}Pcs</span>
                                 <div class="good-price">
                                     <span class="p1">{{jn}}{{product.discountPrice == null ? product.salePrice:product.discountPrice}}</span>
@@ -32,7 +32,6 @@
                                     </div>
                                 </div>
                             </div>
-                            
                         </div>
                     </div>
                 </div>

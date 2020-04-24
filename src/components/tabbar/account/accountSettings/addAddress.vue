@@ -273,7 +273,7 @@ export default {
             right:30px;
         }
         .input-xt{
-            height: 40px;
+            height: 80px;
             border: 0;
             width: 80%;
             background-color: #fff;

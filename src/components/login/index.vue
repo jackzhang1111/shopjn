@@ -52,7 +52,7 @@
                 <input type="checkbox" class="checkbox" v-model="checked">
                 <span class="c1 fs-24">
                     <span>You agree to the</span>
-                    <span>TOSPINO Law Aggrement</span>
+                    <span>TOSPINO Law Agreement</span>
                     <span>and the</span>
                     <span @click="zhengce=true" class="c2">Privacy Policy</span>
                 </span>

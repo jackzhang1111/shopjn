@@ -35,7 +35,8 @@ export default {
     width: 100vw;
     height:100vh;
     background-image:url('~@/assets/img/guidePage/yina.jpg');
-    background-size: 100%;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
   }
 }
 
