@@ -18,7 +18,13 @@
                     </div>
                     <div class="price">
                         <div class="p3">{{data.currencySignWebsite}}{{data.priceWebsite}}</div>
-                        <div class="p4 fl-right">x{{data.shouldReturnNum}}</div>
+                        <div class="selection-right-stepper">
+                            <div class="add-btn" :style="{color:(data.shouldReturnNum == data.canReturnMaxNum?'#dcdcdc':'#999')}" @click="changeStepper(data,'add')">+</div>
+                            <div class="center-input">
+                                <input type="number" class="number-input" v-model="data.shouldReturnNum" @blur="blur(data)" :min="1">
+                            </div>
+                            <div class="reduce-btn"  :style="{color:(data.shouldReturnNum==1?'#dcdcdc':'#999')}" @click="changeStepper(data,'reduce')">一</div>
+                        </div>
                     </div>
                     <div class="tkje">
                         <span class="c-999 f-22">Refund:</span>
@@ -132,9 +138,6 @@ export default {
                 if(res.code == 0){
                     this.orderData = res.Data.order
                     this.dataList = res.Data.order.detailList
-                    this.dataList.forEach(item => {
-                        item.checked = false
-                    })
                 }
             })
         },
@@ -195,6 +198,47 @@ export default {
                     Toast('The product Qty of return&refund you applied for exceeds the available product Qty of return&refund.')
                 }
             })
+        },
+        //更改数量
+        changeStepper(itemdetail,type){
+            if(type == 'add'){
+                if(itemdetail.shouldReturnNum >= itemdetail.canReturnMaxNum){
+                    return
+                }else{
+                    itemdetail.shouldReturnNum++
+                }
+            }else{
+                if(itemdetail.shouldReturnNum == 1){
+                    return
+                }else{
+                    itemdetail.shouldReturnNum--
+                }
+            }
+            this.changeNumber()
+        },
+        //输入框改变
+        blur(itemdetail){
+            if(itemdetail.shouldReturnNum >= itemdetail.canReturnMaxNum){
+                itemdetail.shouldReturnNum = itemdetail.canReturnMaxNum
+            }else if(itemdetail.shouldReturnNum <= itemdetail.canReturnMaxNum){
+                itemdetail.shouldReturnNum = 1
+            }
+            this.changeNumber()
+        },
+        //更改数量
+        changeNumber(){
+            let orderData = {
+                orderId:this.$route.query.orderId,
+                detailList:[]
+            }
+            this.dataList.forEach(ele => {
+                let obj = {
+                    detailId:ele.detailId,
+                    detailNum:ele.shouldReturnNum
+                }
+                orderData.detailList.push(obj)
+            })
+            this.getconfirmreturnorder(orderData)
         }
     },
     components: {
@@ -306,9 +350,50 @@ export default {
                 color: #333;
                 margin-bottom: 24px;
             }
-            .p4{
-                color: #999;
-                font-size: 20px;
+            .selection-right-stepper{
+                position: relative;
+                height: 156px;
+                .add-btn{
+                    position: absolute;
+                    top:20px;
+                    right:0;
+                    width: 40px;
+                    height: 40px;
+                    border: 1px solid #999999;
+                    text-align: center;
+                    line-height: 40px;
+                    background-color: #EEEEEE;
+                    color: #666;
+                    border-left:none;
+                    font-size: 40px;
+                }
+                .reduce-btn{
+                    position: absolute;
+                    top:20px;
+                    right:128px;
+                    width: 40px;
+                    height: 40px;
+                    border: 1px solid #999999;
+                    border-right:none;
+                    text-align: center;
+                    line-height: 40px;
+                    background-color: #EEEEEE;
+                    color: #666;
+                }
+                .center-input{
+                    position: absolute;
+                    top:20px;
+                    right:40px;
+                    width: 88px;
+                    height: 40px;
+                    text-align: center;
+                    line-height: 40px;
+                    .number-input{
+                        width: 90%;
+                        height: 75%;
+                        text-align: center;
+                    }
+                }
             }
         }
         .tkje{
